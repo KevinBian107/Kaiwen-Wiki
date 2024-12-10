@@ -1,13 +1,29 @@
-#google_translate_element {
-    margin-top: 20px;
-    text-align: right;
+/* Translation module container */
+/* #translation-module {
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.goog-te-combo {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+:root {
+  --translation-bg-light: #f5f5f5;
+  --translation-color-light: #000000;
 }
+
+[data-md-color-scheme="slate"] {
+  --translation-bg-light: #333333;
+  --translation-color-light: #ffffff;
+}
+
+[data-md-color-scheme="default"] #translation-module {
+  background-color: var(--translation-bg-light);
+  color: var(--translation-color-light);
+}
+
+[data-md-color-scheme="slate"] #translation-module {
+  background-color: var(--translation-bg-light);
+  color: var(--translation-color-light);
+} */
 
 .profile {
     display: flex;
@@ -69,3 +85,73 @@ p {
 .markdown-body p {
   font-size: 14px; 
 }
+
+/* General text adjustments */
+p, 
+ul, 
+ol, 
+li, 
+blockquote, 
+code, 
+pre, 
+table {
+  font-size: 14px; 
+  line-height: 1.6; 
+}
+
+/* Adjust headings for consistency if needed */
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  line-height: 1.2; /* Adjust as desired */
+}
+
+/* Optional: Apply consistent font size to all markdown elements */
+.markdown-body {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Ensure lists are consistent */
+ul, 
+ol {
+  margin-left: 1.5em; /* Adjust indentation if needed */
+  padding-left: 1em;
+}
+
+/* List items */
+li {
+  margin-bottom: 0.4em; /* Add spacing between list items */
+}
+
+/* Tables */
+table {
+  font-size: 14px;
+  border-collapse: collapse; /* Optional: Clean table style */
+}
+
+th, 
+td {
+  padding: 8px; /* Adjust padding for better readability */
+  font-size: 14px;
+}
+
+/* Code and preformatted text */
+code, 
+pre {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Blockquotes */
+blockquote {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-left: 1em; /* Indent blockquotes */
+  padding-left: 0.8em; /* Add padding inside blockquotes */
+  border-left: 4px solid #ccc; /* Optional: Styling */
+}
+

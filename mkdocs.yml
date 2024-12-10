@@ -146,11 +146,11 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js
   - https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  # - js/main.js
+  - js/main.js
 
 extra_css:
   - css/custom.css
-  
+
 copyright: >
   Copyright &copy; 2024 Kaiwen Bian –
   <a href="#__consent">Change cookie settings</a>
@@ -167,8 +167,8 @@ nav:
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
     - Positive Psychology: articles/neuroscience/positive_psycology.md
   - Mathamatics:
+    - Unfolding Stochasticity: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
-    - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
-    - All About Taylor Theorem: articles/mathamatics/optimization.md
-    - All About Constraint Solving: articles/mathamatics/constraint.md
+    - Twitch on Theory: articles/mathamatics/optimization.md
+    - All Constraint Solving: articles/mathamatics/constraint.md
 

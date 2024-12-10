@@ -84,7 +84,7 @@
   <p>Some notes that I concluded on basic statistics and probability connections across three areas: point estimate, interval estimate, adn decision making (HT) 
         (only personal understandings, may not be 100% correct).</p>
 
-  <a href="../../../assets/math/confidence.jpg" target="_blank">
+  <a href="../../../assets/math/confidence_notes.jpg" target="_blank">
    <p>\(N(\mu, \sigma)\) Some Notes on Basic Statistic Connections</p>
     </a>
 
