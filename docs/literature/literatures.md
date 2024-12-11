@@ -14,8 +14,9 @@ Stuff I find to be an interesting read... discussing novel ideas in mathematics,
   *Foundation review discussing potential research directions for human-like AI.*
 
 ---
+## Reinforcement Learning
 
-## Theoretical Reinforcement Learning
+### Theoretical Reinforcement Learning
 
 - [Maximum a Posteriori Policy Optimisation](https://arxiv.org/abs/1806.06920)  
   *Probabilistic flavor-infused cutting-edge actor-critic.*
@@ -31,7 +32,7 @@ Stuff I find to be an interesting read... discussing novel ideas in mathematics,
 
 ---
 
-## Goal-Directed Deep Reinforcement Learning
+### Goal-Directed Deep Reinforcement Learning
 
 - [Divergent Representations of Ethological Visual Inputs Emerge from Supervised, Unsupervised, and Reinforcement Learning](https://arxiv.org/abs/1911.09451)  
   *Proposes using ANNs to model the brain.*
@@ -44,7 +45,7 @@ Stuff I find to be an interesting read... discussing novel ideas in mathematics,
 
 ---
 
-## Inverse Kinematics Imitation Learning
+### Inverse Kinematics Imitation Learning
 
 - [A Virtual Rodent Predicts the Structure of Neural Activity Across Behaviors](https://www.nature.com/articles/s41586-024-07633-4)  
   *Imitation learning mimicking rodent behaviors, showing similar neuronal activations.*
@@ -54,8 +55,17 @@ Stuff I find to be an interesting read... discussing novel ideas in mathematics,
 
 ---
 
-## Representation Building
+### Representation Building
 
 - [Inductive Biases of Neural Network Modularity in Spatial Navigation](https://www.science.org/doi/pdf/10.1126/sciadv.adk1256)  
   *Building beliefs in artificial agents through MOPDP conditions.*
 
+---
+
+## World Model & Agent Model
+
+- [Language Models Meet World Models: Embodied Experiences Enhance Language Models](https://arxiv.org/pdf/2305.10626)   
+  *L-policy: building embodied world model into language model agent through embodied experiences and finetunning.*
+
+- [Building Cooperative Embodied Agents Modularly with Large Language Models](https://arxiv.org/pdf/2307.02485)   
+  *Building collaborative agent in an partially observable embodied environment.*
