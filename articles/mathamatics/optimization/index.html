@@ -821,8 +821,12 @@
 <li>Taylor's theorem</li>
 <li>Try to do incremental/dynamic update</li>
 <li>We just need to think and make twitches from a different perspective.</li>
+<li>Anything cna be framed into a optimization scheme question, just with different constraint that needs to be satisfied.</li>
 </ol>
-<p>It may all sound very vague, but this article will make it clearer.</p>
+<div class="arithmatex">\[
+\min_{w \in \mathbb{R}^p} \frac{1}{N} \sum_{i=1}^N \ell(\sigma(x_i; w), y_i) + \lambda R(w)
+\]</div>
+<p>It may all sound very vague, but this article will make it more clear. This article is not intended for a detailed proof (proof are attached as pdf files in each section), but more of a intuition of how convex optimization leads from one to another.</p>
 <h2 id="gradient-descent-in-different-lenses">Gradient Descent In Different Lenses<a class="headerlink" href="#gradient-descent-in-different-lenses" title="Permanent link">&para;</a></h2>
 <p>Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor used commonly in deep learning context). This is not only because it has good practical performances but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at gradient descent first.</p>
 <h3 id="taylors-theorem">Taylor's Theorem<a class="headerlink" href="#taylors-theorem" title="Permanent link">&para;</a></h3>
@@ -870,7 +874,20 @@ z^* = x^{(t)} - \mu \nabla f(x^{(t)})
 \]</div>
 <p>Again, by assuming our function is locally convex (locally L-smooth to be specific, hessian bounded), we can <strong><em>hide away much complexity</em></strong> into approximations.</p>
 <h2 id="optimality-guaranteed">Optimality Guaranteed<a class="headerlink" href="#optimality-guaranteed" title="Permanent link">&para;</a></h2>
-<p>We never really formally define what it means to be concvex here, but for now let's just say that convexity means that we have a <strong><em>Postive Semi-Deminite (PSD)</em></strong> hessian (this is not a definition but a result of teh definition). With gradient descnet + convexity + some tricks (teloscoping theory, series of convex functions, ...), we can have many powerful optimality guaranteed, namely: <strong><em>"It will stop, it will converge, and we will be at the optimal position"</em></strong>. We will name a few here:</p>
+<p>We never really formally define what it means to be concvex here, but for now let's just say that convexity means that we have a <strong><em>Positive Semi-Deminite (PSD)</em></strong> hessian (this is not a definition but a result of teh definition). With gradient descnet + convexity + some tricks (teloscoping theory, series of convex functions, ...), we can have many powerful optimality guaranteed, namely: <strong><em>"It will stop, it will converge, and we will be at the optimal position"</em></strong>. We will name a few in the following section, but first we can define some notion of convexity.</p>
+<h3 id="convex-functions">Convex Functions<a class="headerlink" href="#convex-functions" title="Permanent link">&para;</a></h3>
+<p>The real definition of convexity is given by the following. Intuitively it is when we draw a line from any two points on this curve and this line will always stay above our function curve.</p>
+<div class="arithmatex">\[
+f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha) f(y)
+\]</div>
+<p>From this notion of convexity, we can proof that it leads to many others, we will name the important ones here:</p>
+<ol>
+<li><span class="arithmatex">\(f(y) \geq f(x) + \nabla f(x)^T (y-x)\)</span></li>
+<li><span class="arithmatex">\(\nabla^2 f(x) \succeq 0, \quad \text{PSD}\)</span> or all eigenvalue above zero</li>
+<li><span class="arithmatex">\(\nabla f(x) \text{ is monotone, } \langle \nabla f(x) - \nabla f(y), x-y \rangle \geq 0\)</span></li>
+</ol>
+<p>Both 1 and 2 can be derived from convexity definition + Taylor theory.</p>
+<p>Notice that these 4 notions of convexity all come with different assumptions where the definition makes no assumption, 2 and 3 need twice differentiable functions and 3 need once differentiable function. Importantly, <strong><em>for convex function, local minimum <span class="arithmatex">\(\rightarrow\)</span> global minimum and when <span class="arithmatex">\(\nabla f(x) = 0\)</span>, we can find such minimum.</em></strong></p>
 <h3 id="l-lipschitz">L-Lipschitz<a class="headerlink" href="#l-lipschitz" title="Permanent link">&para;</a></h3>
 <p>L-Lipschitz means that the gradient is bounded where <span class="arithmatex">\(|| \nabla f(x) || \leq L\)</span> and equivalently we have:</p>
 <div class="arithmatex">\[
@@ -1038,11 +1055,15 @@ p_{t-1}^T A p_t = -p_{t-1}^T A \nabla \phi(x^{(t)}) + \beta_t p_{t-1}^T A p_{t-1
     </a></p>
 <h2 id="beyond-convexity-optimality-may-be-guaranteed">Beyond Convexity, Optimality May Be Guaranteed<a class="headerlink" href="#beyond-convexity-optimality-may-be-guaranteed" title="Permanent link">&para;</a></h2>
 <h3 id="strongly-convex">Strongly Convex<a class="headerlink" href="#strongly-convex" title="Permanent link">&para;</a></h3>
-<p>What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of <strong><em>stronly convex</em></strong>, or essentially swapping out the <span class="arithmatex">\(\nabla^2 f(z)\)</span> with the smallest eigen value of such matrix and that <span class="arithmatex">\(\nabla^2 f(z) \geq CI\)</span>. This creats an upper bound condition called strong convex, or essentially constructing sort of a tangent curve instead of a tangent line:</p>
+<p>What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of <strong><em>stronly convex</em></strong>, there are 2 ways of understanding it.</p>
+<ol>
+<li>Back to Taylor's theory, we are essentially swapping out the <span class="arithmatex">\(\nabla^2 f(z)\)</span> with the smallest eigenvalue of such matrix and that <span class="arithmatex">\(\nabla^2 f(z) \geq CI\)</span>. Mathamatically, this is <span class="arithmatex">\(0 \leq C \leq \lambda_{\text{min}} \nabla^2 f(z)\)</span>.</li>
+<li>We are essentially constructing sort of a tangent curve instead of a tangent line in the original convex definition.</li>
+</ol>
 <div class="arithmatex">\[
 f(y) \geq f(x) + \nabla f(x)^T (y-x) + \frac{C}{2} ||y-x||^2
 \]</div>
-<p>and that</p>
+<p>and we can show that the above definition leads to the following:</p>
 <div class="arithmatex">\[
 f(x) - f(x^*) \leq \frac{||\nabla f(x)||^2}{2C}
 \]</div>
@@ -1050,7 +1071,7 @@ f(x) - f(x^*) \leq \frac{||\nabla f(x)||^2}{2C}
 <div class="arithmatex">\[
 f(x^{(t+1)}) - f(x^*) \leq (\frac{C}{L})^t (f(x^{(0)}) - f(x^*))
 \]</div>
-<p>More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of <span class="arithmatex">\(\frac{1}{2} x^T A x\)</span>. This is really how strongly convex is used in practice. Practically speaking, <strong><em>when $f(w) is convex and <span class="arithmatex">\(R(w)\)</span> is c-strongly convex, then <span class="arithmatex">\(f(w) + R(w)\)</span> is also c-strongly convex</em></strong>. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent. For more proof related content, visit the notes.</p>
+<p>More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of <span class="arithmatex">\(\frac{1}{2} x^T A x\)</span>. This is really how strongly convex is used in practice. Practically speaking, <strong><em>when <span class="arithmatex">\(f(w)\)</span> is convex and <span class="arithmatex">\(R(w)\)</span> is c-strongly convex, then <span class="arithmatex">\(f(w) + R(w)\)</span> is also c-strongly convex</em></strong>. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent. For more proof related content, visit the notes.</p>
 <p><a href="../../../assets/math/optimization_notes7.pdf" target="_blank">
     <p><span class="link-icon">&#9881;</span>Strongly convex proof</p>
     </a></p>
@@ -1068,9 +1089,9 @@ f: \mathbb{R}^n \rightarrow \mathbb{R} \text{ satisfies } \mu \text{-PL-Conditio
 <li>If <span class="arithmatex">\(f(x)\)</span> s L-smooth + <span class="arithmatex">\(\mu\)</span>-PL-Condition, then gradient descent with a step-size of <span class="arithmatex">\(\frac{1}{L}\)</span> will converge at a rate of</li>
 </ol>
 <div class="arithmatex">\[
-f(x^{(t)}) - \delta(x^*) \leq \left(1 - \frac{\mu}{L}\right)^t (f(x^{(0)}) - \delta(x^*))
+f(x^{(t)}) - f(x^*) \leq \left(1 - \frac{\mu}{L}\right)^t (f(x^{(0)}) - f(x^*))
 \]</div>
-<p>This is similar to strongly convex, very strong exponential convergence. In practice, we actually observes this phenomenon! Turns out that an <strong><em>over-parametrized</em></strong> neural network (highly non-convex function) can be written in a <strong><em>Neural Tangent Kernel</em></strong> form of:</p>
+<p>This is similar to strongly convex, very strong exponential convergence. In practice, we actually observes this phenomenon! Turns out that an <strong><em>over-parametrized</em></strong> neural network (highly non-convex function) can be written in a <strong><em>Neural Tangent Kernel</em></strong> form (where we use, again, the eigenvectors to hide away the complexity of matrix) and then we can derive that:</p>
 <div class="arithmatex">\[
 ||\nabla L(w)||^2 \geq 2\mu L(w)
 \]</div>
