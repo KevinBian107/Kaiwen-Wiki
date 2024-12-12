@@ -824,6 +824,9 @@ z^* = x^{(t)} - \mu \nabla f(x^{(t)})
 f(\frac{1}{T} \sum^{T-1}_{s=0}x^{(s)}) - f(x^*) \leq \frac{RL}{\sqrt{T}}
 \]</div>
 <p>This is the first proof we introduced such that we can say confidently: gradient descent will stop.</p>
+<p><a href="../../../assets/math/optimization_notes2.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Proof of L-Lipschitz + gradient descent convergence</p>
+    </a></p>
 <h3 id="l-smooth">L-Smooth<a class="headerlink" href="#l-smooth" title="Permanent link">&para;</a></h3>
 <p>L-smooth means that the hessian is bounded where <span class="arithmatex">\(0 \leq v^T \nabla^2 f(x) v \leq L\)</span> (since we are looking at the hessian, we need to bound by matrix norm).</p>
 <div class="arithmatex">\[
