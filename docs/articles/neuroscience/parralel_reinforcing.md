@@ -1,6 +1,4 @@
 <div class="wrapper">
-  <h1>Searching & Parralel Processing</h1>
-
   <div class="profile">
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
     <div class="profile-details">
@@ -13,8 +11,11 @@
     Biological system has always been used as inspirations for artificial networks that boosted learning. Upon all of them, I find Basal Ganglia to be the most facinating as it seems to resemble some "nature" of 
     information processing and finding the true structure that stems "intelligence" in nature.
   </p>
+</div>
 
-  <h2>Basal Ganglia Structure</h2>
+## Basal Ganglia Structure
+
+<div class="wrapper">
   <p>
     Basal Ganglia can be deemed as a “reinforcing unit" that is highly connected to many of the other functional circuit in the brain and it is strongly modulated by the expectation of reward.
     As a theme in neuroscience, "generally speaking, we learn changes in the world", the errors \(\delta\) from expectation is what governs the neuromodulation system (dopamine ) in the Ventral Tagmental Area (VTA), which 
@@ -33,9 +34,11 @@
   <blockquote>
       <p>Basal Ganglia (Kim, Hyoung F., and Okihide Hikosaka (2015))</p>
   </blockquote>
+</div>
 
-  <h2>Search & Manipulate Valuable Objects</h2>
+## Search & Manipulate Valuable Objects
 
+<div class="wrapper">
   <p>The goal is always to maximize the reward, which can be separate into two problems, <strong>one being finding valueable objects in the environments with sensory input (exploration)</strong> and the <strong>other being manipulating such valuabel object to retain reward (exploitation)</strong>. To reach 
     the reward, it is always a brain-wise effort because all attention, motivation, context, uncertainty measurement, risk assessment, ... need to be performed, in here we just particularly examine Basal Ganglia.
   </p>
@@ -55,9 +58,11 @@
   <blockquote>
       <p>Exploration/Exploitation (Kim, Hyoung F., and Okihide Hikosaka (2015))</p>
   </blockquote>
+</div>
 
-  <h2>Parallel Processing</h2>
+## Parallel Processing
 
+<div class="wrapper">
   <p>
     From a more macro perspective, Basal Ganglia recieves multiple input from multiple areas at once. Both limbic/higher control (association cortical areas) and sensory information (somatosensory cortex) reaches the Striatum in the same time. The 
     true amazing aspect of Basal Ganglia is that no convergence is really needed, the topographic input is preserved in the same format when outputted. It can work independently on several streams of information from different orders of levels.
@@ -92,17 +97,21 @@
   <blockquote>
       <p>Parallel Processing (Kim, Hyoung F., and Okihide Hikosaka (2015))</p>
   </blockquote>
+</div>
 
-  <h2>Continual Learning & Algorithms?</h2>
+## Continual Learning & Algorithms?
 
-  <h3>Balancing Search</h3>
+### Balancing Search
 
+<div class="wrapper">
   <p>
     To me the previously descrribed system that balances the search problem seems to be very much like AlphaGo, but I am not sure if either the discovery of them draws inspiration from each other, which is the exact reason of why this is so facinating: maybe some truth, some correct representation/structure of stemming intelligence is being captured.
   </p>
+</div>
 
-  <h3>Different Perspective on Learning</h3>
+### Different Perspective on Learning
 
+<div class="wrapper">
   <p>
     Drawing inspirations on how we learn, When the system is initially learning, the representation of the weight should not be "locked" fully, but when learning continually, some key representation should be learned and then these stable-value objects should be locked for later needed task as a cognitive processes. The question of CL should be deem as a sequential learning that is not 
     epsisode over an episode tasks trying to preserve the previously learned information, but as a whole thing of continuously learning trying to find/search for the actual correct/useful representation over a sequential unit of time and training (learning some representation, then some more).
@@ -115,7 +124,10 @@
   </blockquote>
 
   <p>With in mind, we should let the system itself to search for the right representation to lock, we should let them serach for needles in the haystacks.</p>
+</div>
 
-  <h3>Parralel Processing</h3>
+### Parralel Processing
+
+<div class="wrapper">
   <p>There is one stream of higher level guidance (voluntary voice): learned stable-value-objects or previously learned weights. Moreover, such stream of guidance processes simultaneously in parralel with the otehr sensory input: flexiable-objects or new data induced weightes.</p>
 </div>

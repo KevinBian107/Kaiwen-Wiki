@@ -35,8 +35,9 @@ theme:
     # Tabs
     - navigation.tabs
     - navigation.tabs.sticky  # stays visible at the top
-    - navigation.sections
     - navigation.top
+    - navigation.expand
+    - navigation.prune
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -160,15 +161,15 @@ nav:
   - Literatures:
     - Literature: literature/literatures.md
     - Notes: literature/notes.md
-  - Neuroscience:
+  - Neuroscience Related:
     - Cognitive Neuroscience's Perspective: articles/neuroscience/cognitive_brain.md
     - Sensory, Processing, and Affective Neuroscience: articles/neuroscience/affective_neuroscience.md
     - Searching & Parralel Processing: articles/neuroscience/parralel_reinforcing.md
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
     - Positive Psychology: articles/neuroscience/positive_psycology.md
-  - Mathamatics:
-    - Unfolding Stochasticity: articles/mathamatics/stochastic.md
+  - Mathamatics Related:
+    - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
-    - Twitch on Theory: articles/mathamatics/optimization.md
+    - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - All Constraint Solving: articles/mathamatics/constraint.md
 

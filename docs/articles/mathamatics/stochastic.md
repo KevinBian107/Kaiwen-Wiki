@@ -1,24 +1,15 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<div class="wrapper">
-  <h1>Unfolding Stochasticity Sequentially</h1>
-  <div class="profile">
-    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
-    <div class="profile-details">
-      <span class="name">Kaiwen Bian</span>
-      <span class="metadata">10 min read · Jun 12, 2024</span>
-    </div>
-  </div>
-
-  <h2>Setting Bases of Sequential Process In Nature</h2>
-
-<div style="text-align: center;">
-    <img src="../../../assets/math/stochastic_process_intro.png" alt="Random Walk: Key Example" style="width:60%; height:auto">
+<div class="profile">
+<img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+<div class="profile-details">
+    <span class="name">Kaiwen Bian</span>
+    <span class="metadata">10 min read · Jun 12, 2024</span>
 </div>
-<blockquote>
-    <p>Random Walk: Key Example</p>
-  </blockquote>
+</div>
 
+## Setting Bases of Sequential Process In Nature
+<div class="wrapper">
   <p>
       Stochastic processes is abut understanding from <strong>local to gloabl</strong>, by having single transition probability matrix (discrete) or transition probability function (continuous) and trying to understand 
       some global behavior of such chain or processes (i.e. absorption time, expected time of termination, or stationary distribution). WHat I found stochastic processing to be really amazing is how it is trying to <strong>model 
@@ -26,6 +17,13 @@
       "randomness" seuqntiall</strong> (not so random when you cna model it). Compare to random variables that reasons about how "randomness" plays out at one time stamp, stochatsic processes may dive into the interactions between "randomness" across time, to 
       dive into their interactions, seeing how they sequentially interact and the prior effect the laters (of course under markov property only one layer of looking backward is needed).
   </p>
+
+  <div style="text-align: center;">
+    <img src="../../../assets/math/stochastic_process_intro.png" alt="Random Walk: Key Example" style="width:60%; height:auto">
+  </div>
+  <blockquote>
+    <p>Random Walk: Key Example</p>
+  </blockquote>
 
   <p>
       In this section I want to discuss (not techniqually) about how amazing this field may be with one classic example that bridges across discrete Markove Chains (MC), Continuous Time Markov Chains (CTMC) and COntinuous Time Continuous State Brownian Motion (BM): <strong>Random Walk (RW)</strong>.
@@ -40,8 +38,11 @@
   <a href="../../../assets/math/stochastic_process_details.jpg" target="_blank">
         <p><span class="link-icon">&#9881;</span> More Techniqual Details</p>
     </a>
+</div>
 
-  <h2>Markov Chain: Analysis Into Stochaticity</h2>
+## Markov Chain: Analysis Into Stochaticity
+
+<div class="wrapper">
   <p>
       When considering about a sequential process that have "randomness' depending on teh previous "randomness", onemust consider using ideas from conditional probability, which discusses about a distribution given that a different distribution has occured. No matter MC, CTMC, or BM, they all hold/are established on 
       a very powerful property known as the <strong>Markov Property</strong> that makes many of the techniqual details working with conditional probability much easier. Mathamatically:
@@ -91,8 +92,10 @@
       is worth notice that though vanilla RW is only in discrete state + discrete time condition, it is actually a core example taht can be carried over to more complicated situations. Even under discrete condition, 
       it can serev a pretty fine model for stochastic modeling in some practical senerios. For instance, gamble's ruin modeling or modeling stochasticity to see if learning has occured.
   </p>
+</div>
 
-  <h2>Continuous Time Markov Chain: Discretize + Functional Analysis</h2>
+## Continuous Time Markov Chain: Discretize + Functional Analysis
+<div class="wrapper">
   <p>
       Now this is where tings gets a lot more complicated because CTMC is trying to reason under the condition that time is continuous, which introduces many more deficulties mathamaticaly. Remenber that we said one core idea in stochastic processes is to setup a recurence system and 
       try to solve such system? When state is discrete, we can count them as steps and do recursion in that fashion, but when states are continuous, recursion can still be conducted, but sometimes with differential equation, which is not something that w  want to do, the complexity is very high. 
@@ -142,8 +145,11 @@
   <p>
       However, though being extremely complex, when dive into the analysis, it has a deep connection back with random walk, but just under a much complicated condition.
   </p>
+</div>
 
-  <h2>Brownian Motion: Bridging Analyst & Probabilist</h2>
+## Brownian Motion: Bridging Analyst & Probabilist
+
+<div class="wrapper">
   <p>
       Moving to Brownain motion, this is modeling stochasticity under continuous time and continuous state, which has a very deep theoritical root connecting back to the Analysis aspects of mathamatics. This is also where the quote I put on the left comes from where equality equation refers to the Analysis aspects of mathamatics and inequality equation refers to the modeling aspects of mathamatics. 
   </p>

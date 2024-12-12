@@ -38,8 +38,8 @@ I find theoretical math to be pretty fun. I think that good practical techniques
 - [\(N(\mu, \sigma)\) Lend It Some Confidence](articles/mathamatics/confidence.md)  
   *There are deep connections between statistics and probability, even on very basic statistics levels.*
 
-- [All About Taylor Theory](articles/mathamatics/optimization.md)   
-  *Deriving everything we want in optimization from Taylor Theory.*
+- [Twitch on Theory In Convex Optimization](articles/mathamatics/optimization.md)   
+  *Deriving everything we want in optimization from Taylor Theory and with small modification on some assumptions or the way we design things, we get completely different families of algorithms.*
 
 - [All About Constraint Solving](articles/mathamatics/constraint.md)    
   *All problems that we want to solve can be framed as a constraint solving process. Both in math and in life.*

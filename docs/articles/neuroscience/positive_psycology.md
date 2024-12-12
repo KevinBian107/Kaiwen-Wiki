@@ -1,6 +1,6 @@
-<div class="wrapper">
-  <h1>What We Think Deternmines What We Can Think</h1>
+# What We Think Deternmines What We Can Think
 
+<div class="wrapper">
   <div class="profile">
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
     <div class="profile-details">
@@ -26,8 +26,11 @@
     to develop a neuronal system that is strong and suitable for what we want</strong>. I want to discuss it through the lens of <strong>Positive Psycology</strong> and the 
     ideas discussed here are drawn mainly from professor Kaiping Peng's class in hundun-academy.
   </p>
+</div>
 
-  <h1>Positive Psycology</h1>
+## Positive Psycology
+
+<div class="wrapper">
   <p>
     Evolution doesn't pick the strongest or the smartest species, but rather those that adapt to changes and cooperate most effectively. It is crucial for us to have the ability to manage our internal state and adapt to fit what 
     the environment need. This is the same as "state flexability" in the context of Allostasis (discussed in the other article). In positive psycology research, people have found these 3 characteristics to be key of adaptation.
@@ -43,8 +46,11 @@
     I think that there are 3 (2 emphasizing on the abstract level and 1 on the biological detailed level) core aspects (Self Efficacy, Growth Mindset, and Building Neuronal Circuits) that can 
     give an good example of how <strong>what we think effects what we do and what we can think later.</strong> We don't want to not fail negativity, but rather how to think of it and react towards it.
   </p>
+</div>
 
-  <h2>Self Efficacy</h2>
+## Self Efficacy
+
+<div class="wrapper">
   <p>
     Self-efficacy is the faith that you give to youyrself, which is crucial to the ability to withstand pressure. It is about believeing that you can and you have the 
     ability to succeed. With high self-efficacy, stress and challenges are opportunities to prove yourself. Though self-efficacy is a higher-level abstraction idea, we can 
@@ -74,8 +80,11 @@
       </li>
     </ul>
   </ul>
+</div>
 
-  <h2>Growth Mindset</h2>
+## Growth Mindset
+
+<div class="wrapper">
   <p>
     A growth mindset, as contast to a stationary mindset, is a belief believing that only attitude and effort determine what can be learned, where 
     risks and challenges are enjoyed and self-feedback/suggestions determines outcomes. Th greatest hinders to a grwoth mindset is <strong>The burden of excellence</strong> where people believe in 
@@ -99,8 +108,10 @@
       </li>
     </ul>
   </ul>
+</div>
 
-  <h2>Thoughts to Biological Circuits and Vice Versa</h2>
+## Thoughts to Biological Circuits and Vice Versa
+<div class="wrapper">
   <p>
     It's not the event itself that matters, but rather the perspective and the interpretation of it, attitude determines actions and reality. A positive cognition would deliver a physical and mental state that is 
     full of vitality and makes it easier to see the goodness in humanity. However, it is impossible to not feel negative emotions. Hinders of feeling negativity causes unhealthy connections between Amygdala and PFC, 
@@ -139,8 +150,11 @@
       more of it is much easier.
     </li>
   </ul>
+</div>
 
-  <h1>Evolution of a Desirable Circuits: Habitization</h1>
+## Evolution of a Desirable Circuits: Habitization
+
+<div class="wrapper">
   <p>
     Building a circuit against stress is a <strong>process similar to evolution</strong>, we are keep trying to construct better and better neuronal systems. We need to use all possible methods at hand to build a desirable neuronal cuirtuit during moment of 
     stress to react to it at the moment and also build foundations for later reactions. With more of such response, habitual circuits would be formed and reaction to stress or challenges later would be as simple as instinct.

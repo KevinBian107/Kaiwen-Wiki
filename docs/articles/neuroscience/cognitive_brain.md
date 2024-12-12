@@ -1,5 +1,4 @@
 <div class="wrapper">
-  <h1>Cognitive Neuroscience's Perspective</h1>
   <div class="profile">
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
     <div class="profile-details">
@@ -11,9 +10,11 @@
   <p>
       Inspired by Prof.Chiba from Cognitive Science Department at UCSD: In cognitive neuroscience, the brain paints a story about <strong>"all the area, all the functions, all the state, all at once"</strong>.
   </p>
-  
-  <h2>Never a Control, Rather a Balance</h2>
+</div>
 
+## Never a Control, Rather a Balance
+
+<div class="wrapper">
   <p>
       For so long people have trying to pose an "engineering system" perspective on the brain and on biology, which simply may not be true.
   </p>
@@ -50,10 +51,11 @@
   <a href="../../../assets/neuroscience/brain_from_cogs.png" target="_blank">
    <p><span class="link-icon">&#9881;</span> 🧠 Some “Small" Circuit in the Brain </p>
     </a>
+</div>
 
+## The Bodily Brain 🧠
 
-  <h2>The Bodily Brain</h2>
-
+<div class="wrapper">
   <p>When thinking about the brain, we need to realize that it is not about a "neck-up" science. The brain and the body are always tightly connected is capable of powerfully influencing each other's development. The first effect may be well known, but the the reverse had been discovered recently to be true as well. 
       I want to use the following 4 examples to demonstrate such point:
   </p>

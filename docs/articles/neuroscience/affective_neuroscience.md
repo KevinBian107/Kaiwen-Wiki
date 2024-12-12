@@ -1,6 +1,4 @@
 <div class="wrapper">
-  <h1>Sensory, Processing, Affective Neuroscience</h1>
-
   <div class="profile">
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
     <div class="profile-details">
@@ -15,8 +13,11 @@
       there are simply too many complciated circuit in the brain for information procesing that spreads spatially and temporally, sometimes reaching the same target across different time periods). I like to think of it as 3 layers, from <strong>sensory to 
       processing to more higher level and affective processing.</strong>
   </p>
+</div>
   
-  <h2>Encode Neural Representation</h2>
+## Encode Neural Representation
+
+<div class="wrapper">
   <p>
       Here is where neuroscience gets a little bit philosophical and wehere I find neuroscience to be facinating, on the sensory processing information, if we account that the idea or representation of the information comes from perception (i.e. you would probably know what bird singing would 
       probably sounds like if you heard it before), but the nature of the information may not take form in such representation (i.e. birds' singing is techniqually waves and only when encoding such information in the basilar membrane from wave signal to neuronal signals is where these representations are created), 
@@ -42,9 +43,11 @@
   </blockquote>
 
   <p> From Principles of Neural Science, 3rd edition., eds. Kandel, Schwartz, & Jessell, p. 330</p>
-  
-  <h2>Representation of the World</h2>
+</div>
 
+## Representation of the World
+
+<div class="wrapper">
   <p>From neural encoding, our brain builds a representation, a mental representation of the environment that we are in, a "salient map" (particularly from vision) to help us navigate. Here is an classic example that would probably be covered in an system neuroscience class and also one that illustrates some 
       quite interesting points: Hemispatial Neglect. Hemispatial Neglect Theory discusses, under damages to the Parital Lobe and Cingulate Gyrus, the damaged brain neglects one side of the vision field completely (vision is teh most severe, but auditory, mechanical senses are also effected). This is not a sesnory problem as all the sensory pathways 
       are intact but rather a processing issue (an "attention" one). In another word, that damaged brain's mental representaion (space's representation in the mind's eye) is missing half of the information. This example really delivers how the brain may be creating a model of the world, a represenattion of it through some fundamental processing first, illustrating that 
@@ -57,8 +60,11 @@
   <blockquote>
       <p>Vision Salient Map (Borrowed from Prof.Mooshgian's Cogs107B Slides)</p>
   </blockquote>
+</div>
 
-  <h2>Affective Processing</h2>
+## Affective Processing
+
+<div class="wrapper">
   <p>
       Now moving to more higher level and affective processing, one primary question that we should ask is: "what is emotions?". Personally, one of my favorite interpretation of emotion is from Prof.Chiba's cognitive neuroscientist's perspective, which states that:
   </p>

@@ -1,8 +1,6 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <div class="wrapper">
-  <h1>Lend It Some Confidence</h1>
-
   <div class="profile">
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
     <div class="profile-details">
@@ -19,9 +17,11 @@
       I want to use an concept that is very oftenly used through out many branches of statistics and probability to illustarte such point: <strong>Confidence Interval</strong>. It is so simple that probably a high school statistic class would discuss it but it is also so complex to 
       the point that one might not fully understand it until learning meausre theory in graduate school (for the record, I don't think I underatand it fully yet, but I can already see some of the intrinsic connections that makes it so amazing).
   </P>
+</div>
 
-  <h2>Approach To Some Distribution</h2>
+## Approach To Some Distribution
 
+<div class="wrapper">
   <p>
       The way I think about confidence interval is to reason why it is needed. I think the idea of needing it comes from statsistics with the question: can we do better than just giving a <strong>point estimate</strong> of what we believe about the true distribution? Can we give an <strong>interval estimate</strong>?
       Point estimate itself is a huge domain in statistics and probability (i.e. MOM, MLE,...), which we would not go into, but feel free to look into it a bit more as it is also very much rooted in probabilistic theory (i.e. MLE is maximizing the likelihood of observing all observatiosn in the same time, which are treated as independent and 
