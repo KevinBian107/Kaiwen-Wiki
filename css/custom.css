@@ -155,3 +155,22 @@ blockquote {
   border-left: 4px solid #ccc; /* Optional: Styling */
 }
 
+/* Ensure MathJax matches the surrounding text size */
+.mjx-chtml {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+
+/* For older MathJax versions or different renderers, you might need variations like: */
+.MathJax .mjx-math {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+
+/* If using MathJax v2 with HTML-CSS output: */
+.MathJax_Display, 
+.MathJax_Inline {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+
