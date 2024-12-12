@@ -773,6 +773,7 @@
 <h2 id="gradient-descent-in-different-lenses">Gradient Descent In Different Lenses<a class="headerlink" href="#gradient-descent-in-different-lenses" title="Permanent link">&para;</a></h2>
 <p>Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor). This is not only because it has good practical results but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at GD.</p>
 <h3 id="taylor-expansion">Taylor Expansion<a class="headerlink" href="#taylor-expansion" title="Permanent link">&para;</a></h3>
+<p>Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about <strong><em>"how to satisfy taylor theory such that we have certain part less than some other part"</em></strong>.</p>
 <div class="arithmatex">\[
 f(\vec y) = f(\vec x) + \nabla f(\vec z)^T (\vec y - \vec x)
 \]</div>
@@ -822,6 +823,7 @@ z^* = x^{(t)} - \mu \nabla f(x^{(t)})
 <div class="arithmatex">\[
 f(\frac{1}{T} \sum^{T-1}_{s=0}x^{(s)}) - f(x^*) \leq \frac{RL}{\sqrt{T}}
 \]</div>
+<p>This is the first proof we introduced such that we can say confidently: gradient descent will stop.</p>
 <h3 id="l-smooth">L-Smooth<a class="headerlink" href="#l-smooth" title="Permanent link">&para;</a></h3>
 <p>L-smooth means that the hessian is bounded where <span class="arithmatex">\(0 \leq v^T \nabla^2 f(x) v \leq L\)</span> (since we are looking at the hessian, we need to bound by matrix norm).</p>
 <div class="arithmatex">\[
@@ -893,6 +895,10 @@ x^{(t+1)} = x^{(t)} - [\nabla^2 f(x^{(t)})]^{-1} \nabla f(x^{(t)})
 \]</div>
 <p>However, we don't have the guarentee  that <span class="arithmatex">\(\quad ||x^{(t)} - x^*|| \leq 1\)</span>, so convergence may not occur, but if it does, it converges expoennetially fast.</p>
 <h3 id="gradient-descnet-with-momentum">Gradient Descnet With Momentum<a class="headerlink" href="#gradient-descnet-with-momentum" title="Permanent link">&para;</a></h3>
+<p>All discussion in the following few sections will be around a particular case of a convex function, a nice one (we wil generalize later):</p>
+<div class="arithmatex">\[
+\phi(x) = \frac{1}{2} x^T A x
+\]</div>
 <p>Now recall gradient descent and let's add a <strong><em>first order Markovian memory</em></strong> to it. If the current gradient direction aligns with the previous gradient direction, we move a little bit further (constructive interference) and do the opposite if we are exact opposite with previous gradient. This is called <strong><em>momentum</em></strong> and using this method we can avoid sudden updates in teh gradient (zig-zag shape) and create the decent in  much smoother way. Formally, we can write it as:</p>
 <div class="arithmatex">\[
 x^{(t+1)} = x^{(t)} - \mu \nabla f(x^{(t)}) + \beta (x^{(t)} - x^{(t-1)})
@@ -956,12 +962,41 @@ p_{t-1}^T A p_t = -p_{t-1}^T A \nabla \phi(x^{(t)}) + \beta_t p_{t-1}^T A p_{t-1
 ||x^{(t)} - x^*||_A \leq 2 \left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t ||x^{(0)} - x^*||_A
 \]</div>
 <h2 id="beyond-convexity-optimality-may-be-guaranteed">Beyond Convexity, Optimality May Be Guaranteed<a class="headerlink" href="#beyond-convexity-optimality-may-be-guaranteed" title="Permanent link">&para;</a></h2>
-<p>With different condition being matched, powerful result.</p>
-<ul>
-<li>Convex</li>
-<li>Strongly Convex + PL</li>
-<li>Neuralnetwork</li>
-</ul>
+<h3 id="strongly-convex">Strongly Convex<a class="headerlink" href="#strongly-convex" title="Permanent link">&para;</a></h3>
+<p>What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of <strong><em>stronly convex</em></strong>, or essentially swapping out the <span class="arithmatex">\(\nabla^2 f(z)\)</span> with the smallest eigen value of such matrix and that <span class="arithmatex">\(\nabla^2 f(z) \geq CI\)</span>. This creats an upper bound condition called strong convex, or essentially constructing sort of a tangent curve instead of a tangent line:</p>
+<div class="arithmatex">\[
+f(y) \geq f(x) + \nabla f(x)^T (y-x) + \frac{C}{2} ||y-x||^2
+\]</div>
+<p>and that</p>
+<div class="arithmatex">\[
+f(x) - f(x^*) \leq \frac{||\nabla f(x)||^2}{2C}
+\]</div>
+<p>When  strongly convex is achieved, L-smooth condition is matched, and when choosing $\mu =\frac{1}{\mu}, we have a incrediablly strong convergence rate, <strong><em>an exponential convergence rate that is independent of the condition number <span class="arithmatex">\(k\)</span></em></strong>.</p>
+<div class="arithmatex">\[
+f(x^{(t+1)}) - f(x^*) \leq (\frac{C}{L})^t (f(x^{(0)}) - f(x^*))
+\]</div>
+<p>More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of <span class="arithmatex">\(\frac{1}{2} x^T A x\)</span>. This is really how strongly convex is used in practice. Practically speaking, <strong><em>when $f(w) is convex and <span class="arithmatex">\(R(w)\)</span> is c-strongly convex, then <span class="arithmatex">\(f(w) + R(w)\)</span> is also c-strongly convex</em></strong>. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent.</p>
+<h3 id="pl-condition">PL-Condition<a class="headerlink" href="#pl-condition" title="Permanent link">&para;</a></h3>
+<p>When discussion in non-convex situations, we talk about the <strong><em>PL-Condition</em></strong>, which is eessentially a condition that looks very similar with strongly convex where strongly convex implies PL-condition but not vice versa.</p>
+<div class="arithmatex">\[
+f: \mathbb{R}^n \rightarrow \mathbb{R} \text{ satisfies } \mu \text{-PL-Condition if } \forall x, y \in \mathbb{R}^n
+\]</div>
+<div class="arithmatex">\[
+\frac{1}{2}||\nabla f(x)||_2^2 \geq \mu (f(x) - f(x^*))
+\]</div>
+<p>Essentially, we are putting a upperbound on the gradient saying that when we are far from <span class="arithmatex">\(x^*\)</span>, we have  big gradient to move faster. Importantly, PL-Condition has 2 important factors:</p>
+<ol>
+<li>PL-Condition can hold for non-convex functions and it acts in as sort of a strongly convex guarantees.</li>
+<li>If <span class="arithmatex">\(f(x)\)</span> s L-smooth + <span class="arithmatex">\(\mu\)</span>-PL-Condition, then gradient descent with a step-size of <span class="arithmatex">\(\frac{1}{L}\)</span> will converge at a rate of</li>
+</ol>
+<div class="arithmatex">\[
+f(x^{(t)}) - \delta(x^*) \leq \left(1 - \frac{\mu}{L}\right)^t (f(x^{(0)}) - \delta(x^*))
+\]</div>
+<p>This is similar to strongly convex, very strong exponential convergence. In practice, we actually observes this phenomenon! Turns out that an <strong><em>over-parametrized</em></strong> neural network (highly non-convex function) can be written in a <strong><em>Neural Tangent Kernel</em></strong> form of:</p>
+<div class="arithmatex">\[
+||\nabla L(w)||^2 \geq 2\mu L(w)
+\]</div>
+<p>Which satisfy the PL-Condition and neural network converges as the rate of <span class="arithmatex">\((1 - \frac{\mu}{\beta})^t\)</span>, it converges exponentially fast. This is exactly why we see exponential convergence in teh begining when we randomly initialize an neural network.</p>
 
 
 
