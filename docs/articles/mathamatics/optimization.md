@@ -10,19 +10,31 @@
   </div>
 </div>
 
-The beauty with convex optimization is that we can use a theoritical perspective to bound the convergence of the algorithm: ***"It will stop and it will be the optimal"***. More importantly, when we make "a little twitch" on the formulation of the problem, we see a completely different algorithm with a different perspective. ***There is actually a consistent stream of thought in convex optiization that derives everything***
+The beauty with convex optimization is that we can use a theoritical perspective to discuss the properties of the algorithm: ***"It will stop and it will be the optimal"***. More importantly, when we make "a little twitch" on the formulation of the problem or how we view the problem, we see a completely different algorithm with a different perspective. ***There is a consistent stream of thought in convex optiization that derives everything from Taylor's theory***. If I want t sum up what I know about convex optimization, it would be:
+
+1. Taylor's theorem
+2. Try to do incremental/dynamic update
+3. We just need to think and make twitches from a different perspective.
+
+It may all sound very vague, but this article will make it clearer.
 
 ## Gradient Descent In Different Lenses
-Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor). This is not only because it has good practical results but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at GD.
+Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor used commonly in deep learning context). This is not only because it has good practical performances but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at gradient descent first.
 
-### Taylor Expansion
-Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about ***"how to satisfy taylor theory such that we have certain part less than some other part"***.
+### Taylor's Theorem
+Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about ***"how to satisfy taylor theory such that we have certain part less than some other part"***. Essentially, Taylor's theorem talks about how we can estimate an point in the function $f(y)$ from using another point on the function $f(x) with the curvature at $x$ scaled by the distance between $x$ and $y$. The most known form wpuld be written like:
 
 $$
-f(\vec y) = f(\vec x) + \nabla f(\vec z)^T (\vec y - \vec x)
+f(y) \approx f(x) + f'(x)(y-x) + \frac{1}{2}f''(x)(y-x)^2 + \cdots
 $$
 
-This is the recursion definition of Taylor's theoy, with the goal of estimating a point $\vec y$ from using a different point $\vec x$, plus its curvature, and recursively unfolding th whole  expression again using $\vec z \in (\vec x, \vec y)$ (getting to curvature of curvature and so on). The magic of gradient decent comes when we assume this $\vec y$ is our next point $\vec x + \mu \vec v$ where we are moving along the direction of $\vec v$.
+However, we can make things a little bit more fancy by using a recursive definition in $R^n$:
+
+$$
+f(\vec y) = f(\vec x) + \nabla f(\vec z)^T (y - \vec x)
+$$
+
+This is the recursion definition of Taylor's theoy, it recursively unfold th whole expression again using $\vec z \in (\vec x, \vec y)$ (imagine choosing another point between $x$ and $y$ to help estimate $y$, just like picking $y$ in the first place). One tric here is that the previous expansion is an approximation, but this recursion definition can have equality in it. The magic of gradient decent comes when we assume this $\vec y$ is our next point $\vec y = \vec x + \mu \vec v$ where we are moving along the direction of $\vec v$.
 
 $$
 f(\vec x + \mu \vec v) = f(\vec x) + \nabla f(\vec z)^T (\mu \vec v)
@@ -43,7 +55,7 @@ $$
 To recap, we derived our descent direction $\vec v$ based on what we wnat to satisfy taylor theory such that $f(\vec x + \mu \vec v) - f(\vec x) \leq 0$. We have shown that there is a intuitive, but theoritical reason behind each step of why we are doing gradient descent.
 
 ### Local Convexity $\rightarrow$ Calculus Optimization
-From a different perspective, we can look at GD as doing a local descent. To be more specific, we assume that at each step, the **Armijo condition** is hold, then we have a local convex shape. In full Taylor expansion to the second degree, it cna be expressed as:
+From a different perspective, we can look at GD as doing a local descent. To be more specific, we assume that at each step, the **Armijo condition** (did not cover in this article, but the idea is essentially creating sort of a checker to gurantee local convexity before making the moves) is hold, then we have a local convex shape. In full Taylor expansion to the second degree, it cna be expressed as:
 
 $$
 f(z) = f(x^{(t)}) + \nabla f(x^{(t)})^T (z - x^{(t)}) + \frac{1}{2} (z - x^{(t)}) \nabla^2 f(z)^T (z - x^{(t)})
@@ -100,28 +112,28 @@ This is the first proof we introduced such that we can say confidently: gradient
 
 
 ### L-Smooth
-L-smooth means that the hessian is bounded where $0 \leq v^T \nabla^2 f(x) v \leq L$ (since we are looking at the hessian, we need to bound by matrix norm).
+L-smooth means that the hessian is bounded where $0 \leq v^T \nabla^2 f(x) v \leq L$ (since we are looking at the hessian, we need to bound by matrix norm (not formally defined here, but we will use this definition for now)).
 
 $$
 ||\nabla f(x) - \nabla f(y)|| \leq L ||x - y||
 $$
 
-We can guarantee that at each step, tehfunction value decreases:
+We can ***guarantee that at each step, the function value decreases***:
 
 $$
 f(x^{(t+1)}) \leq f(x^{(t)}) - \frac{\mu}{2} ||\nabla f(x^{(t)})||^2
 $$
 
-and more importantly, we should have at least one $x^{(t)}$ satisfying the following cndition (this root boost convergence speed hugely):
+And more importantly, we should have at least one $x^{(t)}$ satisfying the following cndition (this root boost convergence speed hugely):
 
 $$
 \|\nabla f(x^{(t)})\| \leq \sqrt{\frac{2(f(x^{(0)}) - f(x^*))}{\mu T}}
 $$
 
-This is an incredably strong condition since non of the L-smooth proof used the fact that teh function need to be convex, only that they are second degree differentiable and L-smooth, signifying that with just gradient descent: ***"we will stop at some point and this would be optimal, no matter convexity or not"***. For more information, reference to this note:
+This is an incredably strong condition since ***non of the L-smooth proof used the fact that the function need to be convex***, only that they are second degree differentiable and L-smooth, signifying that with just gradient descent: ***"we will stop at some point and this would be optimal, no matter convexity or not"***. For more information, reference to this note:
 
-<a href="../../../assets/math/optimization_notes.pdf" target="_blank">
-    <p><span class="link-icon">&#9881;</span> Notes on convex optimization</p>
+<a href="../../../assets/math/optimization_notes3.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Proof of L-Smooth + gradient descent convergence</p>
     </a>
 
 ## All Families Comes From Twitch
@@ -144,7 +156,7 @@ $$
 \approx f(x^{(t)}) - \mu ||\nabla f(x^{(t)})||^2
 $$
 
-Normally speaking, this norm is a Eucledian norm or norm 2. However, in the same fashion, we can switch to norm-1 or norm-infinity$. This is essentially framing gradient descent as a ***constraint optimization*** problem. How do we optimize in the set of this sphere, or this dimond, or this pyramid? With different constraints, GD comes with different property, namely ***coordinate descent*** or ***uniform descent***.
+Normally speaking, this norm is a Eucledian norm or norm 2. However, in the same fashion, we can switch to norm-1 or norm-infinity$. This is essentially framing gradient descent as a ***constraint optimization*** problem. How do we optimize in the set of this sphere, or this dimond, or this pyramid? With different constraints, GD comes with different property, namely ***coordinate descent*** or ***uniform descent***. They can be expressed out analytically:
 
 $$
 L_1 \rightarrow \text{Sparse Coordinate Descent}: \quad \tilde{p}(x) = \text{sgn}(\nabla f(x)) \cdot \frac{|\nabla f(x)|_i}{|\nabla f(x)|_{\max}}
@@ -154,8 +166,8 @@ $$
 L_{\infty} \rightarrow \text{Uniform Descent}: \quad \tilde{p}(x) = \frac{\text{sgn}(\nabla f(x))}{||\text{sgn}(\nabla f(x))||_{\infty}}
 $$
 
-### Newton's Method
-Now forget everything we just discussed about gradient descent and we will look at it from  brand new perspective. We used $f(x) \approx f(x^{(t)}) + \nabla f(x^{(t)})^T (x - x^{(t)})$ to derive gradient descent before, now let's use the second degree expansion like we did in local convex perspective. However, instead of making a simplified assumption, let's set the gradient directly to $0$.
+### Local Convex Perspective $\rightarrow$ Newton's Method
+Now forget everything we just discussed about gradient descent and we will look at it from  brand new perspective. We used $f(x) \approx f(x^{(t)}) + \nabla f(x^{(t)})^T (x - x^{(t)})$ to derive gradient descent before, now let's use the second degree expansion like we did in ***GD's perspective from local convexity***. However, instead of making a simplified assumption of $\frac{1}{\mu}$ as the hessian, let's set the gradient directly to $0$.
 
 $$
 f(x) \approx f(x^{(t)}) + \nabla f(x^{(t)})^T (x - x^{(t)}) + \frac{1}{2} (x - x^{(t)}) \nabla^2 f(x)^T (x - x^{(t)})
@@ -187,9 +199,9 @@ $$
 x^{(t+1)} = x^{(t)} - [\nabla^2 f(x^{(t)})]^{-1} \nabla f(x^{(t)})
 $$
 
-However, inverting this "A" matrix comes with insanly high computation cost and numerical instability. This is where our familier friend ADAM optimizor comes in, which is essetntially a ***Quasi-Newton*** method, or a family of algorithm that estimates/creates condition for this inverse to be easily calculated.
+However, inverting this "A" matrix comes with insanly high computation cost and numerical instability. This is where our familier friend ADAM optimizor comes in, which is essetntially a ***Quasi-Newton*** method, or a family of algorithm that estimates/creates condition for this inverse to be easily calculated. So the whole field of Newton's method can be intuitively summarized as ***how do you do the inverse of A?***
 
-Using Newton's method come with very interesting convergence property such that ***if we converge, we converge exponentially fast***.
+Using Newton's method come with very interesting convergence property such that ***if we converge, we converge exponentially fast***. Notice that this is not a ***contrastice mapping***. The value of $\frac{2h}{3L}$ may be greater than $1$, causing unconverged GD.
 
 $$
 (1) \quad ||x^{(t)} - x^*|| \leq \frac{2h}{3L}
@@ -199,9 +211,9 @@ $$
 (2) \quad ||x^{(t)} - x^*||^2 \leq \frac{3L}{2h} ||x^{(t-1)} - x^*||^2
 $$
 
-However, we don't have the guarentee  that $\quad ||x^{(t)} - x^*|| \leq 1$, so convergence may not occur, but if it does, it converges expoennetially fast.
+However, if we start at a good point in the right function where $\frac{2h}{3L} \leq 1$, it converges expoennetially fast (this is really hard and usually Newton's method has many oscilations).
 
-### Gradient Descnet With Momentum
+### Gradient Descnet + Momentum or N.A.
 All discussion in the following few sections will be around a particular case of a convex function, a nice one (we wil generalize later):
 
 $$
@@ -214,7 +226,7 @@ $$
 x^{(t+1)} = x^{(t)} - \mu \nabla f(x^{(t)}) + \beta (x^{(t)} - x^{(t-1)})
 $$
 
-To study the convergence property, we can stack up the current state and next state, just like in ***control theory*** calculating state transition.
+To study the convergence property, we can stack up the current state and next state, just like in ***control theory*** calculating state transition. This way of analyzing convergence is very common and quite popular in optimization as well (the intuition is that we want the eigenvalues of this $M$ matrix to be less than $1$, then the system would approach towards stability).
 
 $$
 \begin{bmatrix}
@@ -238,14 +250,27 @@ $$
 \left(\frac{k-1}{k+1}\right)^t \quad \text{where} \quad k = \frac{\lambda_{max}}{\lambda_{min}}
 $$
 
-A similar approach (Nestrov Acceleration) works similar as momentum, but it goes  little bit further first before taking the gradient. It iis less intuitive than gradient descent with momentum, but in practice is has nice property that out performs momentum, namely under continuou  environment and differential euqation environment. In general, we can say the convergence rate from GD to GD + M to GD + N.A. as:
+A similar approach (Nestrov Acceleration) works similar as momentum, but it goes  little bit further first before taking the gradient. It is less intuitive than gradient descent with momentum, but in practice is has nice property that out performs momentum, namely under continuou  environment and differential euqation environment.
 
 $$
-(\frac{k+1}{k+1})^t \rightarrow \left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t \rightarrow \left(\sqrt{\frac{\sqrt{k}-1}{\sqrt{k}}}\right)^t
+(1) \quad y^{(t+1)} = x^{(t)} + \beta (x^{(t)} - x^{(t-1)})
 $$
 
-### Conjugate Gradient Descent
-Let's go back to thinking about solving this problem mentioned in Newton's method, we want to solve the problem of $Ax^* - b = 0$ where $\nabla \phi(x) = Ax - b$. We know that doing the inverse is very costly and numerically instable. So can we solve this problem ***without inversing A*** and maybe we can ***incrementally*** solve this issue. Let's first define the mathamaticla notion of conjugate, let's say that ${p_1, ..., p_n}$ is the conjugate of a Positive Definite (PD) matrix A if:
+$$
+(2) \quad x^{(t+1)} = y^{(t+1)} - \mu \nabla f(y^{(t+1)})
+$$
+
+
+In general, we can say the convergence rate $|| x^{(t)} - x^* ||$ from GD to GD + M to GD + N.A. as:
+
+$$
+\underbrace{(\frac{k+1}{k+1})^t}_{\text{GD}} \rightarrow \underbrace{\left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t}_{\text{GD + M}} \rightarrow \underbrace{\left(\sqrt{\frac{\sqrt{k}-1}{\sqrt{k}}}\right)^t}_{\text{GD + N.A.}}
+$$
+
+Notice that they all converges exponentially fast, but this exponentially fast is conditioned on this conditon number $k$, essetially the ratio of largest eigenvalue to the smallest eigenvalue. With more square root bracket is added to it, it will make this number very small, which makes taking the exponential more powerful for minimizing it.
+
+### Newton's Method $\rightarrow$ Conjugate Gradient Descent
+Let's go back to thinking about solving this problem mentioned in Newton's method, but let's still look at teh special case of $\phi(x) = \frac{1}{2} x^T A x$ and so we want to solve the problem of $Ax^* - b = 0$ where the gradient is $\nabla \phi(x) = Ax - b$. We know that doing the inverse is very costly and numerically instable. So can we solve this problem ***without inversing A*** and maybe we can ***incrementally*** solve this issue. Let's first define the mathamaticla notion of conjugate, let's say that ${p_1, ..., p_n}$ is the conjugate of a Positive Definite (PD) matrix A if:
 
 $$
 p_i^T A p_j = 0 \quad \text{if} \quad i \neq j
@@ -263,7 +288,7 @@ $$
 \alpha_t = \underset{\alpha \in \mathbb{R}}{\arg \min} \phi(x^{(t)} + \alpha \vec{p}_t)
 $$
 
-The first ensures the orthogonal step amd teh second ensure the descent step. Notice that this second optimization problem is a easier problem to solve and close form solution does exist as we are only looking at a minimization problem that involve two vectors, way easier than the problem we begin with. Close form solution of optimal $\alpha^*$ would be:
+The first ensures the ***orthogonal step*** and the second ensure the ***descent step***. Notice that this second optimization problem is a easier problem to solve and close form solution does exist as we are only looking at a minimization problem that involve two vectors, way easier than the problem we begin with. Close form solution of optimal $\alpha^*$ would be:
 
 $$
 d_t = \alpha^* = \frac{(b - Ax^{(k)})^T p_t}{p_t^T A p_t} = \frac{- \nabla \phi(x^{(t)})^T p_t}{p_t^T A p_t}
@@ -295,6 +320,16 @@ $$
 ||x^{(t)} - x^*||_A \leq 2 \left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t ||x^{(0)} - x^*||_A
 $$
 
+However, the plain CGD algorithm may not work as efficiently in practice, which is why we usually use th ***redidual algorithm***, which is described in more details in the note.
+
+<a href="../../../assets/math/optimization_notes4.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Two expressions of the CGD algorithm</p>
+    </a>
+
+<a href="../../../assets/math/optimization_notes6.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Code implementation of CGD</p>
+    </a>
+
 ## Beyond Convexity, Optimality May Be Guaranteed
 
 ### Strongly Convex
@@ -310,15 +345,19 @@ $$
 f(x) - f(x^*) \leq \frac{||\nabla f(x)||^2}{2C}
 $$
 
-When  strongly convex is achieved, L-smooth condition is matched, and when choosing $\mu =\frac{1}{\mu}, we have a incrediablly strong convergence rate, ***an exponential convergence rate that is independent of the condition number $k$***.
+When  strongly convex is achieved, L-smooth condition is matched, and when choosing learning rate as $\frac{1}{\mu}$, we have a incrediablly strong convergence rate, ***an exponential convergence rate that is independent of the condition number $k$***.
 
 $$
 f(x^{(t+1)}) - f(x^*) \leq (\frac{C}{L})^t (f(x^{(0)}) - f(x^*))
 $$
 
-More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of $\frac{1}{2} x^T A x$. This is really how strongly convex is used in practice. Practically speaking, ***when $f(w) is convex and $R(w)$ is c-strongly convex, then $f(w) + R(w)$ is also c-strongly convex***. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent.
+More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of $\frac{1}{2} x^T A x$. This is really how strongly convex is used in practice. Practically speaking, ***when $f(w) is convex and $R(w)$ is c-strongly convex, then $f(w) + R(w)$ is also c-strongly convex***. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent. For more proof related content, visit the notes.
 
-### PL-Condition
+<a href="../../../assets/math/optimization_notes7.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span>Strongly convex proof</p>
+    </a>
+
+### PL (Polyak-Lojasiewicz) Condition
 When discussion in non-convex situations, we talk about the ***PL-Condition***, which is eessentially a condition that looks very similar with strongly convex where strongly convex implies PL-condition but not vice versa.
 
 $$
@@ -344,4 +383,18 @@ $$
 ||\nabla L(w)||^2 \geq 2\mu L(w)
 $$
 
-Which satisfy the PL-Condition and neural network converges as the rate of $(1 - \frac{\mu}{\beta})^t$, it converges exponentially fast. This is exactly why we see exponential convergence in teh begining when we randomly initialize an neural network.
+Which satisfy the PL-Condition since the loss function at $x^*$ should always be zero. This shows that neural network would converge as the rate of $(1 - \frac{\mu}{\beta})^t$, it converges exponentially fast. This is exactly why we see exponential convergence in teh begining when we randomly initialize an neural network. This sort of example is what the PL-Condition is truly used for.
+
+***The moral of the story is, with certain constraints/conditions satisfied, we can use theory to make something practically work!***
+
+## Extra Resources & Code
+
+For more detailed information and code implementation of some of teh algorithms:
+
+<a href="../../../assets/math/optimization_notes1.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Notes on convex optimization</p>
+    </a>
+
+<a href="../../../assets/math/optimization_notes5.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Code implementation of some variants of gradient descent</p>
+    </a>

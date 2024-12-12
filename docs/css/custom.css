@@ -26,37 +26,37 @@
 } */
 
 .profile {
-    display: flex;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .profile img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .profile-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .profile-details .name {
-    font-size: 15px;
-    font-weight: bold;
-  }
-  
-  .profile-details .metadata {
-    font-size: 12px;
-    color: #666;
-  }
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-details .name {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.profile-details .metadata {
+  font-size: 12px;
+  color: #666;
+}
 
 
 /* Size adjustment */
 .navbar {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .navbar-brand {
@@ -73,86 +73,94 @@
 
 /* Reduce font size for all paragraphs globally */
 p {
-  font-size: 14px; 
-  line-height: 1.6; 
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 /* Optional: Adjust specific sections only */
 .content {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .markdown-body p {
-  font-size: 14px; 
+  font-size: 15px;
 }
 
 /* General text adjustments */
-p, 
-ul, 
-ol, 
-li, 
-blockquote, 
-code, 
-pre, 
+p,
+ul,
+ol,
+li,
+blockquote,
+code,
+pre,
 table {
-  font-size: 14px; 
-  line-height: 1.6; 
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 /* Adjust headings for consistency if needed */
-h1, 
-h2, 
-h3, 
-h4, 
-h5, 
+h1,
+h2,
+h3,
+h4,
+h5,
 h6 {
-  line-height: 1.2; /* Adjust as desired */
+  line-height: 1.2;
+  /* Adjust as desired */
 }
 
 /* Optional: Apply consistent font size to all markdown elements */
 .markdown-body {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
 /* Ensure lists are consistent */
-ul, 
+ul,
 ol {
-  margin-left: 1.5em; /* Adjust indentation if needed */
+  margin-left: 1.5em;
+  /* Adjust indentation if needed */
   padding-left: 1em;
 }
 
 /* List items */
 li {
-  margin-bottom: 0.4em; /* Add spacing between list items */
+  margin-bottom: 0.4em;
+  /* Add spacing between list items */
 }
 
 /* Tables */
 table {
-  font-size: 14px;
-  border-collapse: collapse; /* Optional: Clean table style */
+  font-size: 15px;
+  border-collapse: collapse;
+  /* Optional: Clean table style */
 }
 
-th, 
+th,
 td {
-  padding: 8px; /* Adjust padding for better readability */
-  font-size: 14px;
+  padding: 8px;
+  /* Adjust padding for better readability */
+  font-size: 15px;
 }
 
 /* Code and preformatted text */
-code, 
+code,
 pre {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
 }
 
 /* Blockquotes */
 blockquote {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
-  margin-left: 1em; /* Indent blockquotes */
-  padding-left: 0.8em; /* Add padding inside blockquotes */
-  border-left: 4px solid #ccc; /* Optional: Styling */
+  margin-left: 1em;
+  /* Indent blockquotes */
+  padding-left: 0.8em;
+  /* Add padding inside blockquotes */
+  border-left: 4px solid #ccc;
+  /* Optional: Styling */
 }
 
 /* Ensure MathJax matches the surrounding text size */
@@ -168,9 +176,8 @@ blockquote {
 }
 
 /* If using MathJax v2 with HTML-CSS output: */
-.MathJax_Display, 
+.MathJax_Display,
 .MathJax_Inline {
   font-size: 12px !important;
   line-height: 1.6 !important;
 }
-
