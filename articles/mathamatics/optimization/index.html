@@ -635,6 +635,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#extra-resources-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extra Resources &amp; Code
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -732,6 +741,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#extra-resources-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extra Resources &amp; Code
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -764,15 +782,25 @@
   </div>
 </div>
 
-<p>The beauty with convex optimization is that we can use a theoritical perspective to bound the convergence of the algorithm: <strong><em>"It will stop and it will be the optimal"</em></strong>. More importantly, when we make "a little twitch" on the formulation of the problem, we see a completely different algorithm with a different perspective. <strong><em>There is actually a consistent stream of thought in convex optiization that derives everything</em></strong></p>
+<p>The beauty with convex optimization is that we can use a theoritical perspective to discuss the properties of the algorithm: <strong><em>"It will stop and it will be the optimal"</em></strong>. More importantly, when we make "a little twitch" on the formulation of the problem or how we view the problem, we see a completely different algorithm with a different perspective. <strong><em>There is a consistent stream of thought in convex optiization that derives everything from Taylor's theory</em></strong>. If I want t sum up what I know about convex optimization, it would be:</p>
+<ol>
+<li>Taylor's theorem</li>
+<li>Try to do incremental/dynamic update</li>
+<li>We just need to think and make twitches from a different perspective.</li>
+</ol>
+<p>It may all sound very vague, but this article will make it clearer.</p>
 <h2 id="gradient-descent-in-different-lenses">Gradient Descent In Different Lenses<a class="headerlink" href="#gradient-descent-in-different-lenses" title="Permanent link">&para;</a></h2>
-<p>Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor). This is not only because it has good practical results but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at GD.</p>
-<h3 id="taylor-expansion">Taylor Expansion<a class="headerlink" href="#taylor-expansion" title="Permanent link">&para;</a></h3>
-<p>Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about <strong><em>"how to satisfy taylor theory such that we have certain part less than some other part"</em></strong>.</p>
+<p>Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor used commonly in deep learning context). This is not only because it has good practical performances but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at gradient descent first.</p>
+<h3 id="taylors-theorem">Taylor's Theorem<a class="headerlink" href="#taylors-theorem" title="Permanent link">&para;</a></h3>
+<p>Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about <strong><em>"how to satisfy taylor theory such that we have certain part less than some other part"</em></strong>. Essentially, Taylor's theorem talks about how we can estimate an point in the function <span class="arithmatex">\(f(y)\)</span> from using another point on the function $f(x) with the curvature at <span class="arithmatex">\(x\)</span> scaled by the distance between <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span>. The most known form wpuld be written like:</p>
 <div class="arithmatex">\[
-f(\vec y) = f(\vec x) + \nabla f(\vec z)^T (\vec y - \vec x)
+f(y) \approx f(x) + f'(x)(y-x) + \frac{1}{2}f''(x)(y-x)^2 + \cdots
 \]</div>
-<p>This is the recursion definition of Taylor's theoy, with the goal of estimating a point <span class="arithmatex">\(\vec y\)</span> from using a different point <span class="arithmatex">\(\vec x\)</span>, plus its curvature, and recursively unfolding th whole  expression again using <span class="arithmatex">\(\vec z \in (\vec x, \vec y)\)</span> (getting to curvature of curvature and so on). The magic of gradient decent comes when we assume this <span class="arithmatex">\(\vec y\)</span> is our next point <span class="arithmatex">\(\vec x + \mu \vec v\)</span> where we are moving along the direction of <span class="arithmatex">\(\vec v\)</span>.</p>
+<p>However, we can make things a little bit more fancy by using a recursive definition in <span class="arithmatex">\(R^n\)</span>:</p>
+<div class="arithmatex">\[
+f(\vec y) = f(\vec x) + \nabla f(\vec z)^T (y - \vec x)
+\]</div>
+<p>This is the recursion definition of Taylor's theoy, it recursively unfold th whole expression again using <span class="arithmatex">\(\vec z \in (\vec x, \vec y)\)</span> (imagine choosing another point between <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> to help estimate <span class="arithmatex">\(y\)</span>, just like picking <span class="arithmatex">\(y\)</span> in the first place). One tric here is that the previous expansion is an approximation, but this recursion definition can have equality in it. The magic of gradient decent comes when we assume this <span class="arithmatex">\(\vec y\)</span> is our next point <span class="arithmatex">\(\vec y = \vec x + \mu \vec v\)</span> where we are moving along the direction of <span class="arithmatex">\(\vec v\)</span>.</p>
 <div class="arithmatex">\[
 f(\vec x + \mu \vec v) = f(\vec x) + \nabla f(\vec z)^T (\mu \vec v)
 \]</div>
@@ -786,7 +814,7 @@ x^{(t+1)} = x^{(t)} - \mu^{(t)} \nabla f(x^{(t)})
 \]</div>
 <p>To recap, we derived our descent direction <span class="arithmatex">\(\vec v\)</span> based on what we wnat to satisfy taylor theory such that <span class="arithmatex">\(f(\vec x + \mu \vec v) - f(\vec x) \leq 0\)</span>. We have shown that there is a intuitive, but theoritical reason behind each step of why we are doing gradient descent.</p>
 <h3 id="local-convexity-rightarrow-calculus-optimization">Local Convexity <span class="arithmatex">\(\rightarrow\)</span> Calculus Optimization<a class="headerlink" href="#local-convexity-rightarrow-calculus-optimization" title="Permanent link">&para;</a></h3>
-<p>From a different perspective, we can look at GD as doing a local descent. To be more specific, we assume that at each step, the <strong>Armijo condition</strong> is hold, then we have a local convex shape. In full Taylor expansion to the second degree, it cna be expressed as:</p>
+<p>From a different perspective, we can look at GD as doing a local descent. To be more specific, we assume that at each step, the <strong>Armijo condition</strong> (did not cover in this article, but the idea is essentially creating sort of a checker to gurantee local convexity before making the moves) is hold, then we have a local convex shape. In full Taylor expansion to the second degree, it cna be expressed as:</p>
 <div class="arithmatex">\[
 f(z) = f(x^{(t)}) + \nabla f(x^{(t)})^T (z - x^{(t)}) + \frac{1}{2} (z - x^{(t)}) \nabla^2 f(z)^T (z - x^{(t)})
 \]</div>
@@ -823,21 +851,21 @@ f(\frac{1}{T} \sum^{T-1}_{s=0}x^{(s)}) - f(x^*) \leq \frac{RL}{\sqrt{T}}
     <p><span class="link-icon">&#9881;</span> Proof of L-Lipschitz + gradient descent convergence</p>
     </a></p>
 <h3 id="l-smooth">L-Smooth<a class="headerlink" href="#l-smooth" title="Permanent link">&para;</a></h3>
-<p>L-smooth means that the hessian is bounded where <span class="arithmatex">\(0 \leq v^T \nabla^2 f(x) v \leq L\)</span> (since we are looking at the hessian, we need to bound by matrix norm).</p>
+<p>L-smooth means that the hessian is bounded where <span class="arithmatex">\(0 \leq v^T \nabla^2 f(x) v \leq L\)</span> (since we are looking at the hessian, we need to bound by matrix norm (not formally defined here, but we will use this definition for now)).</p>
 <div class="arithmatex">\[
 ||\nabla f(x) - \nabla f(y)|| \leq L ||x - y||
 \]</div>
-<p>We can guarantee that at each step, tehfunction value decreases:</p>
+<p>We can <strong><em>guarantee that at each step, the function value decreases</em></strong>:</p>
 <div class="arithmatex">\[
 f(x^{(t+1)}) \leq f(x^{(t)}) - \frac{\mu}{2} ||\nabla f(x^{(t)})||^2
 \]</div>
-<p>and more importantly, we should have at least one <span class="arithmatex">\(x^{(t)}\)</span> satisfying the following cndition (this root boost convergence speed hugely):</p>
+<p>And more importantly, we should have at least one <span class="arithmatex">\(x^{(t)}\)</span> satisfying the following cndition (this root boost convergence speed hugely):</p>
 <div class="arithmatex">\[
 \|\nabla f(x^{(t)})\| \leq \sqrt{\frac{2(f(x^{(0)}) - f(x^*))}{\mu T}}
 \]</div>
-<p>This is an incredably strong condition since non of the L-smooth proof used the fact that teh function need to be convex, only that they are second degree differentiable and L-smooth, signifying that with just gradient descent: <strong><em>"we will stop at some point and this would be optimal, no matter convexity or not"</em></strong>. For more information, reference to this note:</p>
-<p><a href="../../../assets/math/optimization_notes.pdf" target="_blank">
-    <p><span class="link-icon">&#9881;</span> Notes on convex optimization</p>
+<p>This is an incredably strong condition since <strong><em>non of the L-smooth proof used the fact that the function need to be convex</em></strong>, only that they are second degree differentiable and L-smooth, signifying that with just gradient descent: <strong><em>"we will stop at some point and this would be optimal, no matter convexity or not"</em></strong>. For more information, reference to this note:</p>
+<p><a href="../../../assets/math/optimization_notes3.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Proof of L-Smooth + gradient descent convergence</p>
     </a></p>
 <h2 id="all-families-comes-from-twitch">All Families Comes From Twitch<a class="headerlink" href="#all-families-comes-from-twitch" title="Permanent link">&para;</a></h2>
 <p>Now after convexity and basic formulation of gradient descent, this is where we get to the interesting part, turns out that all the variants and instances of gradient descent (Coordinate descent, Uniform descent, Newton's method (i.e. ADAM), GD with Momentum, Nestrov Acceleration, Conjugate GD, ...) is all somewhat like GD but a little twitch on the theoritical formulation.</p>
@@ -853,15 +881,15 @@ f(x^{(t+1)}) + \nabla f(x^{(t)})^T (x^{(t+1)} - x^{(t)}) \approx f(x^{(t)}) - \m
 <div class="arithmatex">\[
 \approx f(x^{(t)}) - \mu ||\nabla f(x^{(t)})||^2
 \]</div>
-<p>Normally speaking, this norm is a Eucledian norm or norm 2. However, in the same fashion, we can switch to norm-1 or norm-infinity$. This is essentially framing gradient descent as a <strong><em>constraint optimization</em></strong> problem. How do we optimize in the set of this sphere, or this dimond, or this pyramid? With different constraints, GD comes with different property, namely <strong><em>coordinate descent</em></strong> or <strong><em>uniform descent</em></strong>.</p>
+<p>Normally speaking, this norm is a Eucledian norm or norm 2. However, in the same fashion, we can switch to norm-1 or norm-infinity$. This is essentially framing gradient descent as a <strong><em>constraint optimization</em></strong> problem. How do we optimize in the set of this sphere, or this dimond, or this pyramid? With different constraints, GD comes with different property, namely <strong><em>coordinate descent</em></strong> or <strong><em>uniform descent</em></strong>. They can be expressed out analytically:</p>
 <div class="arithmatex">\[
 L_1 \rightarrow \text{Sparse Coordinate Descent}: \quad \tilde{p}(x) = \text{sgn}(\nabla f(x)) \cdot \frac{|\nabla f(x)|_i}{|\nabla f(x)|_{\max}}
 \]</div>
 <div class="arithmatex">\[
 L_{\infty} \rightarrow \text{Uniform Descent}: \quad \tilde{p}(x) = \frac{\text{sgn}(\nabla f(x))}{||\text{sgn}(\nabla f(x))||_{\infty}}
 \]</div>
-<h3 id="newtons-method">Newton's Method<a class="headerlink" href="#newtons-method" title="Permanent link">&para;</a></h3>
-<p>Now forget everything we just discussed about gradient descent and we will look at it from  brand new perspective. We used <span class="arithmatex">\(f(x) \approx f(x^{(t)}) + \nabla f(x^{(t)})^T (x - x^{(t)})\)</span> to derive gradient descent before, now let's use the second degree expansion like we did in local convex perspective. However, instead of making a simplified assumption, let's set the gradient directly to <span class="arithmatex">\(0\)</span>.</p>
+<h3 id="local-convex-perspective-rightarrow-newtons-method">Local Convex Perspective <span class="arithmatex">\(\rightarrow\)</span> Newton's Method<a class="headerlink" href="#local-convex-perspective-rightarrow-newtons-method" title="Permanent link">&para;</a></h3>
+<p>Now forget everything we just discussed about gradient descent and we will look at it from  brand new perspective. We used <span class="arithmatex">\(f(x) \approx f(x^{(t)}) + \nabla f(x^{(t)})^T (x - x^{(t)})\)</span> to derive gradient descent before, now let's use the second degree expansion like we did in <strong><em>GD's perspective from local convexity</em></strong>. However, instead of making a simplified assumption of <span class="arithmatex">\(\frac{1}{\mu}\)</span> as the hessian, let's set the gradient directly to <span class="arithmatex">\(0\)</span>.</p>
 <div class="arithmatex">\[
 f(x) \approx f(x^{(t)}) + \nabla f(x^{(t)})^T (x - x^{(t)}) + \frac{1}{2} (x - x^{(t)}) \nabla^2 f(x)^T (x - x^{(t)})
 \]</div>
@@ -883,16 +911,16 @@ x^{(t+1)} - x^{(t)} = - [\nabla^2 f(x^{(t)})]^{-1} \nabla f(x^{(t)})
 <div class="arithmatex">\[
 x^{(t+1)} = x^{(t)} - [\nabla^2 f(x^{(t)})]^{-1} \nabla f(x^{(t)})
 \]</div>
-<p>However, inverting this "A" matrix comes with insanly high computation cost and numerical instability. This is where our familier friend ADAM optimizor comes in, which is essetntially a <strong><em>Quasi-Newton</em></strong> method, or a family of algorithm that estimates/creates condition for this inverse to be easily calculated.</p>
-<p>Using Newton's method come with very interesting convergence property such that <strong><em>if we converge, we converge exponentially fast</em></strong>.</p>
+<p>However, inverting this "A" matrix comes with insanly high computation cost and numerical instability. This is where our familier friend ADAM optimizor comes in, which is essetntially a <strong><em>Quasi-Newton</em></strong> method, or a family of algorithm that estimates/creates condition for this inverse to be easily calculated. So the whole field of Newton's method can be intuitively summarized as <strong><em>how do you do the inverse of A?</em></strong></p>
+<p>Using Newton's method come with very interesting convergence property such that <strong><em>if we converge, we converge exponentially fast</em></strong>. Notice that this is not a <strong><em>contrastice mapping</em></strong>. The value of <span class="arithmatex">\(\frac{2h}{3L}\)</span> may be greater than <span class="arithmatex">\(1\)</span>, causing unconverged GD.</p>
 <div class="arithmatex">\[
 (1) \quad ||x^{(t)} - x^*|| \leq \frac{2h}{3L}
 \]</div>
 <div class="arithmatex">\[
 (2) \quad ||x^{(t)} - x^*||^2 \leq \frac{3L}{2h} ||x^{(t-1)} - x^*||^2
 \]</div>
-<p>However, we don't have the guarentee  that <span class="arithmatex">\(\quad ||x^{(t)} - x^*|| \leq 1\)</span>, so convergence may not occur, but if it does, it converges expoennetially fast.</p>
-<h3 id="gradient-descnet-with-momentum">Gradient Descnet With Momentum<a class="headerlink" href="#gradient-descnet-with-momentum" title="Permanent link">&para;</a></h3>
+<p>However, if we start at a good point in the right function where <span class="arithmatex">\(\frac{2h}{3L} \leq 1\)</span>, it converges expoennetially fast (this is really hard and usually Newton's method has many oscilations).</p>
+<h3 id="gradient-descnet-momentum-or-na">Gradient Descnet + Momentum or N.A.<a class="headerlink" href="#gradient-descnet-momentum-or-na" title="Permanent link">&para;</a></h3>
 <p>All discussion in the following few sections will be around a particular case of a convex function, a nice one (we wil generalize later):</p>
 <div class="arithmatex">\[
 \phi(x) = \frac{1}{2} x^T A x
@@ -901,7 +929,7 @@ x^{(t+1)} = x^{(t)} - [\nabla^2 f(x^{(t)})]^{-1} \nabla f(x^{(t)})
 <div class="arithmatex">\[
 x^{(t+1)} = x^{(t)} - \mu \nabla f(x^{(t)}) + \beta (x^{(t)} - x^{(t-1)})
 \]</div>
-<p>To study the convergence property, we can stack up the current state and next state, just like in <strong><em>control theory</em></strong> calculating state transition.</p>
+<p>To study the convergence property, we can stack up the current state and next state, just like in <strong><em>control theory</em></strong> calculating state transition. This way of analyzing convergence is very common and quite popular in optimization as well (the intuition is that we want the eigenvalues of this <span class="arithmatex">\(M\)</span> matrix to be less than <span class="arithmatex">\(1\)</span>, then the system would approach towards stability).</p>
 <div class="arithmatex">\[
 \begin{bmatrix}
 x^{(t+1)} \\
@@ -921,12 +949,20 @@ x^{(t-1)}
 <div class="arithmatex">\[
 \left(\frac{k-1}{k+1}\right)^t \quad \text{where} \quad k = \frac{\lambda_{max}}{\lambda_{min}}
 \]</div>
-<p>A similar approach (Nestrov Acceleration) works similar as momentum, but it goes  little bit further first before taking the gradient. It iis less intuitive than gradient descent with momentum, but in practice is has nice property that out performs momentum, namely under continuou  environment and differential euqation environment. In general, we can say the convergence rate from GD to GD + M to GD + N.A. as:</p>
+<p>A similar approach (Nestrov Acceleration) works similar as momentum, but it goes  little bit further first before taking the gradient. It is less intuitive than gradient descent with momentum, but in practice is has nice property that out performs momentum, namely under continuou  environment and differential euqation environment.</p>
 <div class="arithmatex">\[
-(\frac{k+1}{k+1})^t \rightarrow \left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t \rightarrow \left(\sqrt{\frac{\sqrt{k}-1}{\sqrt{k}}}\right)^t
+(1) \quad y^{(t+1)} = x^{(t)} + \beta (x^{(t)} - x^{(t-1)})
 \]</div>
-<h3 id="conjugate-gradient-descent">Conjugate Gradient Descent<a class="headerlink" href="#conjugate-gradient-descent" title="Permanent link">&para;</a></h3>
-<p>Let's go back to thinking about solving this problem mentioned in Newton's method, we want to solve the problem of <span class="arithmatex">\(Ax^* - b = 0\)</span> where <span class="arithmatex">\(\nabla \phi(x) = Ax - b\)</span>. We know that doing the inverse is very costly and numerically instable. So can we solve this problem <strong><em>without inversing A</em></strong> and maybe we can <strong><em>incrementally</em></strong> solve this issue. Let's first define the mathamaticla notion of conjugate, let's say that <span class="arithmatex">\({p_1, ..., p_n}\)</span> is the conjugate of a Positive Definite (PD) matrix A if:</p>
+<div class="arithmatex">\[
+(2) \quad x^{(t+1)} = y^{(t+1)} - \mu \nabla f(y^{(t+1)})
+\]</div>
+<p>In general, we can say the convergence rate <span class="arithmatex">\(|| x^{(t)} - x^* ||\)</span> from GD to GD + M to GD + N.A. as:</p>
+<div class="arithmatex">\[
+\underbrace{(\frac{k+1}{k+1})^t}_{\text{GD}} \rightarrow \underbrace{\left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t}_{\text{GD + M}} \rightarrow \underbrace{\left(\sqrt{\frac{\sqrt{k}-1}{\sqrt{k}}}\right)^t}_{\text{GD + N.A.}}
+\]</div>
+<p>Notice that they all converges exponentially fast, but this exponentially fast is conditioned on this conditon number <span class="arithmatex">\(k\)</span>, essetially the ratio of largest eigenvalue to the smallest eigenvalue. With more square root bracket is added to it, it will make this number very small, which makes taking the exponential more powerful for minimizing it.</p>
+<h3 id="newtons-method-rightarrow-conjugate-gradient-descent">Newton's Method <span class="arithmatex">\(\rightarrow\)</span> Conjugate Gradient Descent<a class="headerlink" href="#newtons-method-rightarrow-conjugate-gradient-descent" title="Permanent link">&para;</a></h3>
+<p>Let's go back to thinking about solving this problem mentioned in Newton's method, but let's still look at teh special case of <span class="arithmatex">\(\phi(x) = \frac{1}{2} x^T A x\)</span> and so we want to solve the problem of <span class="arithmatex">\(Ax^* - b = 0\)</span> where the gradient is <span class="arithmatex">\(\nabla \phi(x) = Ax - b\)</span>. We know that doing the inverse is very costly and numerically instable. So can we solve this problem <strong><em>without inversing A</em></strong> and maybe we can <strong><em>incrementally</em></strong> solve this issue. Let's first define the mathamaticla notion of conjugate, let's say that <span class="arithmatex">\({p_1, ..., p_n}\)</span> is the conjugate of a Positive Definite (PD) matrix A if:</p>
 <div class="arithmatex">\[
 p_i^T A p_j = 0 \quad \text{if} \quad i \neq j
 \]</div>
@@ -938,7 +974,7 @@ x^{(t+1)} = x^{(t)} + \alpha_t \vec{p}_t
 <div class="arithmatex">\[
 \alpha_t = \underset{\alpha \in \mathbb{R}}{\arg \min} \phi(x^{(t)} + \alpha \vec{p}_t)
 \]</div>
-<p>The first ensures the orthogonal step amd teh second ensure the descent step. Notice that this second optimization problem is a easier problem to solve and close form solution does exist as we are only looking at a minimization problem that involve two vectors, way easier than the problem we begin with. Close form solution of optimal <span class="arithmatex">\(\alpha^*\)</span> would be:</p>
+<p>The first ensures the <strong><em>orthogonal step</em></strong> and the second ensure the <strong><em>descent step</em></strong>. Notice that this second optimization problem is a easier problem to solve and close form solution does exist as we are only looking at a minimization problem that involve two vectors, way easier than the problem we begin with. Close form solution of optimal <span class="arithmatex">\(\alpha^*\)</span> would be:</p>
 <div class="arithmatex">\[
 d_t = \alpha^* = \frac{(b - Ax^{(k)})^T p_t}{p_t^T A p_t} = \frac{- \nabla \phi(x^{(t)})^T p_t}{p_t^T A p_t}
 \]</div>
@@ -959,6 +995,13 @@ p_{t-1}^T A p_t = -p_{t-1}^T A \nabla \phi(x^{(t)}) + \beta_t p_{t-1}^T A p_{t-1
 <div class="arithmatex">\[
 ||x^{(t)} - x^*||_A \leq 2 \left(\frac{\sqrt{k}-1}{\sqrt{k}+1}\right)^t ||x^{(0)} - x^*||_A
 \]</div>
+<p>However, the plain CGD algorithm may not work as efficiently in practice, which is why we usually use th <strong><em>redidual algorithm</em></strong>, which is described in more details in the note.</p>
+<p><a href="../../../assets/math/optimization_notes4.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Two expressions of the CGD algorithm</p>
+    </a></p>
+<p><a href="../../../assets/math/optimization_notes6.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Code implementation of CGD</p>
+    </a></p>
 <h2 id="beyond-convexity-optimality-may-be-guaranteed">Beyond Convexity, Optimality May Be Guaranteed<a class="headerlink" href="#beyond-convexity-optimality-may-be-guaranteed" title="Permanent link">&para;</a></h2>
 <h3 id="strongly-convex">Strongly Convex<a class="headerlink" href="#strongly-convex" title="Permanent link">&para;</a></h3>
 <p>What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of <strong><em>stronly convex</em></strong>, or essentially swapping out the <span class="arithmatex">\(\nabla^2 f(z)\)</span> with the smallest eigen value of such matrix and that <span class="arithmatex">\(\nabla^2 f(z) \geq CI\)</span>. This creats an upper bound condition called strong convex, or essentially constructing sort of a tangent curve instead of a tangent line:</p>
@@ -969,12 +1012,15 @@ f(y) \geq f(x) + \nabla f(x)^T (y-x) + \frac{C}{2} ||y-x||^2
 <div class="arithmatex">\[
 f(x) - f(x^*) \leq \frac{||\nabla f(x)||^2}{2C}
 \]</div>
-<p>When  strongly convex is achieved, L-smooth condition is matched, and when choosing $\mu =\frac{1}{\mu}, we have a incrediablly strong convergence rate, <strong><em>an exponential convergence rate that is independent of the condition number <span class="arithmatex">\(k\)</span></em></strong>.</p>
+<p>When  strongly convex is achieved, L-smooth condition is matched, and when choosing learning rate as <span class="arithmatex">\(\frac{1}{\mu}\)</span>, we have a incrediablly strong convergence rate, <strong><em>an exponential convergence rate that is independent of the condition number <span class="arithmatex">\(k\)</span></em></strong>.</p>
 <div class="arithmatex">\[
 f(x^{(t+1)}) - f(x^*) \leq (\frac{C}{L})^t (f(x^{(0)}) - f(x^*))
 \]</div>
-<p>More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of <span class="arithmatex">\(\frac{1}{2} x^T A x\)</span>. This is really how strongly convex is used in practice. Practically speaking, <strong><em>when $f(w) is convex and <span class="arithmatex">\(R(w)\)</span> is c-strongly convex, then <span class="arithmatex">\(f(w) + R(w)\)</span> is also c-strongly convex</em></strong>. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent.</p>
-<h3 id="pl-condition">PL-Condition<a class="headerlink" href="#pl-condition" title="Permanent link">&para;</a></h3>
+<p>More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of <span class="arithmatex">\(\frac{1}{2} x^T A x\)</span>. This is really how strongly convex is used in practice. Practically speaking, <strong><em>when $f(w) is convex and <span class="arithmatex">\(R(w)\)</span> is c-strongly convex, then <span class="arithmatex">\(f(w) + R(w)\)</span> is also c-strongly convex</em></strong>. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent. For more proof related content, visit the notes.</p>
+<p><a href="../../../assets/math/optimization_notes7.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span>Strongly convex proof</p>
+    </a></p>
+<h3 id="pl-polyak-lojasiewicz-condition">PL (Polyak-Lojasiewicz) Condition<a class="headerlink" href="#pl-polyak-lojasiewicz-condition" title="Permanent link">&para;</a></h3>
 <p>When discussion in non-convex situations, we talk about the <strong><em>PL-Condition</em></strong>, which is eessentially a condition that looks very similar with strongly convex where strongly convex implies PL-condition but not vice versa.</p>
 <div class="arithmatex">\[
 f: \mathbb{R}^n \rightarrow \mathbb{R} \text{ satisfies } \mu \text{-PL-Condition if } \forall x, y \in \mathbb{R}^n
@@ -994,7 +1040,16 @@ f(x^{(t)}) - \delta(x^*) \leq \left(1 - \frac{\mu}{L}\right)^t (f(x^{(0)}) - \de
 <div class="arithmatex">\[
 ||\nabla L(w)||^2 \geq 2\mu L(w)
 \]</div>
-<p>Which satisfy the PL-Condition and neural network converges as the rate of <span class="arithmatex">\((1 - \frac{\mu}{\beta})^t\)</span>, it converges exponentially fast. This is exactly why we see exponential convergence in teh begining when we randomly initialize an neural network.</p>
+<p>Which satisfy the PL-Condition since the loss function at <span class="arithmatex">\(x^*\)</span> should always be zero. This shows that neural network would converge as the rate of <span class="arithmatex">\((1 - \frac{\mu}{\beta})^t\)</span>, it converges exponentially fast. This is exactly why we see exponential convergence in teh begining when we randomly initialize an neural network. This sort of example is what the PL-Condition is truly used for.</p>
+<p><strong><em>The moral of the story is, with certain constraints/conditions satisfied, we can use theory to make something practically work!</em></strong></p>
+<h2 id="extra-resources-code">Extra Resources &amp; Code<a class="headerlink" href="#extra-resources-code" title="Permanent link">&para;</a></h2>
+<p>For more detailed information and code implementation of some of teh algorithms:</p>
+<p><a href="../../../assets/math/optimization_notes1.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Notes on convex optimization</p>
+    </a></p>
+<p><a href="../../../assets/math/optimization_notes5.pdf" target="_blank">
+    <p><span class="link-icon">&#9881;</span> Code implementation of some variants of gradient descent</p>
+    </a></p>
 
 
 
