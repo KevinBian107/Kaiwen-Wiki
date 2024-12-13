@@ -622,18 +622,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommender-and-netflix-price" class="md-nav__link">
+  <a href="#constraint-in-doability" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommender and Netflix Price
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#database-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      Database Management
+      Constraint in "Doability"
     </span>
   </a>
   
@@ -731,18 +722,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommender-and-netflix-price" class="md-nav__link">
+  <a href="#constraint-in-doability" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommender and Netflix Price
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#database-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      Database Management
+      Constraint in "Doability"
     </span>
   </a>
   
@@ -779,15 +761,18 @@
   </div>
 </div>
 
-<p>When I first learned about the idea about constraint and constraint solving (I belive it was in a class taught by professor Sichun Gao in UCSD CSE called <em>"Search and optimization"</em>), I wasn't as exiciting as I am. I thought of constraint solving just as a small sub-branch of optimization, but I was wrong. It is actually the <strong><em>"class"</em></strong> that can generates any other type optimization, reasoning, or machine learning techniques when you look at if from the right perspective. Quoting from what professor Gao said himself: <strong><em>"All you need is constraint solving"</em></strong>. This perspective greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.</p>
+<p>When I first learned about the idea  of constraint solving (I belive it was in a class taught by professor Sichun Gao in UCSD CSE called <em>"Search and optimization"</em>), I wasn't as exiciting as I am. I thought of constraint solving just as a small sub-branch of optimization, but I was wrong. It is actually the <strong><em>"class"</em></strong> that can generates any other type optimization, reasoning, or machine learning techniques when you look at if from the right perspective. Quoting from what professor Gao said himself: <strong><em>"All you need is constraint solving"</em></strong>. If I wnat to summarize the ideas in this article, it would be:</p>
+<ol>
+<li>Theporitically, constraints greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.</li>
+<li>Practically, "doability" is always part of the puzzle, in theory we can do everything but in practice we can't, so how do we optimize with these constraint not as a hinderance but as a helper?</li>
+</ol>
 <h2 id="constraint-in-standard-models">Constraint in Standard Models<a class="headerlink" href="#constraint-in-standard-models" title="Permanent link">&para;</a></h2>
-<p>From a theoriticla perspective, looking at constraint is very interesting. I come from a background of doing reinforcement learning and in there we like to frame our problem as a <strong><em>search &amp; optimization</em></strong> problem. How do we find the best path in a tree (the tree here is not actually a search tree but an abstract concept of so)? Or how do we find the optimal trajectory for getting to the maximum of the objective surface that changes over time since we get more and more knowledge of such surface? From a <strong><em>classical machine learning</em></strong> perspective, learning is about finding patterns in the dataset, no matter if you are doing supervised or unsupervised, it is all about looking for some useful pattern and characteristic from the dataset. Things got particularly interesting when I took a class named <em>"Machine learning with few labels"</em> taught by professor Zhiting Hu in UCSD HDSI. One o  the major work that he have done was establishing <strong><em>a standard model for machine learning</em></strong>, similar to how physicist established the standard model of all partcles. Quoting from himself:
-<br />
+<p>From a theoriticla perspective, looking at constraint is very interesting. I come from a background of doing reinforcement learning and in there we like to frame our problem as a <strong><em>search &amp; optimization</em></strong> problem. How do we find the best path in a tree (the tree here is not actually a search tree but an abstract concept of so)? Or how do we find the optimal trajectory for getting to the maximum of the objective surface that changes over time since we get more and more knowledge of such surface? From a <strong><em>classical machine learning</em></strong> perspective, learning is about finding patterns in the dataset, no matter if you are doing supervised or unsupervised, it is all about looking for some useful pattern and characteristic from the dataset. Things got particularly interesting when I took a class named <em>"Machine learning with few labels"</em> taught by professor Zhiting Hu in UCSD HDSI. One of the major work that he has done was establishing the <strong><em>standard model for machine learning</em></strong>, similar to how physicist established the standard model of all partcles. Quoting from himself:</p>
 <blockquote>
-    <p>"We want to do chemistry, to understand and constructs upon each other, not arcamy."</p>
-  </blockquote>
-</p>
-<p>The standard model proposed a standard equation (SE) that unifies all type of learning and can be derived into any type of learning algorithm with specific configuration. This SE can be written as:</p>
+  <p>"We want to do chemistry, to understand and constructs upon each other, not arcamy."</p>
+</blockquote>
+
+<p>That was going of tangent a bit, the main reason of mentioning the Standard Model is because when we look at the Standard Equation (SE) proposed in the same paper that unifies all type of learning and can be derived into any type of learning algorithm with specific configuration, which can be written as the following, we results in a constraint optimization problem.</p>
 <div class="arithmatex">\[
 \min_{q,\theta,\xi} \quad -\alpha \mathcal{H}(q) \;+\; \beta \mathcal{D}(q, p_\theta) \;+\; U(\xi)
 \]</div>
@@ -795,34 +780,40 @@
 <div class="arithmatex">\[
 -\mathbb{E}_q\left[f_k^{(\theta)}\right] \;\leq\; \xi_k, \quad k = 1, \ldots, K.
 \]</div>
-<p>Where:</p>
+<p>Where each components are:</p>
 <ul>
 <li>
-<p><strong>The uncertainty function</strong> <span class="arithmatex">\(\mathcal{H}(\cdot)\)</span> controls the compactness of the output model, 
+<p>Uncertainty function <span class="arithmatex">\(\mathcal{H}(\cdot)\)</span> controls the compactness of the output model, 
   for example, by regulating the amount of allowed randomness while trying to fit experience.</p>
 </li>
 <li>
-<p><strong>The divergence function</strong> <span class="arithmatex">\(\mathcal{D}(\cdot,\cdot)\)</span> measures the distance between the target 
+<p>Divergence function <span class="arithmatex">\(\mathcal{D}(\cdot,\cdot)\)</span> measures the distance between the target 
   model to be trained and the auxiliary model, facilitating a teacher–student mechanism.</p>
 </li>
 <li>
-<p><strong>The experience function</strong>, introduced by a penalty term <span class="arithmatex">\(U(\xi)\)</span>, incorporates the set of 
+<p>Experience function, introduced by a penalty term <span class="arithmatex">\(U(\xi)\)</span>, incorporates the set of 
   "experience functions" <span class="arithmatex">\(f_k^{(\theta)}\)</span> that represent external experience of various kinds for training 
   the target model.</p>
 </li>
-<li>
-<p><strong>The hyperparameters</strong> <span class="arithmatex">\(\alpha,\beta \geq 0\)</span> enables trade-offs between these components.</p>
-</li>
 </ul>
-<p>We wouldn't dive into the specific formulation and mathamatical deriviation of such model (I have attached my note that trys to conduct some of the deriviation below), but notice that <strong><em>this is a constraint solvcing problem!</em></strong>  Essentially, I think SE is a new perspective of looking at all types of learning as a <strong><em>instance</em></strong> of a constraint solving procedure. If we say RL is a search and optimization process under the reward constraint, then we can also think of supervised learning not as finding patterns in data, but as a optimization or a search in the landscape of weights with the constraint of data. Think how we are doing projected gradient descent (Hard constraint) or regularized gradient descent (Lagrangian constraint) where we are projecting the steps onto a subspace following the constraint requirement. Then our constraint in supervised setting is just constraining (a strict constraint) all posible weight world steps to a data space.</p>
+<p>This equation would be optimized with an Expecttaion Maximization (EM) like procedure (EM is also a very very interesting topic that I want to go into a little bit, still writing that article).</p>
+<div class="arithmatex">\[
+\text{Teacher (E-Step):}\quad q^{(n+1)}(t) = \frac{\exp\left\{\frac{\beta \log p_{\theta^{(n)}}(t) + f(t)}{\alpha}\right\}}{Z}
+\]</div>
+<div class="arithmatex">\[
+\text{Student (M-Step):}\quad \theta^{(n+1)} = \arg\max_{\theta} \mathbb{E}_{q^{(n+1)}(t)}\left[\log p_{\theta}(t)\right]
+\]</div>
+<p>We wouldn't dive into the specific formulation and mathamatical deriviation of such model (I have attached my note that trys to conduct some of the deriviation below), but notice that <strong><em>this is a constraint solvcing problem</em></strong>! Essentially, the SE provides a new perspective of looking at all types of learning as a <strong><em>instance</em></strong> of a constraint solving problem. If we say RL is a search and optimization process under the reward constraint, then we can also think of supervised learning not as finding patterns in data, but as a optimization or a search in the landscape of weights with the constraint of data. Think how we are doing projected gradient descent (Hard constraint) or regularized gradient descent (Lagrangian constraint) where we are projecting the steps onto a subspace following the constraint requirement (refer to <a href="../optimization">this article</a>). Then our constraint in supervised setting is just constraining (a strict constraint) all posible weight world steps to a data space. For more information:</p>
 <p><a href="../../../literature/notes/standard_model.pdf" target="_blank">
         <p><span class="link-icon">&#9881;</span> Notes on Standard Model of Machine Learning</p>
     </a></p>
-<h2 id="recommender-and-netflix-price">Recommender and Netflix Price<a class="headerlink" href="#recommender-and-netflix-price" title="Permanent link">&para;</a></h2>
-<p>Without going to much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by <strong><em>over-engineered</em></strong> towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that true <strong><em>intelligence comes from the data</em></strong>, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.</p>
+<h2 id="constraint-in-doability">Constraint in "Doability"<a class="headerlink" href="#constraint-in-doability" title="Permanent link">&para;</a></h2>
+<p>This constraint solving philosophy does not live in theory only, it is also widely used in practical domains, but just from an different perspective. I will be describiing two eaxmples that I think illustrate this idea quite well, one from the domain of  recommender system and one from the domain of database management.</p>
+<h3 id="recommender-system-and-netflix-price">Recommender System and Netflix Price<a class="headerlink" href="#recommender-system-and-netflix-price" title="Permanent link">&para;</a></h3>
+<p>Without going to much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by <strong><em>over-engineered</em></strong> towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that <strong><em>true intelligence comes from the data</em></strong>, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.</p>
 <p>The <strong><em>data</em></strong> (projecting onto data space similar to what we discuessed in <a href="../optimization/#all-families-comes-from-twitch">gradient descent</a>) and <strong><em>domain</em></strong> (telling you what you  can and can't do, what cost you can afford, and what you can extract from the data.) is essentially a constraint that we put on the model (The goals in the domain may change, the constraint always changes, and the model that is designed to the particular constraint also changes).</p>
-<h2 id="database-management">Database Management<a class="headerlink" href="#database-management" title="Permanent link">&para;</a></h2>
-<p>Think about database management, something that doesn't really have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), but it is filled with need of constraint solving. Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design <strong><em>optimal transport</em></strong>? This is a constraint, a constraint on the cost and efficiency of what you can do: <strong><em>"sometimes taking the mean is not worst than doing computer vision"</em></strong>.</p>
+<h3 id="database-management">Database Management<a class="headerlink" href="#database-management" title="Permanent link">&para;</a></h3>
+<p>Think about database management, something that doesn't really have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), but it is filled with need of constraint solving. Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design optimal transport? This is a constraint, a constraint on the cost and efficiency of what you can do: <strong><em>"sometimes taking the mean is not worst than doing computer vision"</em></strong>.</p>
 
 
 
