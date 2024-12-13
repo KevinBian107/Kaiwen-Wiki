@@ -15,8 +15,13 @@ The beauty with convex optimization is that we can use a theoritical perspective
 1. Taylor's theorem
 2. Try to do incremental/dynamic update
 3. We just need to think and make twitches from a different perspective.
+4. Anything cna be framed into a optimization scheme question, just with different constraint that needs to be satisfied.
 
-It may all sound very vague, but this article will make it clearer.
+$$
+\min_{w \in \mathbb{R}^p} \frac{1}{N} \sum_{i=1}^N \ell(\sigma(x_i; w), y_i) + \lambda R(w)
+$$
+
+It may all sound very vague, but this article will make it more clear. This article is not intended for a detailed proof (proof are attached as pdf files in each section), but more of a intuition of how convex optimization leads from one to another.
 
 ## Gradient Descent In Different Lenses
 Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor used commonly in deep learning context). This is not only because it has good practical performances but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at gradient descent first.
@@ -87,9 +92,25 @@ $$
 
 Again, by assuming our function is locally convex (locally L-smooth to be specific, hessian bounded), we can ***hide away much complexity*** into approximations.
 
-
 ## Optimality Guaranteed
-We never really formally define what it means to be concvex here, but for now let's just say that convexity means that we have a ***Postive Semi-Deminite (PSD)*** hessian (this is not a definition but a result of teh definition). With gradient descnet + convexity + some tricks (teloscoping theory, series of convex functions, ...), we can have many powerful optimality guaranteed, namely: ***"It will stop, it will converge, and we will be at the optimal position"***. We will name a few here:
+We never really formally define what it means to be concvex here, but for now let's just say that convexity means that we have a ***Positive Semi-Deminite (PSD)*** hessian (this is not a definition but a result of teh definition). With gradient descnet + convexity + some tricks (teloscoping theory, series of convex functions, ...), we can have many powerful optimality guaranteed, namely: ***"It will stop, it will converge, and we will be at the optimal position"***. We will name a few in the following section, but first we can define some notion of convexity.
+
+### Convex Functions
+The real definition of convexity is given by the following. Intuitively it is when we draw a line from any two points on this curve and this line will always stay above our function curve.
+
+$$
+f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha) f(y)
+$$
+
+From this notion of convexity, we can proof that it leads to many others, we will name the important ones here:
+
+1. $f(y) \geq f(x) + \nabla f(x)^T (y-x)$
+2. $\nabla^2 f(x) \succeq 0, \quad \text{PSD}$ or all eigenvalue above zero
+3. $\nabla f(x) \text{ is monotone, } \langle \nabla f(x) - \nabla f(y), x-y \rangle \geq 0$
+
+Both 1 and 2 can be derived from convexity definition + Taylor theory.
+
+Notice that these 4 notions of convexity all come with different assumptions where the definition makes no assumption, 2 and 3 need twice differentiable functions and 3 need once differentiable function. Importantly, ***for convex function, local minimum $\rightarrow$ global minimum and when $\nabla f(x) = 0$, we can find such minimum.***
 
 ### L-Lipschitz
 L-Lipschitz means that the gradient is bounded where $|| \nabla f(x) || \leq L$ and equivalently we have:
@@ -330,16 +351,21 @@ However, the plain CGD algorithm may not work as efficiently in practice, which 
     <p><span class="link-icon">&#9881;</span> Code implementation of CGD</p>
     </a>
 
+***As a comparison to Newton's method***, CGD is trying to make the original hard optimization problem to smaller problems "along each direction". Newton's method is trying to solve everything at once (in fact when the function is linear regression, the update rule for Newton's method is actually directly the analytical solution normal equation for linear regression) while CGD want to ***solve the problem along every single conjugate direction***.
+
 ## Beyond Convexity, Optimality May Be Guaranteed
 
 ### Strongly Convex
-What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of ***stronly convex***, or essentially swapping out the $\nabla^2 f(z)$ with the smallest eigen value of such matrix and that $\nabla^2 f(z) \geq CI$. This creats an upper bound condition called strong convex, or essentially constructing sort of a tangent curve instead of a tangent line:
+What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of ***stronly convex***, there are 2 ways of understanding it.
+
+1. Back to Taylor's theory, we are essentially swapping out the $\nabla^2 f(z)$ with the smallest eigenvalue of such matrix and that $\nabla^2 f(z) \geq CI$. Mathamatically, this is $0 \leq C \leq \lambda_{\text{min}} \nabla^2 f(z)$.
+2. We are essentially constructing sort of a tangent curve instead of a tangent line in the original convex definition.
 
 $$
 f(y) \geq f(x) + \nabla f(x)^T (y-x) + \frac{C}{2} ||y-x||^2
 $$
 
-and that
+and we can show that the above definition leads to the following:
 
 $$
 f(x) - f(x^*) \leq \frac{||\nabla f(x)||^2}{2C}
@@ -351,7 +377,7 @@ $$
 f(x^{(t+1)}) - f(x^*) \leq (\frac{C}{L})^t (f(x^{(0)}) - f(x^*))
 $$
 
-More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of $\frac{1}{2} x^T A x$. This is really how strongly convex is used in practice. Practically speaking, ***when $f(w) is convex and $R(w)$ is c-strongly convex, then $f(w) + R(w)$ is also c-strongly convex***. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent. For more proof related content, visit the notes.
+More critically, when strongly convex condition is matched, all the previous method's convergence property remains for functions that is strongly convex but not neccessarily just quadratic in the form of $\frac{1}{2} x^T A x$. This is really how strongly convex is used in practice. Practically speaking, ***when $f(w)$ is convex and $R(w)$ is c-strongly convex, then $f(w) + R(w)$ is also c-strongly convex***. This gives the power for regulaorizor to show its power. For instance, in ridge regression, other than just making a constraint on keeping the weights small, ridge regression gurantees a better convergence rate than just normal gradient descent. For more proof related content, visit the notes.
 
 <a href="../../../assets/math/optimization_notes7.pdf" target="_blank">
     <p><span class="link-icon">&#9881;</span>Strongly convex proof</p>
@@ -374,10 +400,10 @@ Essentially, we are putting a upperbound on the gradient saying that when we are
 2. If $f(x)$ s L-smooth + $\mu$-PL-Condition, then gradient descent with a step-size of $\frac{1}{L}$ will converge at a rate of
 
 $$
-f(x^{(t)}) - \delta(x^*) \leq \left(1 - \frac{\mu}{L}\right)^t (f(x^{(0)}) - \delta(x^*))
+f(x^{(t)}) - f(x^*) \leq \left(1 - \frac{\mu}{L}\right)^t (f(x^{(0)}) - f(x^*))
 $$
 
-This is similar to strongly convex, very strong exponential convergence. In practice, we actually observes this phenomenon! Turns out that an ***over-parametrized*** neural network (highly non-convex function) can be written in a ***Neural Tangent Kernel*** form of:
+This is similar to strongly convex, very strong exponential convergence. In practice, we actually observes this phenomenon! Turns out that an ***over-parametrized*** neural network (highly non-convex function) can be written in a ***Neural Tangent Kernel*** form (where we use, again, the eigenvectors to hide away the complexity of matrix) and then we can derive that:
 
 $$
 ||\nabla L(w)||^2 \geq 2\mu L(w)

@@ -1,7 +1,7 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 # Welcome to My Wiki Page
-Some perspectives I have on **Neuroscience**, **Mathematics**, **Machine Learning**, and other areas of interest.
+Some perspectives I have on **Neuroscience**, **Mathematics**, **Machine Learning**, and other areas of interest. I like to write some small articles becase (1) to share some ideas I have and (2) it gets me to think about the connections between what I learned.
 
 [Back to my website](https://kbian.org/)
 
@@ -32,14 +32,14 @@ Essentially, this is how I found neuroscience and biology to be quite amazing—
 
 I find theoretical math to be pretty fun. I think that good practical techniques that work well are derived from a theoretical root.
 
+- [Twitch on Theory In Convex Optimization](articles/mathamatics/optimization.md)   
+  *Deriving everything we want in optimization from Taylor Theory and with small modification on some assumptions or the way we design things, we get completely different families of algorithms.*
+
+- [All You Need Is Constraint Solving](articles/mathamatics/constraint.md)    
+  *All hard problems that we want to solve can be framed as a constraint solving process if we look at them from a particular perspective. Both in math and in life.*
+
 - [Unfolding Stochasticity Sequentially](articles/mathamatics/stochastic.md)  
   *Modeling interactions between stochasticity across time sequentially through the key representational example of Random Walk.*
 
 - [\(N(\mu, \sigma)\) Lend It Some Confidence](articles/mathamatics/confidence.md)  
   *There are deep connections between statistics and probability, even on very basic statistics levels.*
-
-- [Twitch on Theory In Convex Optimization](articles/mathamatics/optimization.md)   
-  *Deriving everything we want in optimization from Taylor Theory and with small modification on some assumptions or the way we design things, we get completely different families of algorithms.*
-
-- [All About Constraint Solving](articles/mathamatics/constraint.md)    
-  *All problems that we want to solve can be framed as a constraint solving process. Both in math and in life.*

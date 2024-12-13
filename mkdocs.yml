@@ -38,6 +38,7 @@ theme:
     - navigation.top
     - navigation.expand
     - navigation.prune
+    - navigation.indexes 
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -168,8 +169,8 @@ nav:
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
     - Positive Psychology: articles/neuroscience/positive_psycology.md
   - Mathamatics Related:
+    - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
+    - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
-    - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
-    - All Constraint Solving: articles/mathamatics/constraint.md
 
