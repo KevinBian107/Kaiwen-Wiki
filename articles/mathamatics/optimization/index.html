@@ -1053,6 +1053,7 @@ p_{t-1}^T A p_t = -p_{t-1}^T A \nabla \phi(x^{(t)}) + \beta_t p_{t-1}^T A p_{t-1
 <p><a href="../../../assets/math/optimization_notes6.pdf" target="_blank">
     <p><span class="link-icon">&#9881;</span> Code implementation of CGD</p>
     </a></p>
+<p><strong><em>As a comparison to Newton's method</em></strong>, CGD is trying to make the original hard optimization problem to smaller problems "along each direction". Newton's method is trying to solve everything at once (in fact when the function is linear regression, the update rule for Newton's method is actually directly the analytical solution normal equation for linear regression) while CGD want to <strong><em>solve the problem along every single conjugate direction</em></strong>.</p>
 <h2 id="beyond-convexity-optimality-may-be-guaranteed">Beyond Convexity, Optimality May Be Guaranteed<a class="headerlink" href="#beyond-convexity-optimality-may-be-guaranteed" title="Permanent link">&para;</a></h2>
 <h3 id="strongly-convex">Strongly Convex<a class="headerlink" href="#strongly-convex" title="Permanent link">&para;</a></h3>
 <p>What happens beyond convexity? We can still talk about them in theory (though not as convineint as in convex situations). First we will introduce the concept of <strong><em>stronly convex</em></strong>, there are 2 ways of understanding it.</p>
