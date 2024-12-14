@@ -29,5 +29,5 @@ This is the section is for putting the hand written script of what I might put i
 - [Bellman Update: Convergence To Single Reality](notes/mdp_bellman_update_proof.pdf)   
   *Written by Apr 22 2024: all "realities" converge to a single reality in MDP*
 
-- [Expectation Maximization: Creating Something From Nothing](notes/em_derive.pdf)    
+- [Expectation Maximization: Creating Something From Nothing](notes/em_binomial_derive.pdf)    
   *written by Dec 13 2024: creating "something" arbitrary, then gradually make it real*
