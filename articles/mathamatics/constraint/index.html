@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#constraint-in-standard-models" class="md-skip">
+        <a href="#standard-models-sm-constraint" class="md-skip">
           Skip to content
         </a>
       
@@ -613,18 +613,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#constraint-in-standard-models" class="md-nav__link">
+  <a href="#standard-models-sm-constraint" class="md-nav__link">
     <span class="md-ellipsis">
-      Constraint in Standard Models
+      Standard Models (SM) Constraint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#constraint-in-doability" class="md-nav__link">
+  <a href="#practical-doability-constraint" class="md-nav__link">
     <span class="md-ellipsis">
-      Constraint in "Doability"
+      Practical "Doability" Constraint
     </span>
   </a>
   
@@ -713,18 +713,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#constraint-in-standard-models" class="md-nav__link">
+  <a href="#standard-models-sm-constraint" class="md-nav__link">
     <span class="md-ellipsis">
-      Constraint in Standard Models
+      Standard Models (SM) Constraint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#constraint-in-doability" class="md-nav__link">
+  <a href="#practical-doability-constraint" class="md-nav__link">
     <span class="md-ellipsis">
-      Constraint in "Doability"
+      Practical "Doability" Constraint
     </span>
   </a>
   
@@ -766,13 +766,14 @@
 <li>Theporitically, constraints greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.</li>
 <li>Practically, "doability" is always part of the puzzle, in theory we can do everything but in practice we can't, so how do we optimize with these constraint not as a hinderance but as a helper?</li>
 </ol>
-<h2 id="constraint-in-standard-models">Constraint in Standard Models<a class="headerlink" href="#constraint-in-standard-models" title="Permanent link">&para;</a></h2>
-<p>From a theoriticla perspective, looking at constraint is very interesting. I come from a background of doing reinforcement learning and in there we like to frame our problem as a <strong><em>search &amp; optimization</em></strong> problem. How do we find the best path in a tree (the tree here is not actually a search tree but an abstract concept of so)? Or how do we find the optimal trajectory for getting to the maximum of the objective surface that changes over time since we get more and more knowledge of such surface? From a <strong><em>classical machine learning</em></strong> perspective, learning is about finding patterns in the dataset, no matter if you are doing supervised or unsupervised, it is all about looking for some useful pattern and characteristic from the dataset. Things got particularly interesting when I took a class named <em>"Machine learning with few labels"</em> taught by professor Zhiting Hu in UCSD HDSI. One of the major work that he has done was establishing the <strong><em>standard model for machine learning</em></strong>, similar to how physicist established the standard model of all partcles. Quoting from himself:</p>
+<p>This article tries to go over some quite complicated topic, which I focuesed more on the intuition of it and less on the athamatical deriviation.</p>
+<h2 id="standard-models-sm-constraint">Standard Models (SM) Constraint<a class="headerlink" href="#standard-models-sm-constraint" title="Permanent link">&para;</a></h2>
+<p>From a theoritical perspective, looking at constraint is very interesting. I come from a background of doing reinforcement learning and in there we like to frame our problem as a <strong><em>search &amp; optimization</em></strong> problem. How do we find the best path in a tree (the tree here is not actually a search tree but an abstract concept of so)? Or how do we find the optimal trajectory for getting to the maximum of the objective surface that changes over time since we get more and more knowledge of such surface? From a <strong><em>classical machine learning</em></strong> perspective, learning is about finding patterns in the dataset, no matter if you are doing supervised or unsupervised, it is all about looking for some useful pattern and characteristic from the dataset. Things got particularly interesting when I took a class named <em>"Machine learning with few labels"</em> taught by professor Zhiting Hu in UCSD HDSI. One of the major work that he has done was establishing the <strong><em>standard model for machine learning</em></strong>, similar to how physicist established the standard model of all partcles. As he always says in this class:</p>
 <blockquote>
-  <p>"We want to do chemistry, to understand and constructs upon each other, not arcamy."</p>
+  <p>We want to study machine learning like chemistry, to understand and constructs upon each other, not arcamy.</p>
 </blockquote>
 
-<p>That was going of tangent a bit, the main reason of mentioning the Standard Model is because when we look at the Standard Equation (SE) proposed in the same paper that unifies all type of learning and can be derived into any type of learning algorithm with specific configuration, which can be written as the following, we results in a constraint optimization problem.</p>
+<p>The main reason of mentioning the SM is because when we look at the Standard Equation (SE) proposed in the same paper that unifies all type of learning and can be derived into any type of learning algorithm with specific configuration, which can be written as the following, we results in a constraint optimization problem.</p>
 <div class="arithmatex">\[
 \min_{q,\theta,\xi} \quad -\alpha \mathcal{H}(q) \;+\; \beta \mathcal{D}(q, p_\theta) \;+\; U(\xi)
 \]</div>
@@ -780,34 +781,53 @@
 <div class="arithmatex">\[
 -\mathbb{E}_q\left[f_k^{(\theta)}\right] \;\leq\; \xi_k, \quad k = 1, \ldots, K.
 \]</div>
-<p>Where each components are:</p>
-<ul>
-<li>
-<p>Uncertainty function <span class="arithmatex">\(\mathcal{H}(\cdot)\)</span> controls the compactness of the output model, 
-  for example, by regulating the amount of allowed randomness while trying to fit experience.</p>
-</li>
-<li>
-<p>Divergence function <span class="arithmatex">\(\mathcal{D}(\cdot,\cdot)\)</span> measures the distance between the target 
-  model to be trained and the auxiliary model, facilitating a teacher–student mechanism.</p>
-</li>
-<li>
-<p>Experience function, introduced by a penalty term <span class="arithmatex">\(U(\xi)\)</span>, incorporates the set of 
-  "experience functions" <span class="arithmatex">\(f_k^{(\theta)}\)</span> that represent external experience of various kinds for training 
-  the target model.</p>
-</li>
-</ul>
-<p>This equation would be optimized with an Expecttaion Maximization (EM) like procedure (EM is also a very very interesting topic that I want to go into a little bit, still writing that article).</p>
+<p>Where the first term is teh <strong><em>Uncertainty function <span class="arithmatex">\(\mathcal{H}(\cdot)\)</span></em></strong> that controls the compactness of the output model, for example, by regulating the amount of allowed randomness while trying to fit experience. The second term is the <strong><em>Divergence function <span class="arithmatex">\(\mathcal{D}(\cdot,\cdot)\)</span></em></strong> that measures the distance between the target model to be trained and the auxiliary model, facilitating a teacher–student mechanism. At last, the thrid term is teh <strong><em>Experience function</em></strong>, introduced by a <strong><em>Penalty term <span class="arithmatex">\(U(\xi)\)</span></em></strong>, which incorporates the set of "experience functions" <span class="arithmatex">\(f_k^{(\theta)}\)</span> that represent external experience of various kinds for training the target model. With the follwoing assumptions, we can frame this problem as a Expecttaion Maximization (EM) procedure (EM is also a very very interesting topic that I want to go into a little bit, for now I have attached an example of EM for binomial mixture model below).</p>
+<p><a href="../../../literature/notes/em_binomial_derive.pdf" target="_blank">
+        <p><span class="link-icon">&#9881;</span> Example of Expectation Maximization</p>
+    </a></p>
+<p><strong><em>Uncertainty</em></strong>: Maximizing <span class="arithmatex">\(\mathcal{H}(q)\)</span> encourages the model to maintain a certain level of 'spread' or variability, implicitly allowing for more uncertainty in the distribution <span class="arithmatex">\(q\)</span>.</p>
 <div class="arithmatex">\[
-\text{Teacher (E-Step):}\quad q^{(n+1)}(t) = \frac{\exp\left\{\frac{\beta \log p_{\theta^{(n)}}(t) + f(t)}{\alpha}\right\}}{Z}
+\mathcal{H}(q) = -\mathbb{E}_q[\log q] \quad\text{(Shannon Entropy)}
+\]</div>
+<p><strong><em>Divergence</em></strong>: Minimizing <span class="arithmatex">\(\mathcal{D}(q,p_\theta)\)</span> pushes <span class="arithmatex">\(p_\theta\)</span> to better match the distribution <span class="arithmatex">\(q\)</span>, effectively acting as a divergence measure.</p>
+<div class="arithmatex">\[
+\mathcal{D}(q,p_\theta) = -\mathbb{E}_q[\log p_\theta] \quad\text{(Cross-Entropy)}
+\]</div>
+<p><strong><em>Experience</em></strong>: <span class="arithmatex">\(f(t)\)</span> encodes knowledge or constraints from external sources or data, influencing the target model’s learning process.</p>
+<p>With these asumption, the derived update would take in the following form. In EM, parameters doesn’t matter, the <strong><em>hidden distribution</em></strong> is what impact all important information, then we just optimize parameter with regard to this distribution is fine. The below illustrate an analytical ideal <span class="arithmatex">\(q\)</span> distribution that comes from SE (incorporating both uncertainty, divergence, and experiences), with such <span class="arithmatex">\(q\)</span> distribution, we just directly MLE the parameter (same with minimizing the KL).</p>
+<div class="arithmatex">\[
+\text{(E-Step):}\quad q^{(n+1)}(t) = \frac{\exp\left\{\frac{\beta \log p_{\theta^{(n)}}(t) + f(t)}{\alpha}\right\}}{Z}
 \]</div>
 <div class="arithmatex">\[
-\text{Student (M-Step):}\quad \theta^{(n+1)} = \arg\max_{\theta} \mathbb{E}_{q^{(n+1)}(t)}\left[\log p_{\theta}(t)\right]
+\text{(M-Step):}\quad \theta^{(n+1)} = \arg\max_{\theta} \mathbb{E}_{q^{(n+1)}(t)}\left[\log p_{\theta}(t)\right]
 \]</div>
-<p>We wouldn't dive into the specific formulation and mathamatical deriviation of such model (I have attached my note that trys to conduct some of the deriviation below), but notice that <strong><em>this is a constraint solvcing problem</em></strong>! Essentially, the SE provides a new perspective of looking at all types of learning as a <strong><em>instance</em></strong> of a constraint solving problem. If we say RL is a search and optimization process under the reward constraint, then we can also think of supervised learning not as finding patterns in data, but as a optimization or a search in the landscape of weights with the constraint of data. Think how we are doing projected gradient descent (Hard constraint) or regularized gradient descent (Lagrangian constraint) where we are projecting the steps onto a subspace following the constraint requirement (refer to <a href="../optimization">this article</a>). Then our constraint in supervised setting is just constraining (a strict constraint) all posible weight world steps to a data space. For more information:</p>
+<p>We wouldn't dive into the specific formulation and mathamatical deriviation of such model (I have attached my note that trys to conduct some of the deriviation below), but notice that this is a <strong><em>constraint solvcing problem</em></strong>! We will go over one instance of SM (MLE) to illustrate this idea.</p>
+<h3 id="from-sm-rightarrow-mle">From SM <span class="arithmatex">\(\rightarrow\)</span> MLE:<a class="headerlink" href="#from-sm-rightarrow-mle" title="Permanent link">&para;</a></h3>
+<p>For an arbitrary configuration <span class="arithmatex">\((x_0,y_0)\)</span>, its probability <span class="arithmatex">\(p_d(x_0,y_0)\)</span> under the data distribution can be seen as measuring the <em>expected similarity</em> between <span class="arithmatex">\((x_0,y_0)\)</span> and true data samples <span class="arithmatex">\((x^*,y^*)\)</span>, and can be written as:</p>
+<div class="arithmatex">\[
+p_d(x_0,y_0) = \mathbb{E}_{p_d(x^*,y^*)} \left[ \mathbb{I}^{(x^*,y^*)}(x_0,y_0) \right]
+\]</div>
+<p>Here the similarity measure is <span class="arithmatex">\(\mathbb{I}^{(x^*,y^*)}(x,y)\)</span>, an indicator function that takes the value 1 if <span class="arithmatex">\((x,y)=(x^*,y^*)\)</span> and 0 otherwise. The experience function would thus be defined as:</p>
+<div class="arithmatex">\[
+f := f_{\text{data}}(x,y;D) = \log \mathbb{E}_{(x^*,y^*)\sim D}\left[\mathbb{I}^{(x^*,y^*)}(x,y)\right]
+\]</div>
+<p>Plugging this into the teacher model for the expected <span class="arithmatex">\(q\)</span>-distribution, we have:</p>
+<div class="arithmatex">\[
+q(x,y) = \frac{\exp\left\{\frac{\beta \log p_{\theta}(x,y) + f_{\text{data}}(x,y;D)}{\alpha}\right\}}{Z}
+\]</div>
+<p>Notice that under this condition we don't care about the <span class="arithmatex">\(\beta \log p_{\theta}(x,y)\)</span> term (derived from divergence). Since we don't care about the true distribution <span class="arithmatex">\(q\)</span>'s distance to <span class="arithmatex">\((p_{\theta}(x,y))\)</span> and instead we just want to fit the data (which is what MLE is doing):</p>
+<div class="arithmatex">\[
+q(x,y) = \frac{\exp\{f_{\text{data}}(x,y;D)\}}{Z} \approx \tilde{p}_d(x,y)
+\]</div>
+<p>Then we maximize where the derived <span class="arithmatex">\(q\)</span> distribution is the direct data distribution since <span class="arithmatex">\(q\)</span> is retrieved from an indicator function on the data distribution. This is exactly the definition of MLE.</p>
+<div class="arithmatex">\[
+\max_{\theta} \mathbb{E}_{t \sim \tilde{p}_d(x,y)}[\log p_{\theta}(t)]
+\]</div>
+<p>Essentially, the SE provides a new perspective of looking at all types of learning as a <strong><em>instance</em></strong> of a constraint solving problem. If we say RL is a search and optimization process under the reward constraint, then we can also think of supervised learning not as finding patterns in data, but as a <strong><em>optimization or a search in the landscape of weights with the constraint of data</em></strong>. Think how we are doing projected gradient descent (Hard constraint) or regularized gradient descent (Lagrangian constraint) where we are projecting the steps onto a subspace following the constraint requirement (refer to <a href="../optimization">this article</a>). Then our constraint in supervised setting is just constraining (a strict constraint) all posible weight world steps to a data space. For more information:</p>
 <p><a href="../../../literature/notes/standard_model.pdf" target="_blank">
         <p><span class="link-icon">&#9881;</span> Notes on Standard Model of Machine Learning</p>
     </a></p>
-<h2 id="constraint-in-doability">Constraint in "Doability"<a class="headerlink" href="#constraint-in-doability" title="Permanent link">&para;</a></h2>
+<h2 id="practical-doability-constraint">Practical "Doability" Constraint<a class="headerlink" href="#practical-doability-constraint" title="Permanent link">&para;</a></h2>
 <p>This constraint solving philosophy does not live in theory only, it is also widely used in practical domains, but just from an different perspective. I will be describiing two eaxmples that I think illustrate this idea quite well, one from the domain of  recommender system and one from the domain of database management.</p>
 <h3 id="recommender-system-and-netflix-price">Recommender System and Netflix Price<a class="headerlink" href="#recommender-system-and-netflix-price" title="Permanent link">&para;</a></h3>
 <p>Without going to much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by <strong><em>over-engineered</em></strong> towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that <strong><em>true intelligence comes from the data</em></strong>, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.</p>
