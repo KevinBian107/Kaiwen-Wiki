@@ -15,6 +15,8 @@ The beauty with convex optimization is that we can use a theoritical perspective
 1. Taylor's theorem
 2. Try to do incremental/dynamic update
 3. We just need to think and make twitches from a different perspective.
+    - We will see that GD local convex perspective $\rightarrow$ Newton's method $\rightarrow$ CGD.
+    - We will also seee that GD $\rightarrow$ GD + M (with twitch from GD) $\rightarrow$ GD + N.A.
 4. Anything cna be framed into a optimization scheme question, just with different constraint that needs to be satisfied.
 
 $$
