@@ -852,10 +852,10 @@ q(x,y) = \frac{\exp\{f_{\text{data}}(x,y;D)\}}{Z} \approx \tilde{p}_d(x,y)
 \mathcal{L}(\theta, x) = \mathbb{E}_{q(z|x)} \left[ \log \frac{p(x, z | \theta)}{p(z | \theta)} \right] - KL(q(z|x) || p(z | x, \theta))
 \]</div>
 <p>I have also attached the proof of deriving both ELBO + KL divergence and ELBO + entropy for reference in the links below:</p>
-<p><a href="../../../literature/notes/elbo_entropy_proof.pdf" target="_blank">
+<p><a href="../../../assets/math/elbo_entropy_proof.pdf" target="_blank">
         <p><span class="link-icon">&#9881;</span> Proof of ELBO + Entropy</p>
     </a></p>
-<p><a href="../../../literature/notes/elbo_kl_proof.pdf" target="_blank">
+<p><a href="../../../assets/math/elbo_kl_proof.pdf" target="_blank">
         <p><span class="link-icon">&#9881;</span> Proof of ELBO + KL Divergence</p>
     </a></p>
 <p>Deriving such posterrior distribution in simpler examples such as <a href="../../../literature/notes/em_binomial_derive.pdf">Binomial Mixture Model</a> would be tractable. lHowever, derving it in much more complicated situations may get very tedious (i.e. Baysian Mixture of Gaussian's posterriror distribution):</p>
