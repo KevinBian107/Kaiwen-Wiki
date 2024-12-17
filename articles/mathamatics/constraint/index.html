@@ -622,6 +622,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#variational-autoencoder-vae-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variational Autoencoder (VAE) Constraint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#practical-doability-constraint" class="md-nav__link">
     <span class="md-ellipsis">
       Practical "Doability" Constraint
@@ -722,6 +731,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#variational-autoencoder-vae-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variational Autoencoder (VAE) Constraint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#practical-doability-constraint" class="md-nav__link">
     <span class="md-ellipsis">
       Practical "Doability" Constraint
@@ -756,7 +774,7 @@
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
     <div class="profile-details">
       <span class="name">Kaiwen Bian</span>
-      <span class="metadata">10 min read · Dec 13, 2024</span>
+      <span class="metadata">15 min read · Dec 16, 2024</span>
     </div>
   </div>
 </div>
@@ -768,6 +786,7 @@
 </ol>
 <p>This article tries to go over some quite complicated topic, which I focuesed more on the intuition of it and less on the athamatical deriviation.</p>
 <h2 id="standard-models-sm-constraint">Standard Models (SM) Constraint<a class="headerlink" href="#standard-models-sm-constraint" title="Permanent link">&para;</a></h2>
+<p>(Though I should probbaly put the section describing Variational Autoencoder as the first section since it will be a easier introduction to Expectation Maximization, but I think that starting with the Standard Model illusrate mypoints much clearer.)</p>
 <p>From a theoritical perspective, looking at constraint is very interesting. I come from a background of doing reinforcement learning and in there we like to frame our problem as a <strong><em>search &amp; optimization</em></strong> problem. How do we find the best path in a tree (the tree here is not actually a search tree but an abstract concept of so)? Or how do we find the optimal trajectory for getting to the maximum of the objective surface that changes over time since we get more and more knowledge of such surface? From a <strong><em>classical machine learning</em></strong> perspective, learning is about finding patterns in the dataset, no matter if you are doing supervised or unsupervised, it is all about looking for some useful pattern and characteristic from the dataset. Things got particularly interesting when I took a class named <em>"Machine learning with few labels"</em> taught by professor Zhiting Hu in UCSD HDSI. One of the major work that he has done was establishing the <strong><em>standard model for machine learning</em></strong>, similar to how physicist established the standard model of all partcles. As he always says in this class:</p>
 <blockquote>
   <p>We want to study machine learning like chemistry, to understand and constructs upon each other, not arcamy.</p>
@@ -827,13 +846,48 @@ q(x,y) = \frac{\exp\{f_{\text{data}}(x,y;D)\}}{Z} \approx \tilde{p}_d(x,y)
 <p><a href="../../../literature/notes/standard_model.pdf" target="_blank">
         <p><span class="link-icon">&#9881;</span> Notes on Standard Model of Machine Learning</p>
     </a></p>
+<h2 id="variational-autoencoder-vae-constraint">Variational Autoencoder (VAE) Constraint<a class="headerlink" href="#variational-autoencoder-vae-constraint" title="Permanent link">&para;</a></h2>
+<p>We have briefly mentioned the name of EM in the previous section. Turns out that, in practice, how we optimize EM is also a constraint optimization process. To quickly recap, the key of vanilla EM is to gradually find such <span class="arithmatex">\(q\)</span> (posterrior) distribution that captures all the hidden variable and we maximize based on this <span class="arithmatex">\(q\)</span> distribution. Usually, we optimize the <strong><em>Evidence of Lower Bound</em></strong> (ELBO) objective (the equation showing here is for the KL divergence definition).</p>
+<div class="arithmatex">\[
+\mathcal{L}(\theta, x) = \mathbb{E}_{q(z|x)} \left[ \log \frac{p(x, z | \theta)}{p(z | \theta)} \right] - KL(q(z|x) || p(z | x, \theta))
+\]</div>
+<p>I have also attached the proof of deriving both ELBO + KL divergence and ELBO + entropy for reference in the links below:</p>
+<p><a href="../../../literature/notes/elbo_entropy_proof.pdf" target="_blank">
+        <p><span class="link-icon">&#9881;</span> Proof of ELBO + Entropy</p>
+    </a></p>
+<p><a href="../../../literature/notes/elbo_kl_proof.pdf" target="_blank">
+        <p><span class="link-icon">&#9881;</span> Proof of ELBO + KL Divergence</p>
+    </a></p>
+<p>Deriving such posterrior distribution in simpler examples such as <a href="../../../literature/notes/em_binomial_derive.pdf">Binomial Mixture Model</a> would be tractable. lHowever, derving it in much more complicated situations may get very tedious (i.e. Baysian Mixture of Gaussian's posterriror distribution):</p>
+<div class="arithmatex">\[
+\begin{align*}
+        p(\mu_{1:K}, z_{1:n} | x_{1:n}) = \frac{\prod_{k=1}^{K} p(\mu_k) \prod_{i=1}^{n} p(x_i | z_i) p(z_i | \mu_k)}{\int_{\mu_{1:K}} \sum_{z_{1:n}} \prod_{k=1}^{K} p(\mu_k) \prod_{i=1}^{n} p(x_i | z_i) p(z_i | \mu_k)}
+\end{align*}
+\]</div>
+<p>Naturally, an question that we would be asking is whether we can do a approximation of such posterrior distribution. This is known as <strong><em>Variational Inference</em></strong> (as compared to what we do in traditional EM as inference). Traditional method would involve factorizing this posterrior to many independent Gaussian distrbution (Mean Field) or using re-parametrization tricks to approximate any family of distribution (Black Box Inference). As neural networks becomes more popular, more modern approaches such as <strong><em>Variational Autoencoder</em></strong> (VAE) becomes more popular where it reframes the original ELBO objective in EM into a generative model format of <span class="arithmatex">\(p_{\theta}(x|z)\)</span> and adding the same constraint of the KL divergence.</p>
+<div class="arithmatex">\[
+\log p_{\theta}(x|z) = \log \left[ \frac{p_{\theta}(x, z)}{p_{\theta}(z)} \right]
+\]</div>
+<p>Thus, the whole VAE expression becomes the following.</p>
+<div class="arithmatex">\[
+\mathcal{L}(\theta, \phi, x) = \mathbb{E}_{q_{\phi}(z|x)} \left[ \log p_{\theta}(x|z) \right] - KL(q_{\phi}(z|x) || p(z))
+\]</div>
+<p>When taking the gradient, we can borrow the same re-parametrize trick from Black Box Inference where we treat this complicated distribution of <span class="arithmatex">\(z\)</span> as a transformation on a simpler distribution that we know of. We can then take gradient of the encoder <span class="arithmatex">\(q_{\phi}\)</span> distribution with respect to <span class="arithmatex">\(\phi\)</span> and also gradient of the decoder <span class="arithmatex">\(p_{\theta}\)</span> distribution with respect to <span class="arithmatex">\(\theta\)</span>.</p>
+<div class="arithmatex">\[
+\begin{align*}
+\nabla_{\boldsymbol{\phi}} \mathcal{L} &amp;= \mathbb{E}_{\boldsymbol{\epsilon} \sim \mathcal{N}(0,1)} \left[ \nabla_{\boldsymbol{\phi}} \left[ \log p_{\boldsymbol{\theta}}(\mathbf{x}, \mathbf{z}) - \log q_{\boldsymbol{\phi}}(\mathbf{z} | \mathbf{x}) \right] \nabla_{\boldsymbol{\epsilon}} \mathbf{z}(\boldsymbol{\epsilon}, \boldsymbol{\phi}) \right] \\
+\nabla_{\boldsymbol{\theta}} \mathcal{L} &amp;= \mathbb{E}_{q_{\boldsymbol{\phi}}(\mathbf{z} | \mathbf{x})} \left[ \nabla_{\boldsymbol{\theta}} \log p_{\boldsymbol{\theta}}(\mathbf{x}, \mathbf{z}) \right]
+\end{align*}
+\]</div>
+<p>Notice that this is a <strong><em>constraint solving</em></strong> problem again. We are maximizing the first term (decoder) to get improved in acccuracy while minimizing the second term (encoder) which is measuring divergence. With more trials, we get better encoder,hence, better decoder, and hence, better encoder. In the same trend of thoughts, further extensions of VAE such as <strong><em>Variational Information Bottleneck</em></strong> (IB) can alsobe framed into an constraint optimization as well.</p>
 <h2 id="practical-doability-constraint">Practical "Doability" Constraint<a class="headerlink" href="#practical-doability-constraint" title="Permanent link">&para;</a></h2>
 <p>This constraint solving philosophy does not live in theory only, it is also widely used in practical domains, but just from an different perspective. I will be describiing two eaxmples that I think illustrate this idea quite well, one from the domain of  recommender system and one from the domain of database management.</p>
 <h3 id="recommender-system-and-netflix-price">Recommender System and Netflix Price<a class="headerlink" href="#recommender-system-and-netflix-price" title="Permanent link">&para;</a></h3>
-<p>Without going to much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by <strong><em>over-engineered</em></strong> towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that <strong><em>true intelligence comes from the data</em></strong>, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.</p>
+<p>Without going too much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by <strong><em>over-engineered</em></strong> towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that <strong><em>true intelligence comes from the data</em></strong>, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.</p>
 <p>The <strong><em>data</em></strong> (projecting onto data space similar to what we discuessed in <a href="../optimization/#all-families-comes-from-twitch">gradient descent</a>) and <strong><em>domain</em></strong> (telling you what you  can and can't do, what cost you can afford, and what you can extract from the data.) is essentially a constraint that we put on the model (The goals in the domain may change, the constraint always changes, and the model that is designed to the particular constraint also changes).</p>
 <h3 id="database-management">Database Management<a class="headerlink" href="#database-management" title="Permanent link">&para;</a></h3>
-<p>Think about database management, something that doesn't really have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), but it is filled with need of constraint solving. Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design optimal transport? This is a constraint, a constraint on the cost and efficiency of what you can do: <strong><em>"sometimes taking the mean is not worst than doing computer vision"</em></strong>.</p>
+<p>When thinking about database management, something that people wouldn't really think to have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), is actually filled with need of constraint solving.</p>
+<p>Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design optimal transport? This is a constraint, a constraint on the cost and efficiency of what you can do: <strong><em>"sometimes taking the mean is not worst than doing computer vision"</em></strong>.</p>
 
 
 
