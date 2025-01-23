@@ -977,6 +977,13 @@ x^{(t+1)} = x^{(t)} - [\nabla^2 f(x^{(t)})]^{-1} \nabla f(x^{(t)})
 (2) \quad ||x^{(t)} - x^*||^2 \leq \frac{3L}{2h} ||x^{(t-1)} - x^*||^2
 \]</div>
 <p>However, if we start at a good point in the right function where <span class="arithmatex">\(\frac{2h}{3L} \leq 1\)</span>, it converges expoennetially fast (this is really hard and usually Newton's method has many oscilations).</p>
+<h3 id="approximation-perpective">Approximation Perpective<a class="headerlink" href="#approximation-perpective" title="Permanent link">&para;</a></h3>
+<p>Other than deriving Taylor expansion, there is actually another interesting perspective on these algorithms.</p>
+<p>First order gradient decsent is then doing an approximation of the complex function that we are trying to model with a line. Under this assumption, we can derive that the gradient dirction is the best direction. In the same sense, Netwton's method is then modeling our "unknown" function with a quadratic function (second degree taylor expansion), which makes it really nice to optimize as it is convex and global optimum always exist when this quadratic modeling assumption is true. All we need to solve is:</p>
+<div class="arithmatex">\[
+\underset{p}{\min} f(x+p)
+\]</div>
+<p>However, the obvious drawbacks is that any <strong>analytical solution</strong> need to make assumptions on the class of the functions that you are looking at, which may not be always true, or even close to true, when looking at some crazy functions.</p>
 <h3 id="gradient-descnet-momentum-or-na">Gradient Descnet + Momentum or N.A.<a class="headerlink" href="#gradient-descnet-momentum-or-na" title="Permanent link">&para;</a></h3>
 <p>All discussion in the following few sections will be around a particular case of a convex function, a nice one (we wil generalize later):</p>
 <div class="arithmatex">\[
