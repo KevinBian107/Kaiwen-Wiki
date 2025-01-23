@@ -835,6 +835,23 @@
 <p>It may all sound very vague, but this article will make it more clear. This article is not intended for a detailed proof (proof are attached as pdf files in each section), but more of a intuition of how convex optimization leads from one to another.</p>
 <h2 id="gradient-descent-in-different-lenses">Gradient Descent In Different Lenses<a class="headerlink" href="#gradient-descent-in-different-lenses" title="Permanent link">&para;</a></h2>
 <p>Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor used commonly in deep learning context). This is not only because it has good practical performances but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at gradient descent first.</p>
+<h3 id="taylors-theorem-represents-fundamental-theorem-in-calculus">Taylor's Theorem Represents Fundamental Theorem In Calculus<a class="headerlink" href="#taylors-theorem-represents-fundamental-theorem-in-calculus" title="Permanent link">&para;</a></h3>
+<p>If you believe in calculus, then you should believe in taylor expansion as taylor theory is essentially an deriviation from teh fundamental theorem of calculus. If we have two points and their appropriate function values, then calculus tells us that:</p>
+<div class="arithmatex">\[
+F(b) - F(a) = \int_a^b F'(x) \, dx
+\]</div>
+<p>Then for the same expression we can say that:</p>
+<div class="arithmatex">\[
+f(x + p) - f(x) = \int_0^1 f'(x + \alpha p) \, d\alpha = \int_0^1 \nabla f(x + \alpha p)^\top p \, d\alpha
+\]</div>
+<p>We can make an simple assumption that if the next point is close enough, the gradient will be the same, that is:</p>
+<div class="arithmatex">\[
+\int_0^1 \nabla f(x + \alpha p)^\top p \, d\alpha \approx \nabla f(x)^\top p
+\]</div>
+<p>This simplifies to the following and this is exactly what taylor theorem is giving us:</p>
+<div class="arithmatex">\[
+f(x + p) = f(x) + \nabla f(x)^\top p
+\]</div>
 <h3 id="taylors-theorem">Taylor's Theorem<a class="headerlink" href="#taylors-theorem" title="Permanent link">&para;</a></h3>
 <p>Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about <strong><em>"how to satisfy taylor theory such that we have certain part less than some other part"</em></strong>. Essentially, Taylor's theorem talks about how we can estimate an point in the function <span class="arithmatex">\(f(y)\)</span> from using another point on the function $f(x) with the curvature at <span class="arithmatex">\(x\)</span> scaled by the distance between <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span>. The most known form wpuld be written like:</p>
 <div class="arithmatex">\[
