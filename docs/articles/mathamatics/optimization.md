@@ -28,6 +28,31 @@ It may all sound very vague, but this article will make it more clear. This arti
 ## Gradient Descent In Different Lenses
 Gradient descent is an extremely popular algorithm that is highly used in modern machine learning (particularly variants of it like the ADAM optimizor used commonly in deep learning context). This is not only because it has good practical performances but also because it comes with strong theoritical guarantees. In this section, we will use differnt perspective to look at gradient descent first.
 
+### Taylor's Theorem Represents Fundamental Theorem In Calculus
+If you believe in calculus, then you should believe in taylor expansion as taylor theory is essentially an deriviation from teh fundamental theorem of calculus. If we have two points and their appropriate function values, then calculus tells us that:
+
+$$
+F(b) - F(a) = \int_a^b F'(x) \, dx
+$$
+
+Then for the same expression we can say that:
+
+$$
+f(x + p) - f(x) = \int_0^1 f'(x + \alpha p) \, d\alpha = \int_0^1 \nabla f(x + \alpha p)^\top p \, d\alpha
+$$
+
+We can make an simple assumption that if the next point is close enough, the gradient will be the same, that is:
+
+$$
+\int_0^1 \nabla f(x + \alpha p)^\top p \, d\alpha \approx \nabla f(x)^\top p
+$$
+
+This simplifies to the following and this is exactly what taylor theorem is giving us:
+
+$$
+f(x + p) = f(x) + \nabla f(x)^\top p
+$$
+
 ### Taylor's Theorem
 Taylor's theory is an extremely core concept in convex optimization as many of convex optimization is about ***"how to satisfy taylor theory such that we have certain part less than some other part"***. Essentially, Taylor's theorem talks about how we can estimate an point in the function $f(y)$ from using another point on the function $f(x) with the curvature at $x$ scaled by the distance between $x$ and $y$. The most known form wpuld be written like:
 
@@ -235,6 +260,15 @@ $$
 $$
 
 However, if we start at a good point in the right function where $\frac{2h}{3L} \leq 1$, it converges expoennetially fast (this is really hard and usually Newton's method has many oscilations).
+
+### Approximation Perpective
+Other than deriving Taylor expansion, there is actually another interesting perspective on these algorithms. First order gradient decsent is then doing an approximation of the complex function that we are trying to model with a line. Under this assumption, we can derive that the gradient dirction is the best direction. In the same sense, Netwton's method is then modeling our "unknown" function with a quadratic function (second degree taylor expansion), which makes it really nice to optimize as it is convex and global optimum always exist when this quadratic modeling assumption is true. All we need to solve is:
+
+$$
+\underset{p}{\min} f(x+p)
+$$
+
+Any **analytical optimization methods** would need to make assumptions on the class of the functions that you are looking at, which may not be always true, or even close to true, when looking at some crazy functions. However, there are ways to try to maintain this tiny **neighborhood** of quadratic approximation at each steps.
 
 ### Gradient Descnet + Momentum or N.A.
 All discussion in the following few sections will be around a particular case of a convex function, a nice one (we wil generalize later):

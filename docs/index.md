@@ -5,11 +5,13 @@ Some perspectives I have on **Neuroscience**, **Mathematics**, **Machine Learnin
 
 [Back to my website](https://kbian.org/)
 
+Here are some of my notes that I will later on write them into articles: [notes](literature/notes.md)
+
 ---
 
 ## Neuroscience Related
 
-Essentially, this is how I found neuroscience and biology to be quite amazing—how they may inspire the design of intelligent algorithms/systems and how "close" they may be to the true "structure" in nature that makes intelligence. I have written some articles referenced below:
+I think that the process of thoughts and cognition may be coming from something or a mechanism that we don't understand yet. But the faciliattion of how they go from thoughts to action is what we can seek to understood and such biological mechanistic insgights may help us to accomplish our goals in everyday life. Moreover, I also found neuroscience and biology to be quite amazing in how they may inspire the design of intelligent algorithms/systems and how "close" they may be to the true "structure" in nature that makes intelligence.
 
 - [Cognitive Neuroscience Perspectives](articles/neuroscience/cognitive_brain.md)  
   *Building a perspective on the brain.*
@@ -23,8 +25,11 @@ Essentially, this is how I found neuroscience and biology to be quite amazing—
 - [Neural Adaptation With Cost: Systematic Balance Distortion](articles/neuroscience/systematic_deviation.md)  
   *Addiction is a systematic adaptation to deviation—a well-rounded circular circuit that feeds into itself. Once balance is distorted, problems may occur.*
 
-- [What We Think Determines What We Can Think](articles/neuroscience/positive_psycology.md)  
+- [What We Think Determines What We Can Think](articles/neuroscience/dev_neurobio.md)  
   *Once the circuit forms, the rest becomes much easier.*
+
+- [What You Think May Not Be What You Think](articles/neuroscience/out_of_helplessness.md)     
+  *What we feel in the moment may not be true and what we think now may not be real.*
 
 ---
 

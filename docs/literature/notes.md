@@ -29,5 +29,18 @@ This is the section is for putting the hand written script of what I might put i
 - [Bellman Update: Convergence To Single Reality](notes/mdp_bellman_update_proof.pdf)   
   *Written by Apr 22 2024: all "realities" converge to a single reality in MDP*
 
+- [Q's Search: Incremental Optimal Leads To Global Optimality](notes/mdp_q_algorithm.pdf)   
+  *Written by May 22 2024: How Q constructs the world*
+
 - [Expectation Maximization: Creating Something From Nothing](notes/em_binomial_derive.pdf)    
   *written by Dec 13 2024: creating "something" arbitrary, then gradually make it real*
+
+## Neuroscience Related Ideas
+
+Here are some interesting neuroscience ideas that I have notes on but didn't put into an article yet
+
+- [Little Blue Spot: Locus Coeruleus](notes/lc_notes.pdf)  
+*Written by Jan 25 2025: Solving flexability in complexity & exploration vs exploitation*
+
+- [LC Activates All: Security Motivational System](notes/lc_sms_notes.pdf)  
+*Written by Feb 14 2025: How the LC-NE system serve as a "gadget" to activate the SMS system*

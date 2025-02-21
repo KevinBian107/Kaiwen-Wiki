@@ -159,15 +159,16 @@ copyright: >
 
 nav:
   - My Wiki: index.md
-  - Literatures:
-    - Literature: literature/literatures.md
+  - Notes:
+    # - Literature: literature/literatures.md
     - Notes: literature/notes.md
   - Neuroscience Related:
     - Cognitive Neuroscience's Perspective: articles/neuroscience/cognitive_brain.md
     - Sensory, Processing, and Affective Neuroscience: articles/neuroscience/affective_neuroscience.md
     - Searching & Parralel Processing: articles/neuroscience/parralel_reinforcing.md
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
-    - Positive Psychology: articles/neuroscience/positive_psycology.md
+    - What We Think Deternmines What We Can Think: articles/neuroscience/dev_neurobio.md
+    - What You Think May Not Be What You Think: articles/neuroscience/out_of_helplessness.md
   - Mathamatics Related:
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
