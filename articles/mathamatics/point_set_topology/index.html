@@ -818,7 +818,7 @@
 <p>Point-set topology aims to develop an intuition about abstract spaces in a general, universal setting. It tries to <strong>define and derive intuitions for abstract spaces broadly</strong>, including real number spaces, probability spaces, and even spaces as general as metric spaces. Unlike traditional geometry, topology defines and explores geometric properties purely from a set theory perspective. <strong>The key is that these geometric properties does not only apply to geometric objects, but rather a space in general</strong>, topology discussses not only about the functions, but the space themselves. This approach makes point-set topology both fundamental and deeply abstract.</p>
 <p>The numbers and structures we traditionally use in mathematics, like real numbers, are merely specific instances of how logic can truly be defined mathematically. Similar to programming, topology requires defining a much broader abstract function class to fully encapsulate all possible scenarios.</p>
 <p>In essence, the mathematical objects studied in topology, called <strong>topological spaces</strong>, are defined by the rules or operations applied to sets. For instance, the real number space <span class="arithmatex">\( \mathbb{R}^n \)</span> is merely a specific example of a more general concept known as a topological space.</p>
-<p>There are many facinating concepts in point-set topolgy and this article is not served as a exahustive list, but rather an intuition. I will be discussing mainly about <strong>homeomorphisms</strong> and <strong>basis</strong> to showcase how topology is describing something so general using an method that is rather intuitive. There are so much more inpoint-set topology discussing about connectedness, compactness, quotient space, ect, that are equivalently amazing.</p>
+<p>There are many facinating concepts in point-set topolgy and this article is not served as a exahustive list, but rather an intuition. I will be discussing mainly about <strong>homeomorphisms</strong> and <strong>basis</strong> to showcase how topology is describing something so general using an method that is rather intuitive. There are so much more inpoint-set topology discussing about connectedness &amp; disconnectedness, cut points, compactness, hausdorff space, infinite product space, quotient space, ect, that are equivalently amazing topics in this field.</p>
 <h2 id="defining-topological-spaces">Defining Topological Spaces<a class="headerlink" href="#defining-topological-spaces" title="Permanent link">&para;</a></h2>
 <p>I will try to introduce some of the basic concepts in topology to illustarte how amazing it is. A topological space is defined by a set <span class="arithmatex">\(X\)</span> together with a collection of subsets called open sets <span class="arithmatex">\(\mathcal{O}\)</span>, which must satisfy the following conditions:</p>
 <ol>
@@ -877,13 +877,13 @@ f: S^1 \times (0,\infty) \rightarrow \mathbb{R}^2 - \{0\}, \quad f(\theta, r) = 
 <p>$$
    x \in B_3 \subseteq B_1 \cap B_2
    $$</p>
-<p>The importance of a basis lies in its ability to generate all open sets of a topology through unions of basis elements. For instance, consider the real numbers <span class="arithmatex">\( \mathbb{R} \)</span>. The collection of all open intervals forms a basis for the standard (Euclidean) topology on <span class="arithmatex">\( \mathbb{R} \)</span>. Hence, formally, the Euclidean topology basis is defined as:</p>
+<p>The importance of a basis lies in its ability to generate all open sets of a topology through unions of basis elements (there is another one that uses the intersection, but we are not gonna go into that). For instance, consider the real numbers <span class="arithmatex">\( \mathbb{R} \)</span>. The collection of all open intervals forms a basis for the standard (Euclidean) topology on <span class="arithmatex">\( \mathbb{R} \)</span>. Hence, formally, the Euclidean topology basis is defined as:</p>
 <div class="arithmatex">\[
 \mathcal{B} = \{(a,b) \mid a,b \in \mathbb{R}, a &lt; b\}
 \]</div>
-<p>And that every open set in <span class="arithmatex">\( \mathbb{R} \)</span> can be expressed as a union of these open intervals.</p>
+<p>And that every open set in <span class="arithmatex">\( \mathbb{R} \)</span> can be expressed as a union of these open intervals. Now we have the ability to reason about a whole space with a only crucial subpart of it.</p>
 <h3 id="magical-open-ball">Magical Open Ball<a class="headerlink" href="#magical-open-ball" title="Permanent link">&para;</a></h3>
-<p>In a <strong>metric space</strong> <span class="arithmatex">\( (X,d) \)</span>, the concept of a basis emerges naturally from the notion of open balls. Given a metric <span class="arithmatex">\( d \)</span>, an open ball centered at a point <span class="arithmatex">\( a \in X \)</span> with radius <span class="arithmatex">\( r &gt; 0 \)</span> is defined as:</p>
+<p>Scaling up, in a <strong>metric space</strong> <span class="arithmatex">\( (X,d) \)</span>, the concept of a basis emerges naturally from the notion of open balls. Given a metric <span class="arithmatex">\( d \)</span>, an open ball centered at a point <span class="arithmatex">\( a \in X \)</span> with radius <span class="arithmatex">\( r &gt; 0 \)</span> is defined as:</p>
 <div class="arithmatex">\[
 B_r(a) = \{ x \in X \mid d(a,x) &lt; r \}
 \]</div>
@@ -892,7 +892,7 @@ B_r(a) = \{ x \in X \mid d(a,x) &lt; r \}
 \mathcal{B} = \{B_r(a) \mid a \in X, r &gt; 0\}
 \]</div>
 <p>This shows a powerful link between metric spaces and topology: every metric inherently defines a natural topological structure based on open balls, highlighting an important geometric intuition in topology.</p>
-<h3 id="subspace-topology">Subspace Topology<a class="headerlink" href="#subspace-topology" title="Permanent link">&para;</a></h3>
+<h3 id="subspace-topology-subspace-basis">Subspace Topology &amp; Subspace Basis<a class="headerlink" href="#subspace-topology-subspace-basis" title="Permanent link">&para;</a></h3>
 <p>Given a topological space <span class="arithmatex">\( (X, \mathcal{T}) \)</span> and a subset <span class="arithmatex">\( Y \subseteq X \)</span>, we can define a topology specifically on the subset <span class="arithmatex">\( Y \)</span>. This induced topology is called the <strong>subspace topology</strong>.</p>
 <p>Formally, the subspace topology <span class="arithmatex">\( \mathcal{T}_Y \)</span> is defined as:</p>
 <div class="arithmatex">\[
@@ -903,21 +903,15 @@ B_r(a) = \{ x \in X \mid d(a,x) &lt; r \}
 <div class="arithmatex">\[
 S^1 = \{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = 1\}
 \]</div>
-<p>Then, an open arc on <span class="arithmatex">\( S^1 \)</span> such as:</p>
+<p>Then, an open arc on <span class="arithmatex">\( S^1 \)</span> such as the following can be expressed as the intersection of <span class="arithmatex">\( S^1 \)</span> with an open set (e.g., the first quadrant in <span class="arithmatex">\( \mathbb{R}^2 \)</span>).</p>
 <div class="arithmatex">\[
 U = \{(x,y) \in S^1 \mid x &gt; 0, y &gt; 0\}
 \]</div>
-<p>can be expressed as the intersection of <span class="arithmatex">\( S^1 \)</span> with an open set (e.g., the first quadrant in <span class="arithmatex">\( \mathbb{R}^2 \)</span>).</p>
-<h3 id="basis-for-subspace-topology">Basis for Subspace Topology<a class="headerlink" href="#basis-for-subspace-topology" title="Permanent link">&para;</a></h3>
-<p>A basis for the subspace topology on <span class="arithmatex">\( Y \subseteq X \)</span> is similarly derived from the basis of the larger space <span class="arithmatex">\( X \)</span>:</p>
-<ul>
-<li>If <span class="arithmatex">\( \mathcal{B} \)</span> is a basis for topology <span class="arithmatex">\( \mathcal{T} \)</span> on <span class="arithmatex">\( X \)</span>, then the set:</li>
-</ul>
+<p>A <strong>basis for the subspace topology</strong>,or subspace basis (notice that this is not sub-basis, that is a different topic) on <span class="arithmatex">\( Y \subseteq X \)</span> is similarly derived from the basis of the larger space <span class="arithmatex">\( X \)</span>. If <span class="arithmatex">\( \mathcal{B} \)</span> is a basis for topology <span class="arithmatex">\( \mathcal{T} \)</span> on <span class="arithmatex">\( X \)</span>, then the set:</p>
 <div class="arithmatex">\[
 \mathcal{B}_Y = \{ B \cap Y \mid B \in \mathcal{B} \}
 \]</div>
-<p>forms a basis for the subspace topology on <span class="arithmatex">\( Y \)</span>.</p>
-<p>For example, the Euclidean basis for <span class="arithmatex">\( \mathbb{R}^2 \)</span> generates a basis for any line or curve within the plane, simply by intersecting these open sets with the subspace.</p>
+<p>forms a basis for the subspace topology on <span class="arithmatex">\( Y \)</span>. For example, the Euclidean basis for <span class="arithmatex">\( \mathbb{R}^2 \)</span> generates a basis for any line or curve within the plane, simply by intersecting these open sets with the subspace.</p>
 <p>This interplay between bases and subspaces provides a powerful method to systematically analyze topological properties within subsets, demonstrating topology’s deep structural versatility.</p>
 
 
