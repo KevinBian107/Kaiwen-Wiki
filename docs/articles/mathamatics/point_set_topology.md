@@ -26,7 +26,7 @@ The numbers and structures we traditionally use in mathematics, like real number
 
 In essence, the mathematical objects studied in topology, called **topological spaces**, are defined by the rules or operations applied to sets. For instance, the real number space \( \mathbb{R}^n \) is merely a specific example of a more general concept known as a topological space.
 
-There are many facinating concepts in point-set topolgy and this article is not served as a exahustive list, but rather an intuition. I will be discussing mainly about **homeomorphisms** and **basis** to showcase how topology is describing something so general using an method that is rather intuitive. There are so much more inpoint-set topology discussing about connectedness, compactness, quotient space, ect, that are equivalently amazing.
+There are many facinating concepts in point-set topolgy and this article is not served as a exahustive list, but rather an intuition. I will be discussing mainly about **homeomorphisms** and **basis** to showcase how topology is describing something so general using an method that is rather intuitive. There are so much more inpoint-set topology discussing about connectedness & disconnectedness, cut points, compactness, hausdorff space, infinite product space, quotient space, ect, that are equivalently amazing topics in this field.
 
 ## Defining Topological Spaces
 
@@ -91,17 +91,17 @@ A **basis** is a fundamental concept in topology, providing a convenient way to 
    x \in B_3 \subseteq B_1 \cap B_2
    $$
 
-The importance of a basis lies in its ability to generate all open sets of a topology through unions of basis elements. For instance, consider the real numbers \( \mathbb{R} \). The collection of all open intervals forms a basis for the standard (Euclidean) topology on \( \mathbb{R} \). Hence, formally, the Euclidean topology basis is defined as:
+The importance of a basis lies in its ability to generate all open sets of a topology through unions of basis elements (there is another one that uses the intersection, but we are not gonna go into that). For instance, consider the real numbers \( \mathbb{R} \). The collection of all open intervals forms a basis for the standard (Euclidean) topology on \( \mathbb{R} \). Hence, formally, the Euclidean topology basis is defined as:
 
 $$
 \mathcal{B} = \{(a,b) \mid a,b \in \mathbb{R}, a < b\}
 $$
 
-And that every open set in \( \mathbb{R} \) can be expressed as a union of these open intervals.
+And that every open set in \( \mathbb{R} \) can be expressed as a union of these open intervals. Now we have the ability to reason about a whole space with a only crucial subpart of it.
 
 ### Magical Open Ball
 
-In a **metric space** \( (X,d) \), the concept of a basis emerges naturally from the notion of open balls. Given a metric \( d \), an open ball centered at a point \( a \in X \) with radius \( r > 0 \) is defined as:
+Scaling up, in a **metric space** \( (X,d) \), the concept of a basis emerges naturally from the notion of open balls. Given a metric \( d \), an open ball centered at a point \( a \in X \) with radius \( r > 0 \) is defined as:
 
 $$
 B_r(a) = \{ x \in X \mid d(a,x) < r \}
@@ -115,7 +115,7 @@ $$
 
 This shows a powerful link between metric spaces and topology: every metric inherently defines a natural topological structure based on open balls, highlighting an important geometric intuition in topology.
 
-### Subspace Topology
+### Subspace Topology & Subspace Basis
 
 Given a topological space \( (X, \mathcal{T}) \) and a subset \( Y \subseteq X \), we can define a topology specifically on the subset \( Y \). This induced topology is called the **subspace topology**.
 
@@ -133,26 +133,18 @@ $$
 S^1 = \{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = 1\}
 $$
 
-Then, an open arc on \( S^1 \) such as:
+Then, an open arc on \( S^1 \) such as the following can be expressed as the intersection of \( S^1 \) with an open set (e.g., the first quadrant in \( \mathbb{R}^2 \)).
 
 $$
 U = \{(x,y) \in S^1 \mid x > 0, y > 0\}
 $$
 
-can be expressed as the intersection of \( S^1 \) with an open set (e.g., the first quadrant in \( \mathbb{R}^2 \)).
-
-### Basis for Subspace Topology
-
-A basis for the subspace topology on \( Y \subseteq X \) is similarly derived from the basis of the larger space \( X \):
-
-- If \( \mathcal{B} \) is a basis for topology \( \mathcal{T} \) on \( X \), then the set:
+A **basis for the subspace topology**,or subspace basis (notice that this is not sub-basis, that is a different topic) on \( Y \subseteq X \) is similarly derived from the basis of the larger space \( X \). If \( \mathcal{B} \) is a basis for topology \( \mathcal{T} \) on \( X \), then the set:
 
 $$
 \mathcal{B}_Y = \{ B \cap Y \mid B \in \mathcal{B} \}
 $$
 
-forms a basis for the subspace topology on \( Y \).
-
-For example, the Euclidean basis for \( \mathbb{R}^2 \) generates a basis for any line or curve within the plane, simply by intersecting these open sets with the subspace.
+forms a basis for the subspace topology on \( Y \). For example, the Euclidean basis for \( \mathbb{R}^2 \) generates a basis for any line or curve within the plane, simply by intersecting these open sets with the subspace.
 
 This interplay between bases and subspaces provides a powerful method to systematically analyze topological properties within subsets, demonstrating topology’s deep structural versatility.
