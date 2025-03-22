@@ -172,6 +172,7 @@ nav:
   - Mathamatics Related:
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
+    - BuildingEverything From Sets: articles/mathamatics/point_set_topology.md
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
 

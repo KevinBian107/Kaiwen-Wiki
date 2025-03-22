@@ -43,6 +43,9 @@ I find theoretical math to be pretty fun. I think that good practical techniques
 - [All You Need Is Constraint Solving](articles/mathamatics/constraint.md)    
   *All hard problems that we want to solve can be framed as a constraint solving process if we look at them from a particular perspective. Both in math and in life.*
 
+- [From Set We Create All](articles/mathematics/point_set_topology.md)  
+  *An very simplified and naive attempt to discuss about ho mathematics are built up from sets using point set topology, that the usual math in $R^n$ is just an small example of the realm of mathematics*
+
 - [Unfolding Stochasticity Sequentially](articles/mathamatics/stochastic.md)  
   *Modeling interactions between stochasticity across time sequentially through the key representational example of Random Walk.*
 

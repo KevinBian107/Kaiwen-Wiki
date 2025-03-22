@@ -35,6 +35,13 @@ This is the section is for putting the hand written script of what I might put i
 - [Expectation Maximization: Creating Something From Nothing](notes/em_binomial_derive.pdf)    
   *written by Dec 13 2024: creating "something" arbitrary, then gradually make it real*
 
+## Computation Demos:
+
+Here are some computational demos that I created/adapted from different courses and think that would be useful for providing intuitions into different topics.
+
+- [Statistical Inference Pipeline](https://github.com/KevinBian107/SIP-Demos)     
+  *written by Mar 16 2025: some intuition towards SIP and what traditional inference care about*
+
 ## Neuroscience Related Ideas
 
 Here are some interesting neuroscience ideas that I have notes on but didn't put into an article yet
