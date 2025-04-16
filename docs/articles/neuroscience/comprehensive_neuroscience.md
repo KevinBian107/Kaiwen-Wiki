@@ -10,8 +10,10 @@
 
 To my best understanding, neuroscience is a very "hiearchical" field, studying various topics from (this is not meant tobe an exostive list):
 
-- **Global** perspective of how the brain sense and interact with the enviornment (sensory neuroscience), how we process these stimulus to think imagine, feel, and maintain system balance (allostasis) by interacting with the body.
-- **Local** perspectives of how these phenomenon actually occur, the neuronal & hormonal modulations, the potentiation & receptor adaptation, and the myolination & pathway selection with synaptice refinement.
+- **Global perspective** of how the brain sense and interact with the enviornment (sensory neuroscience), how we process these stimulus to think imagine, feel, and maintain system balance (allostasis) by interacting with the body.
+- **Local perspective** of how these sensation & cognitive phenomenon actually occur, the neuronal & hormonal modulations happening within the brain and across the body, the potentiation & receptor adaptation that changes the physical structure of the neurons for establishing different connectivities, and the myolination & pathway selection with synaptic refinement that connects the brain together.
+
+This articles is derived from but not limited to the ideas I learned in UCSD Cogs 17/101A/107A/107B/107C/164 & Psyc 132.
 
 ...
 
