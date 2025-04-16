@@ -41,13 +41,3 @@ Here are some computational demos that I created/adapted from different courses 
 
 - [Statistical Inference Pipeline](https://github.com/KevinBian107/SIP-Demos)     
   *written by Mar 16 2025: some intuition towards SIP and what traditional inference care about*
-
-## Neuroscience Related Ideas
-
-Here are some interesting neuroscience ideas that I have notes on but didn't put into an article yet
-
-- [Little Blue Spot: Locus Coeruleus](notes/lc_notes.pdf)  
-*Written by Jan 25 2025: Solving flexability in complexity & exploration vs exploitation*
-
-- [LC Activates All: Security Motivational System](notes/lc_sms_notes.pdf)  
-*Written by Feb 14 2025: How the LC-NE system serve as a "gadget" to activate the SMS system*

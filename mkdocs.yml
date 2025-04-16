@@ -163,6 +163,7 @@ nav:
     # - Literature: literature/literatures.md
     - Notes: literature/notes.md
   - Neuroscience Related:
+    - Comprehensive Notes on Neuroscience: articles/neuroscience/comprehensive_neuroscience.md
     - Cognitive Neuroscience's Perspective: articles/neuroscience/cognitive_brain.md
     - Sensory, Processing, and Affective Neuroscience: articles/neuroscience/affective_neuroscience.md
     - Searching & Parralel Processing: articles/neuroscience/parralel_reinforcing.md
