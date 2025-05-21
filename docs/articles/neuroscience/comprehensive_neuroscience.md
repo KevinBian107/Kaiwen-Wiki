@@ -8,7 +8,7 @@
   </div>
 </div>
 
-To my best understanding, neuroscience is a very "hiearchical" field, studying various topics from (this is not meant tobe an exostive list):
+To my best understanding, neuroscience is a very "hiearchical" field, studying various topics from (this is not meant tobe an exostive list but rather just a perspective that I have on the brain):
 
 - **Global perspective** of how the brain sense and interact with the enviornment (sensory neuroscience), how we process these stimulus to think imagine, feel, and maintain system balance (allostasis) by interacting with the body.
 - **Local perspective** of how these sensation & cognitive phenomenon actually occur, the neuronal & hormonal modulations happening within the brain and across the body, the potentiation & receptor adaptation that changes the physical structure of the neurons for establishing different connectivities, and the myolination & pathway selection with synaptic refinement that connects the brain together.
@@ -22,3 +22,5 @@ Still under construction, but hope to incorporate the following perspective:
 <a href="../../../assets/neuroscience/brain_from_cogs.png" target="_blank"> <p><span class="link-icon">&#9881;</span> Cognitive neuroscience perspective of the brain</p></a>
 
 <a href="../../../assets/neuroscience/lc_sms.png" target="_blank"> <p><span class="link-icon">&#9881;</span> Motivational neuroscience from SMS & LC</p></a>
+
+<a href="../../../assets/neuroscience/intrinsic_motivation.png" target="_blank"> <p><span class="link-icon">&#9881;</span> Intrinsic Motivation Circuit</p></a>
