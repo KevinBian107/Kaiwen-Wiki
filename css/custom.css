@@ -44,7 +44,7 @@
 }
 
 .profile-details .name {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: bold;
 }
 
@@ -56,7 +56,7 @@
 
 /* Size adjustment */
 .navbar {
-  font-size: 15px;
+  font-size: 19px;
 }
 
 .navbar-brand {
@@ -73,17 +73,17 @@
 
 /* Reduce font size for all paragraphs globally */
 p {
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.6;
 }
 
 /* Optional: Adjust specific sections only */
 .content {
-  font-size: 15px;
+  font-size: 19px;
 }
 
 .markdown-body p {
-  font-size: 15px;
+  font-size: 19px;
 }
 
 /* General text adjustments */
@@ -95,7 +95,7 @@ blockquote,
 code,
 pre,
 table {
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.6;
 }
 
@@ -112,7 +112,7 @@ h6 {
 
 /* Optional: Apply consistent font size to all markdown elements */
 .markdown-body {
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.6;
 }
 
@@ -132,7 +132,7 @@ li {
 
 /* Tables */
 table {
-  font-size: 15px;
+  font-size: 19px;
   border-collapse: collapse;
   /* Optional: Clean table style */
 }
@@ -141,19 +141,19 @@ th,
 td {
   padding: 8px;
   /* Adjust padding for better readability */
-  font-size: 15px;
+  font-size: 19px;
 }
 
 /* Code and preformatted text */
 code,
 pre {
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.4;
 }
 
 /* Blockquotes */
 blockquote {
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.6;
   margin-left: 1em;
   /* Indent blockquotes */
@@ -165,19 +165,19 @@ blockquote {
 
 /* Ensure MathJax matches the surrounding text size */
 .mjx-chtml {
-  font-size: 12px !important;
+  font-size: 17px !important;
   line-height: 1.6 !important;
 }
 
 /* For older MathJax versions or different renderers, you might need variations like: */
 .MathJax .mjx-math {
-  font-size: 12px !important;
+  font-size: 17px !important;
   line-height: 1.6 !important;
 }
 
 /* If using MathJax v2 with HTML-CSS output: */
 .MathJax_Display,
 .MathJax_Inline {
-  font-size: 12px !important;
+  font-size: 17px !important;
   line-height: 1.6 !important;
 }
