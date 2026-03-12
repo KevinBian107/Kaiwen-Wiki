@@ -7,8 +7,8 @@ repo_url: https://github.com/KevinBian107/Kaiwen-Wiki
 theme:
   name: material
   # custom_dir: docs/overrides
-  # logo: assets/index/searching.png
-  favicon: assets/index/logo.png
+  logo: assets/index/wiki_logo.svg
+  favicon: assets/index/wiki_logo.svg
   icon:
     repo: fontawesome/brands/github
 
@@ -141,8 +141,11 @@ extra:
     provider: mike
 
   social:
-    - icon: fontawesome/brands/github 
+    - icon: fontawesome/brands/github
       link: https://github.com/KevinBian107
+    - icon: fontawesome/solid/globe
+      link: https://kbian.org/
+      name: Back to my website
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js
@@ -159,21 +162,22 @@ copyright: >
 
 nav:
   - My Wiki: index.md
-  - Notes:
-    # - Literature: literature/literatures.md
-    - Notes: literature/notes.md
-  - Neuroscience Related:
+  - Neuroscience:
+    - articles/neuroscience/index.md
     - Comprehensive Notes on Neuroscience: articles/neuroscience/comprehensive_neuroscience.md
     - Cognitive Neuroscience's Perspective: articles/neuroscience/cognitive_brain.md
     - Sensory, Processing, and Affective Neuroscience: articles/neuroscience/affective_neuroscience.md
-    - Searching & Parralel Processing: articles/neuroscience/parralel_reinforcing.md
+    - Searching & Parallel Processing: articles/neuroscience/parralel_reinforcing.md
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
-    - What We Think Deternmines What We Can Think: articles/neuroscience/dev_neurobio.md
+    - What We Think Determines What We Can Think: articles/neuroscience/dev_neurobio.md
     - What You Think May Not Be What You Think: articles/neuroscience/out_of_helplessness.md
-  - Mathamatics Related:
+  - Mathematics:
+    - articles/mathamatics/index.md
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
-    - BuildingEverything From Sets: articles/mathamatics/point_set_topology.md
+    - Building Everything From Sets: articles/mathamatics/point_set_topology.md
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
+  - Notes:
+    - Notes: literature/notes.md
 
