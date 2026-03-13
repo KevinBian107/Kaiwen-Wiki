@@ -131,3 +131,8 @@
 <div class="wrapper">
   <p>There is one stream of higher level guidance (voluntary voice): learned stable-value-objects or previously learned weights. Moreover, such stream of guidance processes simultaneously in parralel with the otehr sensory input: flexiable-objects or new data induced weightes.</p>
 </div>
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego
+- Kim, H.F., Hikosaka, O. (2015). **Parallel basal ganglia circuits for voluntary and automatic behaviour to reach rewards**. *Brain*.

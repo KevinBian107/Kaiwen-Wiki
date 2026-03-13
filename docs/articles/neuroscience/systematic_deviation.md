@@ -140,7 +140,15 @@
 
 <div class="wrapper">
   <p>
-    Now you may begin to have some intuition of how these 3 stages work independently on its own but also feeding in to each other to create such trap of addiction and also how systematic deviatoon from the balance point may introduce really serious issues. On the extreme side of these distortion of balance would be psychopaths where it have been hypothesized that 
+    Now you may begin to have some intuition of how these 3 stages work independently on its own but also feeding in to each other to create such trap of addiction and also how systematic deviatoon from the balance point may introduce really serious issues. On the extreme side of these distortion of balance would be psychopaths where it have been hypothesized that
     one reaosn that may be behind the lack of emotion of psychopath is because of childhood traumatic events that caused them to seggragate their PFC and extended amygdala for too long, leading to the adaptation of distotred balance and the lack of feeling emotions.
   </p>
 </div>
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego
+- Koob, G.F., Schulkin, J. (2019). **Addiction and stress: An allostatic view**. *Neuroscience & Biobehavioral Reviews*.
+- Koob, G.F., Volkow, N.D. (2016). **Neurobiology of addiction: A neurocircuitry analysis**. *The Lancet Psychiatry*.
+- Koob, G.F., Le Moal, M. (2001). **Drug addiction, dysregulation of reward, and allostasis**. *Neuropsychopharmacology*.
+- Sterling, P., Eyer, J. (1988). **Allostasis: A new paradigm to explain arousal pathology**.

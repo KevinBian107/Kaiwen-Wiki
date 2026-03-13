@@ -92,3 +92,8 @@
       </li>
   </ul>
 </div>
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego
+- Arnsten, A. F. T. (2009). **Stress signalling pathways that impair prefrontal cortex structure and function**. *Nature Reviews Neuroscience*.

@@ -165,3 +165,8 @@
       certain angle, the connection to Random Walk als shows up again.
   </p>
 </div>
+
+## References
+
+- MATH 180B/C, Marco Carfagnini, UC San Diego
+- Pinsky, M.A., Karlin, S. **An Introduction to Stochastic Modeling**, 4th edition.

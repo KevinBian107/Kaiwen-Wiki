@@ -1,6 +1,6 @@
-# Mathematics
+# Machine Learning
 
-I find theoretical math to be pretty fun. I think that good practical techniques that work well are derived from a theoretical root.
+I find theoretical math and machine learning to be pretty fun. I think that good practical techniques that work well are derived from a theoretical root.
 
 ---
 
@@ -18,3 +18,6 @@ I find theoretical math to be pretty fun. I think that good practical techniques
 
 - [**Lend It Some Confidence**](confidence.md)
   *There are deep connections between statistics and probability, even on very basic statistics levels.*
+
+- [**From Random Walks to Generating Molecules**](graph_learning.md)
+  *From random walks to graph transformers to hierarchical graph generation, tracing how the field learned to represent and generate graph-structured data.*

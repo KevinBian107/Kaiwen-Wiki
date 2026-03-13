@@ -460,3 +460,7 @@ For more detailed information and code implementation of some of teh algorithms:
 <a href="../../../assets/math/optimization_notes5.pdf" target="_blank">
     <p><span class="link-icon">&#9881;</span> Code implementation of some variants of gradient descent</p>
     </a>
+
+## References
+
+- MATH 173A, Alex Cloninger, UC San Diego

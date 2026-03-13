@@ -93,3 +93,10 @@
     The connections for confidence interval itself actually serves much more than just in statistics, also to other realms (i.e. in algorithm and reinforcment: UCB).
   </p>
 </div>
+
+## References
+
+- MATH 180A, Marco Carfagnini, UC San Diego
+- MATH 181A, Danna Zhang, UC San Diego
+- Larsen, R.J., Marx, M.L. **An Introduction to Mathematical Statistics and Its Applications**, 6th edition.
+- Anderson, D.F., Seppäläinen, T., Valkó, B. **Introduction to Probability**.

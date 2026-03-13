@@ -25,3 +25,8 @@ When you are outside of the environment and context that you are in, you will re
 We tend to think to the tails of the distribution when under high allostatic load, pushing thoughts to discretized bins thta is either black or white, but this isn't usually the truth, the truth tends to be normally distributed. When you try to jump out of your havitual thinking process more, more neuroplastic effect，neuropeptide effect, and HPA effects would take place and make your mental power stronger on a physical and biological state, "*helping you see the full spectrum again*".
 
 What you think now may not be what you actually think and what you feel now may not be what you actually feel. ***Give your body the time it need to drop all the allostatic load***, it will restore to a balance state, don't make this waiting process a consolidation of wrong thinkings. When you can, please  stop and wait a bit, step out of the picture, or ***just simply don't care about it for tonight***. No matter ho  you frame it, we will ***fake it until make it*** and  we will not be blind folded by the emotions and ideas that all aour stressors give us.
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego
+- Arnsten, A. F. T. (2009). **Stress signalling pathways that impair prefrontal cortex structure and function**. *Nature Reviews Neuroscience*.

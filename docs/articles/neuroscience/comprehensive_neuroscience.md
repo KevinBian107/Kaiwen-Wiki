@@ -24,3 +24,7 @@ Still under construction, but hope to incorporate the following perspective:
 <a href="../../../assets/neuroscience/lc_sms.png" target="_blank"> <p><span class="link-icon">&#9881;</span> Motivational neuroscience from SMS & LC</p></a>
 
 <a href="../../../assets/neuroscience/intrinsic_motivation.png" target="_blank"> <p><span class="link-icon">&#9881;</span> Intrinsic Motivation Circuit</p></a>
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego

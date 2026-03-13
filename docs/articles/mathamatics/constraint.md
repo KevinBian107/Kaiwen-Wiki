@@ -179,3 +179,9 @@ Maybe life itself can be framed as a constraint solving or constraint search pro
 You should have grown your tree independently from other trees, doing your search and generating more backtracking statistics along the way (similar to the idea mentioned on my [ideology page](https://kbian.org/idea.html), referencing to Monte Carlo Tree Search). With any new tasks you try to solve or any new paradigms that you step in, you don't try to just adapt to someone elses's tree but rather branch out a leaf from your tree to see what the returnning statistics tells you. You have traveled a long way, expanded the tree to so far, and everything works just fine, so you should trust your $q$ function, trust the constraint that your history and your tree have given upon you.
 
 Don't be afraid to branch out to unknown places since ***the key of going to the unknown is to make mistakes***. No matter where you go, your tree leaves a mark in the space and as the further you travel to, the more marks you leave and when they are abundant enough, they form a shape, a more intricate machine, that tell you who you are. At last, I want to put down a quote that inspired me greatly from professor Gao: "with every try, you have explored the space a little bit more, grown the subtree a little bit deeper, and pushed more values into the table. Success never comes from one good state but rather the path you have explored and the large subtree you have built: The tree has been explored and nothing is lost".
+
+## References
+
+- DSC 190, Zhiting Hu, UC San Diego
+- CSE 258, Julian McAuley, UC San Diego
+- Hu, Z., Xing, E.P. **Toward a 'Standard Model' of Machine Learning**. *Harvard Data Science Review*, 2021.

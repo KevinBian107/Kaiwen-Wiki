@@ -103,3 +103,8 @@ It is the perspective and the interpretation of the distal stimulus that matters
 Building a circuit against stress is a **process caused by evolution**, we are keep trying to construct better and better neuronal systems. We need to use all possible methods at hand to build a desirable neuronal cuirtuit during moment of stress to react to it at the moment and also build foundations for later reactions. With more of such response, habitual circuits would be formed and reaction to stress or challenges later would be as simple as instinct.
 
 Matching on the thoughts levels than reality will follow. Think about the person that you want to be, imagine what this person would do and do it, act like him/her and align your thinking on an abstract level first. Every single little small thing that you do like this person would prove a bit mroe that you are this person. As the bricks lays and as time goes on, you become this person.
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego
+- Gogtay, N. et al. (2004). **Dynamic mapping of human cortical development during childhood through early adulthood**. *Proceedings of the National Academy of Sciences*.

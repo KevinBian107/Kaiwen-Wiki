@@ -148,3 +148,8 @@ $$
 forms a basis for the subspace topology on \( Y \). For example, the Euclidean basis for \( \mathbb{R}^2 \) generates a basis for any line or curve within the plane, simply by intersecting these open sets with the subspace.
 
 This interplay between bases and subspaces provides a powerful method to systematically analyze topological properties within subsets, demonstrating topology’s deep structural versatility.
+
+## References
+
+- MATH 190, James McKernan, UC San Diego
+- Hatcher, A. **Notes on Introductory Point-Set Topology**. Cornell University.

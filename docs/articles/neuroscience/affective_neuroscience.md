@@ -90,3 +90,8 @@
       In a different word, we constructs the world we live in and we constructs such labels of emotion from a collection of big circuit and modulatory changes, from retrospective perspective, we made emotions.
   </p>
 </div>
+
+## References
+
+- COGS 107C, Andrea Chiba, UC San Diego
+- Kandel, E.R., Schwartz, J.H., Jessell, T.M. **Principles of Neural Science**, 3rd edition.

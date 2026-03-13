@@ -171,13 +171,14 @@ nav:
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
     - What We Think Determines What We Can Think: articles/neuroscience/dev_neurobio.md
     - What You Think May Not Be What You Think: articles/neuroscience/out_of_helplessness.md
-  - Mathematics:
+  - Machine Learning:
     - articles/mathamatics/index.md
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
     - Building Everything From Sets: articles/mathamatics/point_set_topology.md
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
+    - From Random Walks to Generating Molecules: articles/mathamatics/graph_learning.md
   - Notes:
     - Notes: literature/notes.md
 
