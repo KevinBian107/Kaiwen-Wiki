@@ -1,0 +1,1585 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Perspectives on Neuroscience, Mathematics, and Machine Learning">
+      
+      
+        <meta name="author" content="Kaiwen Bian">
+      
+      
+        <link rel="canonical" href="https://kbian.org/Kaiwen-Wiki/articles/mathamatics/graph_learning/">
+      
+      
+        <link rel="prev" href="../confidence/">
+      
+      
+        <link rel="next" href="../../../literature/notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/index/wiki_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>From Random Walks to Generating Molecules - Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-V7MWLE7LXW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-V7MWLE7LXW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-V7MWLE7LXW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#graph-learning-tasks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Wiki" class="md-header__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              From Random Walks to Generating Molecules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KevinBian107/Kaiwen-Wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  My Wiki
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../neuroscience/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neuroscience
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Machine Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../literature/notes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Wiki" class="md-nav__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KevinBian107/Kaiwen-Wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Wiki
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../neuroscience/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neuroscience
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Machine Learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitch on Convex Optimization Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constraint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All You Need Is Constraint Solving
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../point_set_topology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Everything From Sets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stochastic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unfolding Stochasticity Sequentially
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../confidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lend It Some Confidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Random Walks to Generating Molecules
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Random Walks to Generating Molecules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#graph-learning-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Learning Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classical-methods-random-walks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classical Methods: Random Walks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-spectral-to-spatial-gnns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Spectral to Spatial GNNs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attention-transformers-on-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attention &amp; Transformers on Graphs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchical-tokenization-based-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hierarchical &amp; Tokenization-Based Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../literature/notes/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#graph-learning-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Learning Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classical-methods-random-walks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classical Methods: Random Walks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-spectral-to-spatial-gnns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Spectral to Spatial GNNs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attention-transformers-on-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attention &amp; Transformers on Graphs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchical-tokenization-based-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hierarchical &amp; Tokenization-Based Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>From Random Walks to Generating Molecules</h1>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="wrapper">
+  <div class="profile">
+    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <div class="profile-details">
+      <span class="name">Kaiwen Bian</span>
+      <span class="metadata">25 min read · Mar 12, 2026</span>
+    </div>
+  </div>
+</div>
+
+<p>Sometimes the relationships between things tell you more than the things themselves. A single atom's features don't tell you much --- but <em>how</em> it's bonded to its neighbors determines whether you're looking at a life-saving drug or a toxin. Data has shape to it, and that shape carries meaning. Graphs are a natural way to represent this: nodes hold features, edges encode relationships, and the topology itself is information. This article walks through how the field tackled that problem, from random walks to message passing to transformers, and then flipped the question entirely: can we learn to <em>generate</em> new graphs?</p>
+<p>The roadmap looks something like this:</p>
+<pre class="mermaid"><code>graph TD
+    root[Graph Learning]
+    disc[Discriminative]
+    gen[Generative]
+
+    classical[Classical&lt;br/&gt;DeepWalk, Node2Vec]
+    gsp[GSP / MPNN&lt;br/&gt;ChebNet, GCN,&lt;br/&gt;SAGE, MPNN]
+    attn[Attention&lt;br/&gt;GAT, GPS]
+
+    vae[VAE-based&lt;br/&gt;VGAE, GraphVAE, JT-VAE]
+    diff[Diffusion / Flow&lt;br/&gt;GDSS, DiGress,&lt;br/&gt;GraphNVP, MoFlow]
+    token[AR / Token&lt;br/&gt;GraphRNN, HiGen,&lt;br/&gt;AutoGraph]
+
+    root --&gt; disc
+    root --&gt; gen
+    disc --&gt; classical
+    disc --&gt; gsp
+    disc --&gt; attn
+    gen --&gt; vae
+    gen --&gt; diff
+    gen --&gt; token
+    gsp -.-&gt;|MPNN feeds into&lt;br/&gt;generative GNNs| vae</code></pre>
+<h2 id="graph-learning-tasks">Graph Learning Tasks<a class="headerlink" href="#graph-learning-tasks" title="Permanent link">&para;</a></h2>
+<p>Before diving in, let's establish what we're trying to do. Given a graph <span class="arithmatex">\(G=(V,E)\)</span> with node features <span class="arithmatex">\(X \in \mathbb{R}^{n \times d}\)</span> and edge features <span class="arithmatex">\(e_{ij}\)</span>, the main tasks are:</p>
+<ul>
+<li><strong>Node-level</strong>: Classification (<span class="arithmatex">\(f: v \to \{1\ldots C\}\)</span>) or regression (<span class="arithmatex">\(f: v \to \mathbb{R}\)</span>). Think paper topic prediction in citation networks, traffic speed at sensors.</li>
+<li><strong>Edge-level</strong>: Link prediction (does an edge exist?), edge classification. Think knowledge graph completion, bond type prediction.</li>
+<li><strong>Graph-level</strong>: Classification/regression over entire graphs. Think molecular property prediction (QM9, ZINC), protein function.</li>
+<li><strong>Generation</strong>: Learn <span class="arithmatex">\(p_\theta(G)\)</span> and sample novel graphs. Think drug design, material discovery.</li>
+</ul>
+<p>The key intuition is: discriminative tasks <em>analyze</em> existing graphs ("what is this molecule?") while generative tasks <em>create</em> new ones ("design me a drug"). Both share the fundamental challenge of representing irregular graph structure for neural networks.</p>
+<h2 id="classical-methods-random-walks">Classical Methods: Random Walks<a class="headerlink" href="#classical-methods-random-walks" title="Permanent link">&para;</a></h2>
+<h3 id="deepwalk-perozzi-et-al-2014">DeepWalk (Perozzi et al., 2014)<a class="headerlink" href="#deepwalk-perozzi-et-al-2014" title="Permanent link">&para;</a></h3>
+<p>The first big insight was surprisingly simple: random walks on graphs follow power-law distributions, just like word frequencies in language. So why not treat random walks as "sentences" and apply Word2Vec?</p>
+<p>The algorithm generates random walks of fixed length from each node, then optimizes a skip-gram objective:</p>
+<div class="arithmatex">\[
+\min_\Phi \; -\sum_{v_i \in \text{walk}} \sum_{\substack{j: i-w \leq j \leq i+w \\ j \neq i}} \log \Pr(v_j \mid \Phi(v_i))
+\]</div>
+<p>where <span class="arithmatex">\(\Phi: V \to \mathbb{R}^d\)</span> maps nodes to embeddings, <span class="arithmatex">\(w\)</span> is the context window, and the probability uses hierarchical softmax over a binary tree (<span class="arithmatex">\(O(\log|V|)\)</span> instead of <span class="arithmatex">\(O(|V|)\)</span>).</p>
+<p>The intuition: if two nodes frequently co-occur on random walks, they should have similar embeddings --- just like words that co-occur in sentences.</p>
+<h3 id="node2vec-grover-leskovec-2016">Node2Vec (Grover &amp; Leskovec, 2016)<a class="headerlink" href="#node2vec-grover-leskovec-2016" title="Permanent link">&para;</a></h3>
+<p>DeepWalk's limitation is that uniform random walks cannot distinguish local structure (BFS-like) from global community structure (DFS-like). Node2Vec fixes this with biased 2<sup>nd</sup>-order walks controlled by parameters <span class="arithmatex">\(p\)</span> (return) and <span class="arithmatex">\(q\)</span> (in-out). Given a walk <span class="arithmatex">\(\ldots \to t \to v\)</span>, the transition bias to node <span class="arithmatex">\(x\)</span> is:</p>
+<div class="arithmatex">\[
+\alpha_{pq}(t,x) = \begin{cases} 1/p &amp; \text{if } d_{tx}=0 \;\text{(return to } t\text{)} \\ 1 &amp; \text{if } d_{tx}=1 \;\text{(stay local)} \\ 1/q &amp; \text{if } d_{tx}=2 \;\text{(explore outward)} \end{cases}
+\]</div>
+<p>Setting <span class="arithmatex">\(q &gt; 1\)</span> gives BFS-like behavior (captures structural equivalence), while <span class="arithmatex">\(q &lt; 1\)</span> gives DFS-like behavior (captures homophily/community structure).</p>
+<p><strong><em>Both methods share fundamental limitations</em></strong>: they are transductive (fixed embedding table per node), cannot use node features, and have no parameter sharing across nodes --- they cannot generalize to unseen graphs.</p>
+<h2 id="from-spectral-to-spatial-gnns">From Spectral to Spatial GNNs<a class="headerlink" href="#from-spectral-to-spatial-gnns" title="Permanent link">&para;</a></h2>
+<h3 id="graph-signal-processing">Graph Signal Processing<a class="headerlink" href="#graph-signal-processing" title="Permanent link">&para;</a></h3>
+<p>The core idea (Shuman et al., 2013) is to define a Fourier transform on graphs using the Laplacian's eigenvectors as the frequency basis.</p>
+<p>The <strong>graph Laplacian</strong> <span class="arithmatex">\(L = D - A\)</span> has eigendecomposition <span class="arithmatex">\(L = U\Lambda U^\top\)</span>. The eigenvectors <span class="arithmatex">\(U\)</span> form the "frequency basis" and eigenvalues <span class="arithmatex">\(\lambda_k\)</span> are the "frequencies" --- small <span class="arithmatex">\(\lambda\)</span> means smooth/low-frequency signals, large <span class="arithmatex">\(\lambda\)</span> means oscillatory/high-frequency.</p>
+<p>The <strong>graph Fourier transform</strong>:</p>
+<div class="arithmatex">\[
+\hat{x} = U^\top x \quad\text{(forward)}, \qquad x = U\hat{x} \quad\text{(inverse)}
+\]</div>
+<p>By the convolution theorem, <strong>spectral convolution</strong> becomes:</p>
+<div class="arithmatex">\[
+g_\theta \ast x = U \, g_\theta(\Lambda) \, U^\top x
+\]</div>
+<p>The problem? This requires <span class="arithmatex">\(O(N^3)\)</span> eigendecomposition, <span class="arithmatex">\(N\)</span> filter parameters, and a graph-specific eigenbasis that doesn't transfer across graphs.</p>
+<h3 id="chebnet-defferrard-et-al-2016">ChebNet (Defferrard et al., 2016)<a class="headerlink" href="#chebnet-defferrard-et-al-2016" title="Permanent link">&para;</a></h3>
+<p>The solution is to approximate spectral filters with Chebyshev polynomials --- no eigendecomposition needed:</p>
+<div class="arithmatex">\[
+g_\theta \ast x \approx \sum_{k=0}^{K-1} \theta_k \, T_k(\tilde{L}) \, x
+\]</div>
+<p>where <span class="arithmatex">\(\tilde{L} = \frac{2L}{\lambda_{\max}} - I\)</span> is rescaled to <span class="arithmatex">\([-1,1]\)</span>, and <span class="arithmatex">\(T_k\)</span> satisfies the recurrence <span class="arithmatex">\(T_0=1\)</span>, <span class="arithmatex">\(T_1=x\)</span>, <span class="arithmatex">\(T_k = 2xT_{k-1} - T_{k-2}\)</span>.</p>
+<p>The cost is <span class="arithmatex">\(O(K \cdot |\mathcal{E}|)\)</span> via sparse matrix multiplications. A <span class="arithmatex">\(K\)</span>-order filter is <strong>exactly <span class="arithmatex">\(K\)</span>-localized</strong>: node <span class="arithmatex">\(v\)</span>'s output depends only on its <span class="arithmatex">\(K\)</span>-hop neighborhood.</p>
+<p>Instead of computing all eigenvalues (expensive), we approximate the filter as a polynomial of <span class="arithmatex">\(L\)</span>. Chebyshev polynomials are optimal for this because they minimize approximation error over <span class="arithmatex">\([-1,1]\)</span>.</p>
+<h3 id="gcn-kipf-welling-2017">GCN (Kipf &amp; Welling, 2017)<a class="headerlink" href="#gcn-kipf-welling-2017" title="Permanent link">&para;</a></h3>
+<p>GCN is the key simplification that made graph neural networks practical. Set <span class="arithmatex">\(K=1\)</span> and <span class="arithmatex">\(\lambda_{\max} \approx 2\)</span> in ChebNet, constrain <span class="arithmatex">\(\theta_0 = -\theta_1 = \theta\)</span>, and add self-loops (the "renormalization trick"):</p>
+<div class="arithmatex">\[
+H^{(l+1)} = \sigma\left(\tilde{D}^{-1/2}\tilde{A}\tilde{D}^{-1/2} H^{(l)} W^{(l)}\right)
+\]</div>
+<p>where <span class="arithmatex">\(\tilde{A} = A + I\)</span> and <span class="arithmatex">\(\tilde{D}_{ii} = \sum_j \tilde{A}_{ij}\)</span>.</p>
+<p>The per-node spatial interpretation makes this clear:</p>
+<div class="arithmatex">\[
+h_v^{(l+1)} = \sigma\left(\sum_{u \in \mathcal{N}(v) \cup \{v\}} \frac{h_u^{(l)} W^{(l)}}{\sqrt{\tilde{d}_v\tilde{d}_u}}\right)
+\]</div>
+<p>This is simply: <strong><em>average neighbor features</em></strong> (weighted by degree), apply linear transform, apply nonlinearity. Stack 2--3 layers for multi-hop aggregation. GCN distills spectral theory into the simplest possible operation: "look at your neighbors, average their features, transform." The spectral derivation justifies <em>why</em> this works; the spatial view makes it practical.</p>
+<h3 id="graphsage-hamilton-et-al-2017">GraphSAGE (Hamilton et al., 2017)<a class="headerlink" href="#graphsage-hamilton-et-al-2017" title="Permanent link">&para;</a></h3>
+<p>GCN is transductive --- it needs the full graph at training time and cannot handle new nodes. GraphSAGE fixes this by learning an <em>aggregation function</em> rather than fixed embeddings:</p>
+<div class="arithmatex">\[
+h_v^{(k)} = \sigma\left(W^{(k)} \cdot \text{CONCAT}\left(h_v^{(k-1)},\; \text{AGG}\left(\{h_u^{(k-1)}\}_{u \in \mathcal{N}(v)}\right)\right)\right)
+\]</div>
+<p>Aggregator choices include mean, max-pool (<span class="arithmatex">\(\max\{\sigma(W_\text{pool}\,h_u + b)\}\)</span>), or LSTM.</p>
+<p>The key innovation is <strong>neighbor sampling</strong> --- at each layer, sample a fixed-size subset of neighbors (<span class="arithmatex">\(S_1=25\)</span>, <span class="arithmatex">\(S_2=10\)</span>), enabling mini-batch training on massive graphs. The learned aggregator is fully <strong>inductive</strong>: it works on unseen nodes and graphs.</p>
+<h3 id="mpnn-the-unifying-framework-gilmer-et-al-2017">MPNN: The Unifying Framework (Gilmer et al., 2017)<a class="headerlink" href="#mpnn-the-unifying-framework-gilmer-et-al-2017" title="Permanent link">&para;</a></h3>
+<p>All spatial GNN methods share the same three-step structure, which MPNN makes explicit:</p>
+<div class="arithmatex">\[
+m_v^{(t+1)} = \sum_{w \in \mathcal{N}(v)} M_t(h_v^{(t)}, h_w^{(t)}, e_{vw})
+\]</div>
+<div class="arithmatex">\[
+h_v^{(t+1)} = U_t(h_v^{(t)}, m_v^{(t+1)})
+\]</div>
+<div class="arithmatex">\[
+\hat{y} = R\left(\{h_v^{(T)} \mid v \in G\}\right)
+\]</div>
+<p><strong>Message</strong> <span class="arithmatex">\(M_t\)</span>: how neighbors communicate. <strong>Update</strong> <span class="arithmatex">\(U_t\)</span>: how a node integrates messages. <strong>Readout</strong> <span class="arithmatex">\(R\)</span>: how to get graph-level output (must be permutation-invariant).</p>
+<p>Here's how the different models instantiate this framework:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Message</strong></th>
+<th><strong>Update</strong></th>
+<th><strong>Readout</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GCN</td>
+<td><span class="arithmatex">\(\frac{h_w}{\sqrt{d_v d_w}}\)</span></td>
+<td>Linear + <span class="arithmatex">\(\sigma\)</span></td>
+<td>Mean</td>
+</tr>
+<tr>
+<td>GraphSAGE</td>
+<td><span class="arithmatex">\(h_w\)</span> (sampled)</td>
+<td>CONCAT + Linear</td>
+<td>Mean</td>
+</tr>
+<tr>
+<td>GG-NN</td>
+<td><span class="arithmatex">\(A_{e_{vw}} h_w\)</span></td>
+<td>GRU</td>
+<td>Set2Set</td>
+</tr>
+</tbody>
+</table>
+<p>MPNN says: all GNNs are doing the same thing --- passing messages along edges. The differences are just in <em>how</em> messages are computed, aggregated, and used to update states. This unification clarified the design space and enabled systematic model development.</p>
+<p><strong><em>Expressiveness bound</em></strong>: Any MPNN is at most as powerful as the 1-WL (Weisfeiler-Leman) isomorphism test (Xu et al., 2019). It cannot distinguish certain non-isomorphic graphs (e.g., some regular graphs, 6-cycles vs. two triangles).</p>
+<h2 id="attention-transformers-on-graphs">Attention &amp; Transformers on Graphs<a class="headerlink" href="#attention-transformers-on-graphs" title="Permanent link">&para;</a></h2>
+<p>A parallel line of work asks: instead of engineering the graph into the architecture, can we use <strong>attention</strong> to let the model learn which neighbors matter?</p>
+<h3 id="gat-velickovic-et-al-2018">GAT (Velickovic et al., 2018)<a class="headerlink" href="#gat-velickovic-et-al-2018" title="Permanent link">&para;</a></h3>
+<p>GCN treats all neighbors equally (up to degree normalization). GAT replaces fixed normalization with <strong>learned attention coefficients</strong>:</p>
+<div class="arithmatex">\[
+e_{ij} = \text{LeakyReLU}\left(\mathbf{a}^\top [Wh_i \| Wh_j]\right)
+\]</div>
+<div class="arithmatex">\[
+\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})} \qquad h_i' = \sigma\left(\sum_{j \in \mathcal{N}(i)} \alpha_{ij} Wh_j\right)
+\]</div>
+<p><strong>Multi-head attention</strong> uses <span class="arithmatex">\(K\)</span> independent attention heads, concatenated (or averaged in the final layer):</p>
+<div class="arithmatex">\[
+h_i' = \Big\|_{k=1}^{K} \sigma\left(\sum_{j \in \mathcal{N}(i)} \alpha_{ij}^k W^k h_j\right)
+\]</div>
+<p>GAT is essentially GCN where the averaging weights are <em>learned</em> instead of fixed. The attention mechanism says "listen more to relevant neighbors, less to noisy ones." But attention is still <strong>local</strong> --- only over immediate neighbors, not the full graph.</p>
+<h3 id="graph-transformer-dwivedi-bresson-2021">Graph Transformer (Dwivedi &amp; Bresson, 2021)<a class="headerlink" href="#graph-transformer-dwivedi-bresson-2021" title="Permanent link">&para;</a></h3>
+<p>GAT's attention is still local (1-hop). For long-range dependencies, you need many layers, hitting over-smoothing. The Graph Transformer applies <strong>full self-attention</strong> over all node pairs, with graph structure injected via positional encodings:</p>
+<div class="arithmatex">\[
+\text{Attn}(Q,K,V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+\]</div>
+<p><strong>Positional encoding</strong> uses Laplacian eigenvectors <span class="arithmatex">\(\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}\)</span> (the <span class="arithmatex">\(k\)</span> smallest non-trivial eigenvectors of <span class="arithmatex">\(L_\text{norm}\)</span>), concatenated to node features. This gives each node a "position" in the graph's spectral space --- analogous to sinusoidal PE in NLP, but encoding <em>graph</em> position instead of sequence position.</p>
+<h3 id="gps-rampasek-et-al-2022">GPS (Rampasek et al., 2022)<a class="headerlink" href="#gps-rampasek-et-al-2022" title="Permanent link">&para;</a></h3>
+<p>Pure local (MPNN) misses long-range. Pure global (Transformer) ignores graph structure and costs <span class="arithmatex">\(O(n^2)\)</span>. GPS combines both in each layer:</p>
+<div class="arithmatex">\[
+h_v' = \text{MLP}\left(\text{MPNN}(h_v, \{h_u\}_{u \in \mathcal{N}(v)}) + \text{GlobalAttn}(h_v, \{h_u\}_{u \in V})\right)
+\]</div>
+<p>Three design choices: (1) positional/structural encoding (RWPE, LapPE), (2) local message passing module (GatedGCN, GIN, PNA), (3) global attention module (Transformer, Performer, BigBird).</p>
+<p>GPS says: don't choose between local and global --- use both. The MPNN captures fine-grained local structure (bond patterns, ring membership). The Transformer captures long-range dependencies (distant functional groups affecting properties). Together, they are General, Powerful, and Scalable.</p>
+<p>The evolution from local to global:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Scope</strong></th>
+<th><strong>Structure</strong></th>
+<th><strong>Cost</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GCN</td>
+<td>1-hop</td>
+<td>Fixed weights</td>
+<td><span class="arithmatex">\(O(\|E\|)\)</span></td>
+</tr>
+<tr>
+<td>GAT</td>
+<td>1-hop</td>
+<td>Learned attn</td>
+<td><span class="arithmatex">\(O(\|E\|)\)</span></td>
+</tr>
+<tr>
+<td>Graph Trans.</td>
+<td>Global</td>
+<td>Full attn + PE</td>
+<td><span class="arithmatex">\(O(n^2)\)</span></td>
+</tr>
+<tr>
+<td>GPS</td>
+<td>Both</td>
+<td>MPNN + Attn</td>
+<td><span class="arithmatex">\(O(\|E\|+n^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-challenges-addressed">Key Challenges Addressed<a class="headerlink" href="#key-challenges-addressed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Over-smoothing</strong>: Deep MPNNs make all node representations converge. Transformers bypass this via direct long-range attention.</li>
+<li><strong>Over-squashing</strong>: Information from <span class="arithmatex">\(k\)</span>-hop neighborhoods gets compressed into fixed-dim vectors. Global attention eliminates this bottleneck.</li>
+<li><strong>Expressiveness</strong>: Standard MPNNs <span class="arithmatex">\(\leq\)</span> 1-WL. Graph Transformers with appropriate PE can go beyond 1-WL.</li>
+</ul>
+<h2 id="graph-generation">Graph Generation<a class="headerlink" href="#graph-generation" title="Permanent link">&para;</a></h2>
+<p>All discriminative methods above <em>analyze</em> graphs. <strong>Graph generation</strong> asks the inverse: learn a distribution <span class="arithmatex">\(p_\theta(G)\)</span> over graphs and sample novel ones. This is uniquely challenging because graphs are <strong>discrete</strong>, <strong>variable-sized</strong>, <strong>combinatorial</strong>, and <strong>permutation-invariant</strong>.</p>
+<h3 id="vae-based-methods">VAE-Based Methods<a class="headerlink" href="#vae-based-methods" title="Permanent link">&para;</a></h3>
+<p><strong>VGAE</strong> (Kipf &amp; Welling, 2016) uses a GCN encoder to map nodes to latent space and an inner-product decoder to reconstruct edges:</p>
+<div class="arithmatex">\[
+q(Z|X,A) = \prod_i \mathcal{N}(z_i \mid \mu_i, \sigma_i^2 I), \quad p(A_{ij}|Z) = \sigma(z_i^\top z_j)
+\]</div>
+<p>Trained with the ELBO. The limitation: it only reconstructs edges for <em>fixed</em> nodes --- not a graph-level generative model.</p>
+<p><strong>GraphVAE</strong> (Simonovsky &amp; Komodakis, 2018) was the first true graph-level VAE. The decoder outputs full adjacency + node/edge feature matrices in <strong>one shot</strong>:</p>
+<div class="arithmatex">\[
+\hat{A}, \hat{F}, \hat{E} = \text{MLP}(z), \quad z \sim \mathcal{N}(\mu, \sigma^2 I)
+\]</div>
+<p>This requires graph matching (Hungarian algorithm, <span class="arithmatex">\(O(k^3)\)</span>) to align generated and target graphs. The limitation: fixed max size <span class="arithmatex">\(k\)</span>, <span class="arithmatex">\(O(k^2)\)</span> output, only works for tiny molecules (<span class="arithmatex">\(\leq\)</span> 9 atoms).</p>
+<p><strong>JT-VAE</strong> (Jin et al., 2018) brought a key insight: decompose molecules into a <strong>junction tree</strong> of substructures (rings, bonds, functional groups), then generate in two phases:</p>
+<ol>
+<li>Generate the tree scaffold (what building blocks, how connected)</li>
+<li>Assemble substructures into a valid molecule</li>
+</ol>
+<div class="arithmatex">\[
+\mathcal{L} = \mathbb{E}_q[\log p(T|z_T) + \log p(G|T,z_G)] - \text{KL}_T - \text{KL}_G
+\]</div>
+<p><strong><em>100% validity by construction</em></strong> --- the tree structure guarantees valid chemistry. It's like building with LEGO: first decide which bricks (substructures) to use and how to arrange them (tree), then snap them together (assembly). You can't make an invalid molecule because you're only using valid building blocks. The limitation is being restricted to the training-set substructure vocabulary.</p>
+<h3 id="autoregressive-methods">Autoregressive Methods<a class="headerlink" href="#autoregressive-methods" title="Permanent link">&para;</a></h3>
+<p><strong>GraphRNN</strong> (You et al., 2018) generates graphs <strong>node by node</strong>: for each new node, predict edges to all previous nodes using a hierarchy of two RNNs:</p>
+<div class="arithmatex">\[
+p(G) = \sum_\pi p(\pi) \prod_{i=1}^{n} p(S_i^\pi \mid S_1^\pi, \ldots, S_{i-1}^\pi)
+\]</div>
+<p>A <strong>graph-level RNN</strong> maintains hidden state per node, while an <strong>edge-level RNN</strong> generates the adjacency vector <span class="arithmatex">\(S_i\)</span> entry by entry. BFS ordering reduces edges per node from <span class="arithmatex">\(O(n)\)</span> to <span class="arithmatex">\(O(M)\)</span>. The limitations: sequential (<span class="arithmatex">\(O(n)\)</span> steps), no edge/node attributes, and node-ordering dependence.</p>
+<h3 id="flow-based-methods">Flow-Based Methods<a class="headerlink" href="#flow-based-methods" title="Permanent link">&para;</a></h3>
+<p><strong>GraphNVP</strong> (Madhawa et al., 2019) was the first normalizing flow for molecules. Invertible coupling layers map graphs to/from latent space with <strong>exact likelihood</strong>:</p>
+<div class="arithmatex">\[
+\log p(G) = \log p(z) + \sum_{l=1}^{L} \log\left|\det \frac{\partial h_l}{\partial h_{l-1}}\right|
+\]</div>
+<p>Two-stage: generate adjacency (bonds) then node features (atoms) conditioned on adjacency.</p>
+<p><strong>MoFlow</strong> (Zang &amp; Wang, 2020) improved on GraphNVP with Glow architecture (1x1 invertible convolutions) for bonds and <strong>graph conditional flow</strong> using R-GCN for atoms. Better quality, same exact likelihood training.</p>
+<p>Both share limitations: dense <span class="arithmatex">\(O(n^2)\)</span> adjacency representation, fixed max graph size, and validity not guaranteed (needs post-hoc correction).</p>
+<h3 id="diffusion-based-methods">Diffusion-Based Methods<a class="headerlink" href="#diffusion-based-methods" title="Permanent link">&para;</a></h3>
+<p><strong>GDSS</strong> (Jo et al., 2022) uses score-based diffusion via <strong>coupled SDEs</strong> --- one for node features, one for adjacency:</p>
+<div class="arithmatex">\[
+dX_t = f_X dt + g_X dW_X, \qquad dA_t = f_A dt + g_A dW_A
+\]</div>
+<p>Reverse-time SDEs require learning the <strong>score</strong> <span class="arithmatex">\(\nabla_{X_t} \log p_t(X_t, A_t)\)</span>. The coupling captures node-edge dependencies. The limitation: continuous relaxation of discrete graphs and slow iterative sampling.</p>
+<p><strong>DiGress</strong> (Vignac et al., 2023) takes a <strong>discrete</strong> approach --- denoising diffusion working directly with categorical node/edge types. The forward process randomly corrupts categories via transition matrices:</p>
+<div class="arithmatex">\[
+q(G_t | G_0) = (X_0 \bar{Q}_t^X,\; E_0 \bar{Q}_t^E)
+\]</div>
+<p>A graph transformer denoises: predicts the clean graph from noisy input. Cross-entropy training. No continuous relaxation needed, leading to high validity. But still <span class="arithmatex">\(O(n^2)\)</span> dense representation and slow iterative denoising.</p>
+<p>The intuition for graph diffusion: start with a real molecule, gradually scramble atom types and bonds until it's random noise. Train a network to reverse this corruption. To generate: start from noise, iteratively denoise. DiGress does this in discrete space (swap atom labels, toggle bonds) rather than continuous space (add Gaussian noise).</p>
+<h3 id="generation-paradigms-at-a-glance">Generation Paradigms at a Glance<a class="headerlink" href="#generation-paradigms-at-a-glance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Year</strong></th>
+<th><strong>Paradigm</strong></th>
+<th><strong>Scale</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VGAE</td>
+<td>2016</td>
+<td>VAE (edges)</td>
+<td>Links only</td>
+</tr>
+<tr>
+<td>GraphVAE</td>
+<td>2018</td>
+<td>VAE (one-shot)</td>
+<td><span class="arithmatex">\(\leq\)</span> 9 atoms</td>
+</tr>
+<tr>
+<td>JT-VAE</td>
+<td>2018</td>
+<td>VAE (tree)</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>GraphRNN</td>
+<td>2018</td>
+<td>Autoregressive</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>GraphNVP</td>
+<td>2019</td>
+<td>Norm. flow</td>
+<td>Small</td>
+</tr>
+<tr>
+<td>MoFlow</td>
+<td>2020</td>
+<td>Norm. flow</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>GDSS</td>
+<td>2022</td>
+<td>Diffusion (cont.)</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>DiGress</td>
+<td>2023</td>
+<td>Diffusion (disc.)</td>
+<td><span class="arithmatex">\(\leq\)</span> 250K</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hierarchical-tokenization-based-generation">Hierarchical &amp; Tokenization-Based Generation<a class="headerlink" href="#hierarchical-tokenization-based-generation" title="Permanent link">&para;</a></h2>
+<p>All previous generative methods share a bottleneck: they represent graphs as dense <span class="arithmatex">\(O(n^2)\)</span> matrices or generate nodes one at a time. Two recent paradigms break this barrier.</p>
+<h3 id="higen-karami-2024">HiGen (Karami, 2024)<a class="headerlink" href="#higen-karami-2024" title="Permanent link">&para;</a></h3>
+<p>Real graphs have <strong>hierarchical community structure</strong>. HiGen generates coarse-to-fine: first a coarse graph of communities, then refine each community and add cross-community edges:</p>
+<div class="arithmatex">\[
+p(G) = p(G^{(L)}) \prod_{l=L}^{1} p(G^{(l-1)} \mid G^{(l)})
+\]</div>
+<p>At each level, community subgraphs and bipartite cross-edges are generated separately, using graph coarsening (Louvain/METIS) to build the hierarchy.</p>
+<p>It's like drawing a map: first sketch continents (coarse communities), then fill in countries (sub-communities), then cities (fine-grained nodes). Each level adds detail conditioned on the level above.</p>
+<h3 id="autograph-chen-et-al-2025">AutoGraph (Chen et al., 2025)<a class="headerlink" href="#autograph-chen-et-al-2025" title="Permanent link">&para;</a></h3>
+<p>AutoGraph asks: what if we <strong>flatten graphs into token sequences</strong> and use a standard GPT-style transformer for generation via next-token prediction?</p>
+<p>It uses <strong>SENT</strong> (Segmented Eulerian Neighborhood Trails) --- a graph traversal that produces a lossless, reversible token sequence:</p>
+<div class="arithmatex">\[
+p(G) = p(S) = \prod_{t=1}^{m} p(s_t \mid s_{&lt;t})
+\]</div>
+<p>where <span class="arithmatex">\(S = \text{Flatten}_\text{SENT}(G)\)</span> and <span class="arithmatex">\(|S| = O(|E|)\)</span>. Every prefix is a valid subgraph, and multiple valid SENTs per graph provide natural data augmentation.</p>
+<p>The advantages: linear-in-edges complexity, leverages optimized transformer architectures, and supports conditional generation via prefix prompting.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DSC 205, Gal Mishne, UC San Diego</li>
+<li>
+<p>DSC 180A/B, Yusu Wang &amp; Gal Mishne, UC San Diego</p>
+</li>
+<li>
+<p>Perozzi, B., Al-Rfou, R., Skiena, S. <strong>DeepWalk: Online Learning of Social Representations</strong>. <em>KDD</em>, 2014.</p>
+</li>
+<li>Grover, A., Leskovec, J. <strong>node2vec: Scalable Feature Learning for Networks</strong>. <em>KDD</em>, 2016.</li>
+<li>Shuman, D. et al. <strong>The Emerging Field of Signal Processing on Graphs</strong>. <em>IEEE Signal Processing Magazine</em>, 2013.</li>
+<li>Defferrard, M., Bresson, X., Vandergheynst, P. <strong>Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering</strong>. <em>NeurIPS</em>, 2016.</li>
+<li>Kipf, T.N., Welling, M. <strong>Semi-Supervised Classification with Graph Convolutional Networks</strong>. <em>ICLR</em>, 2017.</li>
+<li>Hamilton, W.L., Ying, R., Leskovec, J. <strong>Inductive Representation Learning on Large Graphs</strong>. <em>NeurIPS</em>, 2017.</li>
+<li>Gilmer, J. et al. <strong>Neural Message Passing for Quantum Chemistry</strong>. <em>ICML</em>, 2017.</li>
+<li>Velickovic, P. et al. <strong>Graph Attention Networks</strong>. <em>ICLR</em>, 2018.</li>
+<li>Xu, K. et al. <strong>How Powerful are Graph Neural Networks?</strong> <em>ICLR</em>, 2019.</li>
+<li>Dwivedi, V.P., Bresson, X. <strong>A Generalization of Transformer Networks to Graphs</strong>. <em>AAAI Workshop</em>, 2021.</li>
+<li>Rampasek, L. et al. <strong>Recipe for a General, Powerful, Scalable Graph Transformer</strong>. <em>NeurIPS</em>, 2022.</li>
+<li>Kipf, T.N., Welling, M. <strong>Variational Graph Auto-Encoders</strong>. <em>NeurIPS Workshop</em>, 2016.</li>
+<li>Simonovsky, M., Komodakis, N. <strong>GraphVAE: Towards Generation of Small Graphs Using Variational Autoencoders</strong>. <em>ICANN</em>, 2018.</li>
+<li>Jin, W., Barzilay, R., Jaakkola, T. <strong>Junction Tree Variational Autoencoder for Molecular Graph Generation</strong>. <em>ICML</em>, 2018.</li>
+<li>You, J. et al. <strong>GraphRNN: Generating Realistic Graphs with an Auto-Regressive Model</strong>. <em>ICML</em>, 2018.</li>
+<li>Madhawa, K. et al. <strong>GraphNVP: An Invertible Flow Model for Generating Molecular Graphs</strong>. <em>arXiv:1905.11600</em>, 2019.</li>
+<li>Zang, C., Wang, F. <strong>MoFlow: An Invertible Flow Model for Generating Molecular Graphs</strong>. <em>KDD</em>, 2020.</li>
+<li>Jo, J., Lee, S., Hwang, S.J. <strong>Score-based Generative Modeling of Graphs via the System of Stochastic Differential Equations</strong>. <em>ICML</em>, 2022.</li>
+<li>Vignac, C. et al. <strong>DiGress: Discrete Denoising Diffusion for Graph Generation</strong>. <em>ICLR</em>, 2023.</li>
+<li>Karami, M. <strong>HiGen: Hierarchical Graph Generative Networks</strong>. <em>ICLR</em>, 2024.</li>
+<li>Chen, Z. et al. <strong>Flatten Graphs as Sequences: Transformers are Scalable Graph Generators</strong>. <em>NeurIPS</em>, 2025.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Kaiwen Bian – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/KevinBian107" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://kbian.org/" target="_blank" rel="noopener" title="Back to my website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.expand", "navigation.prune", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tooltips", "content.code.select", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+      
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
