@@ -182,3 +182,102 @@ blockquote {
   font-size: 17px !important;
   line-height: 1.6 !important;
 }
+
+/* Google Translate widget in header */
+.md-header__translate {
+  display: flex;
+  align-items: center;
+  margin-right: 0.2rem;
+  position: relative;
+}
+
+.translate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: currentColor;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.translate-btn:hover {
+  opacity: 1;
+}
+
+.translate-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Google Translate dropdown - hidden by default, shown on click */
+#google_translate_element {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 100;
+  margin-top: 4px;
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+#google_translate_element.open {
+  display: block;
+}
+
+[data-md-color-scheme="default"] #google_translate_element {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+[data-md-color-scheme="slate"] #google_translate_element {
+  background: #2e2e2e;
+  border: 1px solid #444;
+}
+
+/* Style the Google combo box */
+#google_translate_element .goog-te-gadget > span {
+  display: none !important;
+}
+
+#google_translate_element .goog-te-combo {
+  font-size: 14px !important;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  appearance: auto;
+}
+
+[data-md-color-scheme="default"] #google_translate_element .goog-te-combo {
+  background: #f5f5f5;
+  color: #333;
+}
+
+[data-md-color-scheme="slate"] #google_translate_element .goog-te-combo {
+  background: #3a3a3a;
+  color: #e0e0e0;
+}
+
+/* Hide the Google top banner bar that appears after translation */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* Hide the Google injected top bar, but not our widget */
+body > .skiptranslate:first-child {
+  display: none !important;
+  height: 0 !important;
+}
