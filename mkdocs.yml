@@ -6,7 +6,7 @@ site_url: https://kbian.org/Kaiwen-Wiki/
 
 theme:
   name: material
-  # custom_dir: docs/overrides
+  custom_dir: docs/overrides
   logo: assets/index/wiki_logo.svg
   favicon: assets/index/wiki_logo.svg
   icon:
@@ -151,7 +151,7 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js
   - https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  # - js/main.js
+  - js/main.js
 
 extra_css:
   - css/custom.css
@@ -182,6 +182,7 @@ nav:
   - Vibe Coding:
     - articles/vibe_coding/index.md
     - Structured Vibe Coding with Claude Code Agents: articles/vibe_coding/structured_agentic_vibe_coding.md
+    - Why You Suck at Vibe Coding (Adapted): articles/vibe_coding/why_your_vibe_coding_sucks.md
   - Notes:
     - Notes: literature/notes.md
 

@@ -1,30 +1,26 @@
 function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      { pageLanguage: 'en', includedLanguages: 'en,es,fr,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
-      'google_translate_element'
-    );
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,zh-CN,es,fr,de,ja,ko',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: true
+  }, 'google_translate_element');
+}
+
+function toggleTranslate() {
+  var el = document.getElementById('google_translate_element');
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+  } else {
+    el.classList.add('open');
   }
-  
-  /* Apply theme-aware styling */
-  document.addEventListener('DOMContentLoaded', function () {
-    const applyThemeToTranslation = () => {
-      const theme = document.documentElement.getAttribute('data-md-color-scheme');
-      const translateElement = document.getElementById('google_translate_element');
-      if (translateElement) {
-        if (theme === 'default') {
-          translateElement.style.backgroundColor = '#f5f5f5';
-          translateElement.style.color = '#000';
-        } else {
-          translateElement.style.backgroundColor = '#333';
-          translateElement.style.color = '#fff';
-        }
-      }
-    };
-  
-    applyThemeToTranslation();
-    const toggleButton = document.querySelector('[data-md-toggle]');
-    if (toggleButton) {
-      toggleButton.addEventListener('click', applyThemeToTranslation);
-    }
-  });
-  
+}
+
+// Close when clicking outside
+document.addEventListener('click', function(e) {
+  var container = document.querySelector('.md-header__translate');
+  var el = document.getElementById('google_translate_element');
+  if (el && container && !container.contains(e.target)) {
+    el.classList.remove('open');
+  }
+});
