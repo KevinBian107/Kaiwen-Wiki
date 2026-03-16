@@ -479,13 +479,11 @@ check /vqvae_jax/outputs/wandb/latest-run to see the actual outputs logging.
 
 ---
 
-## Next Steps
+## Next Steps and Further Reading
 
-For a complete structured constraint framework that enforces verification gates, domain-specific auditors, and human-in-the-loop checkpoints throughout the research workflow, see [**Propel**](https://github.com/KevinBian107/propel) — a framework for guiding Claude Code through research workflows using structured constraints across three operational modes (Researcher, Engineer, Trainer).
-
-## Further Reading
-
-- [**Why You Suck at Vibe Coding (and the Comprehensive Guide to Fix You)**](https://x.com/kloss_xyz/status/2018097344345223455) by klöss — a documentation-first approach to vibe coding for full-stack app development, covering the six canonical documents you should write before touching code.
+- [**Why You Suck at Vibe Coding (Adapted)**](why_your_vibe_coding_sucks.md) — klöss's documentation-first approach adapted for research and ML development workflows.
+- [**Propel**](https://github.com/KevinBian107/propel) — a structured constraint framework for guiding Claude Code through research workflows using verification gates, domain-specific auditors, and human-in-the-loop checkpoints across three operational modes (Researcher, Engineer, Trainer).
+- [**Why You Suck at Vibe Coding (Original)**](https://x.com/kloss_xyz/status/2018097344345223455) by klöss — the original comprehensive guide covering the six canonical documents, coding vocabulary, and the full system for software engineering pipelines.
 
 ## References
 
