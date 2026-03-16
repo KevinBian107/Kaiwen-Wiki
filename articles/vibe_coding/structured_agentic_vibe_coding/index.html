@@ -1,0 +1,1598 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Perspectives on Neuroscience, Mathematics, Machine Learning, and Vibe Coding">
+      
+      
+        <meta name="author" content="Kaiwen Bian">
+      
+      
+        <link rel="canonical" href="https://kbian.org/Kaiwen-Wiki/articles/vibe_coding/structured_agentic_vibe_coding/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../../literature/notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/index/wiki_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Structured Vibe Coding with Claude Code Agents - Misc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-V7MWLE7LXW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-V7MWLE7LXW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-V7MWLE7LXW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setting-up-claude-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Misc" class="md-header__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Misc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Structured Vibe Coding with Claude Code Agents
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  My Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../neuroscience/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neuroscience
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mathamatics/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Machine Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vibe Coding
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../literature/notes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Misc" class="md-nav__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    Misc
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Misc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../neuroscience/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neuroscience
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../mathamatics/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vibe Coding
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vibe Coding
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structured Vibe Coding with Claude Code Agents
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structured Vibe Coding with Claude Code Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-agent-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Agent Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-structured-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Structured Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-End Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#good-habits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Good Habits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../literature/notes/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-agent-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Agent Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-structured-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Structured Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-End Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#good-habits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Good Habits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Structured Vibe Coding with Claude Code Agents</h1>
+
+<div class="wrapper">
+  <div class="profile">
+    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <div class="profile-details">
+      <span class="name">Kaiwen Bian</span>
+      <span class="metadata">20 min read · Mar 16, 2026</span>
+    </div>
+  </div>
+</div>
+
+<p>AI tools are improving rapidly and we need to learn how to integrate them into our workflows — sharpen the saw, optimize the process. This is an instructional guide containing useful tips on creating structural coding agents for doing research and engineering.</p>
+<p>The most important key towards using coding agents is how we can <strong>regularize</strong> them based on the experiences we had and the requirements we want them to fulfill. The <a href="https://github.com/KevinBian107/Kaiwen-Wiki/tree/master/docs/articles/vibe_coding/claude_resources/">claude_resources</a> section can serve directly as a <code>.claude/</code> folder for AI/robotics research, including "regularizations" that I think are important for structured agentic vibe coding.</p>
+<hr />
+<h2 id="setting-up-claude-code">Setting Up Claude Code<a class="headerlink" href="#setting-up-claude-code" title="Permanent link">&para;</a></h2>
+<p>Claude Code is a CLI-based coding agent. Install it directly:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://claude.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p>For full autonomy (use in isolated environments like dev containers):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>claude<span class="w"> </span>--dangerously-skip-permissions
+</code></pre></div>
+<p>If running on Linux with root access, create a non-root user first:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>useradd<span class="w"> </span>-m<span class="w"> </span>devuser
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>su<span class="w"> </span>-<span class="w"> </span>devuser
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">exec</span><span class="w"> </span>bash
+</code></pre></div>
+<h3 id="the-claudemd-file">The CLAUDE.md File<a class="headerlink" href="#the-claudemd-file" title="Permanent link">&para;</a></h3>
+<p>The first thing to set up is <code>CLAUDE.md</code> — a context file that Claude automatically reads at the start of every conversation. This is your system prompt for the project.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/init
+</code></pre></div>
+<p>Or create your own. A good <code>CLAUDE.md</code> includes: project awareness, code structure guidelines, testing requirements, style conventions, and task completion workflows. See <a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/CLAUDE.md">this example CLAUDE.md</a> for a Python ML/robotics project template.</p>
+<h3 id="file-placement">File Placement<a class="headerlink" href="#file-placement" title="Permanent link">&para;</a></h3>
+<p>Claude reads <code>CLAUDE.md</code> files from multiple locations, which is powerful for monorepos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./CLAUDE.md              # Root — shared with team
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./CLAUDE.local.md        # Local only, gitignored
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>root/frontend/CLAUDE.md  # Frontend-specific context
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>root/backend/CLAUDE.md   # Backend-specific context
+</code></pre></div>
+<h3 id="permission-management">Permission Management<a class="headerlink" href="#permission-management" title="Permanent link">&para;</a></h3>
+<p>Configure tool allowlists so Claude doesn't ask permission for every file read:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;allowedTools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="s2">&quot;Edit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Read&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Write&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="s2">&quot;Bash(git add:*)&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="s2">&quot;Bash(git commit:*)&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="s2">&quot;Bash(python:*)&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="s2">&quot;Bash(pytest:*)&quot;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
+</code></pre></div>
+<p>Save this in <code>.claude/settings.local.json</code>. Never allow <code>Bash(rm -rf:*)</code> or similar destructive patterns.</p>
+<h3 id="prompting-techniques">Prompting Techniques<a class="headerlink" href="#prompting-techniques" title="Permanent link">&para;</a></h3>
+<p>A few keywords that change Claude's behavior:</p>
+<ul>
+<li><strong><code>ultrathink</code></strong> — triggers deeper analysis. Use it for architectural decisions and complex reasoning.</li>
+<li><strong><code>IMPORTANT</code></strong> — emphasizes critical instructions.</li>
+<li><strong><code>Proactively</code></strong> — encourages Claude to take initiative.</li>
+</ul>
+<p>Avoid prompting for "production-ready" code — it leads to over-engineering. Instead, prompt Claude to write validation scripts to check its own work.</p>
+<hr />
+<h2 id="the-agent-architecture">The Agent Architecture<a class="headerlink" href="#the-agent-architecture" title="Permanent link">&para;</a></h2>
+<p>The real power of Claude Code comes from its three customization layers: <strong>commands</strong>, <strong>skills</strong>, and <strong>subagents</strong>. Understanding the differences is critical.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Trigger</th>
+<th>Context</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Command</strong></td>
+<td>Explicit — you type <code>/name</code></td>
+<td>Runs in your main conversation</td>
+<td><code>.claude/commands/</code></td>
+</tr>
+<tr>
+<td><strong>Skill</strong></td>
+<td>Automatic — keyword match</td>
+<td>Runs in your main conversation</td>
+<td><code>.claude/skills/</code></td>
+</tr>
+<tr>
+<td><strong>Subagent</strong></td>
+<td>Automatic (proactive) or explicit</td>
+<td>Separate, isolated context window</td>
+<td><code>.claude/agents/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="commands-on-demand-workflows">Commands: On-Demand Workflows<a class="headerlink" href="#commands-on-demand-workflows" title="Permanent link">&para;</a></h3>
+<p>Commands are saved prompt templates you invoke manually. Examples:</p>
+<ul>
+<li><strong><code>/primer</code></strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/commands/primer.md">source</a>) — Comprehensive repository analysis to prime Claude on your codebase before writing code.</li>
+<li><strong><code>/read-paper</code></strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/commands/read-paper.md">source</a>) — Extracts structured implementation references from papers: architecture, equations, pseudocode, hyperparameters.</li>
+<li><strong><code>/debug-training</code></strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/commands/debug-training.md">source</a>) — Diagnoses training issues (NaN loss, gradient explosion, mode collapse) with structured root cause analysis.</li>
+<li><strong><code>/trace-shapes</code></strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/commands/trace-shapes.md">source</a>) — Annotates every intermediate tensor with shape, dtype, and semantic axis labels.</li>
+<li><strong><code>/fix-github-issue</code></strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/commands/fix-github-issue.md">source</a>) — Fetches issue details, implements fix, runs tests, creates PR.</li>
+</ul>
+<p>Create your own by adding a markdown file to <code>.claude/commands/</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gh"># Command: analyze-performance</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Analyze the performance of the file specified in $ARGUMENTS.
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="gu">## Steps:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">1.</span> Read the file at path: $ARGUMENTS
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">2.</span> Identify performance bottlenecks
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">3.</span> Suggest optimizations
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">4.</span> Create a benchmark script
+</code></pre></div>
+<p>Then invoke it: <code>/analyze-performance src/heavy-computation.js</code></p>
+<h3 id="skills-automatic-triggers">Skills: Automatic Triggers<a class="headerlink" href="#skills-automatic-triggers" title="Permanent link">&para;</a></h3>
+<p>Skills activate when your language matches trigger conditions — no explicit invocation needed.</p>
+<ul>
+<li><strong>Investigation</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/skills/investigation/SKILL.md">source</a>) — Scaffolds a structured investigation in <code>scratch/</code> with a dated folder and living README. Triggers on "investigate", "trace from X to Y", "figure out why".</li>
+<li><strong>Retrospective</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/skills/retrospective/SKILL.md">source</a>) — Captures experiment learnings into a reusable registry. The <strong>failed attempts table is the most valuable part</strong> — it prevents repeating mistakes across <code>/clear</code> boundaries.</li>
+<li><strong>Think Deeply</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/skills/think-deeply/SKILL.md">source</a>) — Anti-sycophancy guard. Forces Claude to steel-man the opposite position instead of agreeing with you. Critical during investigation phases.</li>
+<li><strong>Deep Research</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/skills/deep-research/SKILL.md">source</a>) — Structured literature review with comparison tables, taxonomies, and gap analysis.</li>
+<li><strong>Paper Extraction</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/skills/paper-extraction/SKILL.md">source</a>) — Batch-processes multiple papers into a structured database with BibTeX metadata.</li>
+</ul>
+<h3 id="subagents-specialized-isolated-workers">Subagents: Specialized Isolated Workers<a class="headerlink" href="#subagents-specialized-isolated-workers" title="Permanent link">&para;</a></h3>
+<p>Subagents are separate Claude instances with their own context window and limited tools. The main agent spawns them, gives them a focused prompt, and they return results. They don't see your conversation history.</p>
+<p>Key subagents for ML/research work:</p>
+<ul>
+<li><strong>Paper Alignment Auditor</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/paper-alignment-auditor.md">source</a>) — Cross-references code against source paper equations. Catches wrong KL direction, mean vs sum reduction, missing temperature scaling.</li>
+<li><strong>JAX Logic Auditor</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/jax-logic-auditor.md">source</a>) — Traces data flow through JAX transformations. Validates <code>scan</code> carry shapes, <code>vmap</code> axes, PRNG key usage.</li>
+<li><strong>Silent Bug Detector</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/silent-bug-detector.md">source</a>) — Catches bugs that don't crash but produce wrong results. 11 silent failure categories from broadcasting bugs to mask inversions.</li>
+<li><strong>Regression Guard</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/regression-guard.md">source</a>) — Ensures new code doesn't break existing pipelines. Detects displaced fixes and compensating hacks.</li>
+<li><strong>Data Flow Tracer</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/data-flow-tracer.md">source</a>) — Builds complete annotated maps from raw input to final output with every intermediate step.</li>
+<li><strong>Validation Gates</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/validation-gates.md">source</a>) — Scaffolds AI-specific tests: gradient flow, tensor shapes, overfit tests, loss sanity.</li>
+<li><strong>Failure Mode Researcher</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/failure-mode-researcher.md">source</a>) — Searches the internet for similar training failures and delivers prioritized fixes with exact hyperparameter values.</li>
+<li><strong>Documentation Manager</strong> (<a href="https://github.com/KevinBian107/Kaiwen-Wiki/blob/master/docs/articles/vibe_coding/claude_resources/agents/documentation-manager.md">source</a>) — Maintains structured <code>docs/</code> with separated concerns.</li>
+</ul>
+<p><strong>Proactive invocation</strong>: If a subagent's description includes "Proactively", Claude invokes it automatically. For example, after you implement a component, the Paper Alignment Auditor and Silent Bug Detector should kick in without you asking.</p>
+<p><strong>Parallel execution</strong>: Read-only auditors are safe to run simultaneously:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Run these in parallel: Paper Alignment Auditor on the ResidualVectorQuantizer
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>against scratch/paper-notes/star-rvq.md, JAX Logic Auditor on the forward_temporal
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>scan in vq_intention_network.py, and Silent Bug Detector on the new per-depth loss
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>computation in vq_losses.py.
+</code></pre></div>
+<hr />
+<h2 id="the-structured-workflow">The Structured Workflow<a class="headerlink" href="#the-structured-workflow" title="Permanent link">&para;</a></h2>
+<p>This is where everything comes together. The key insight is that <strong>Claude Code can write code extremely well if it truly understands the request.</strong> The bottleneck is never code generation — it's ensuring Claude has a correct, complete understanding of what to build.</p>
+<p>The workflow has five phases:</p>
+<h3 id="phase-1-investigation">Phase 1: Investigation<a class="headerlink" href="#phase-1-investigation" title="Permanent link">&para;</a></h3>
+<p>Start by having Claude deeply understand the codebase and the task. The investigation skill scaffolds a <code>scratch/</code> folder as a living document.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>I want to conduct an investigation and experiment with a different network
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>architecture for this system. Use subagents to scan the repo and trace the
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>code path from the training entrypoint, to model building, to training to
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>build an understanding of the code flow. Then, identify where and what we
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>need to change in order to modify the network architecture. Map out in a
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>scratch/vqvae-pilot/README.md all the code system architecture that&#39;s
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>relevant, and propose how to build in the changes. Don&#39;t run any code yet,
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>just do the static analysis of the code organization. ultrathink
+</code></pre></div>
+<p>What this does:</p>
+<ol>
+<li>Claude's first pass is fully learning with subagents — collecting sources and exploring the codebase.</li>
+<li>Creates a README with task description, background context, and a task checklist.</li>
+<li>The README is a <strong>living document across multiple interactions</strong> — you record findings and <code>/clear</code> regularly.</li>
+<li><code>scratch/</code> is gitignored. You distill investigation findings into a PR that gets merged — you never modify the codebase until you're certain it will work.</li>
+</ol>
+<h3 id="phase-2-critical-review">Phase 2: Critical Review<a class="headerlink" href="#phase-2-critical-review" title="Permanent link">&para;</a></h3>
+<p><strong>This is the most critical step.</strong> Read through what Claude found VERY carefully — this is the blueprint. If the investigation is correct, the code will be correct.</p>
+<p>Ask Claude to compare its proposal against the paper. Question its decisions. The think-deeply skill prevents sycophancy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>You&#39;re proposing that we can keep the monkey-patching approach in vq_ppo.py
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>and just swap out VectorQuantizer for ResidualVectorQuantizer. But won&#39;t the
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>multi-depth commitment loss change how the total VQ loss scales? The current
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>loss has one commitment term — RVQ will have D=2. Won&#39;t this double the
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>effective VQ loss weight without adjusting the coefficient? Check this against
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>what the STAR paper says. ultrathink
+</code></pre></div>
+<p>If you need Claude to introspect on its reasoning:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>I said that we were going to scaffold out the experiment framework *next*,
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>not now. You raced ahead to this step. Can you introspect and tell me why
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>you did this? Don&#39;t act on this or make any changes to the work you&#39;ve done
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>so far. Don&#39;t tell me I&#39;m right or defer to me out of sycophancy. Just help
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>me understand your internal reasoning chain and how I can structure my prompt
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>to prevent this from happening next time. ultrathink
+</code></pre></div>
+<h3 id="phase-3-clear-context-and-plan">Phase 3: Clear Context and Plan<a class="headerlink" href="#phase-3-clear-context-and-plan" title="Permanent link">&para;</a></h3>
+<p>Claude degrades with long context history. Before implementation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/clear
+</code></pre></div>
+<p>The README in <code>scratch/</code> preserves everything. Start a fresh session for implementation planning:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Read scratch/rvq-pilot/README.md and the RVQ design doc at
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>vqvae_jax/docs/rvq.md. Based on the investigation, I want to implement the
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>RVQ architecture. Here&#39;s the plan:
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>1. Create ResidualVectorQuantizer in vq_intention_network.py
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>2. Update VQIntentionNetwork to accept a quantizer_type config flag
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>3. Update vq_losses.py to handle per-depth commitment and codebook losses
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>4. Update the config with RVQ-specific parameters
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>5. Update forward_temporal scan to carry per-depth previous indices
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>Don&#39;t implement yet. First, review this plan against the investigation
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>README and tell me if I&#39;m missing anything or if the ordering is wrong.
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>ultrathink
+</code></pre></div>
+<h3 id="phase-4-implementation-with-validation">Phase 4: Implementation with Validation<a class="headerlink" href="#phase-4-implementation-with-validation" title="Permanent link">&para;</a></h3>
+<p>Implement one component at a time. After each component, subagents validate automatically:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Implement the ResidualVectorQuantizer class in vq_intention_network.py.
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Follow the architecture from the STAR paper as documented in
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>scratch/paper-notes/star-rvq.md. Key requirements:
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>- D=2 depths, each with its own codebook (K=64, dim=60)
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>- Depth 1 quantizes z_e, depth 2 quantizes the residual (z_e - z_q_1)
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>- Rotation-augmented STE: gradient through each depth uses R_k @ (z_e - e_k)
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>- Support stickiness bias per depth
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>- The combined output is z_q_1 + z_q_2
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>ultrathink
+</code></pre></div>
+<p>After implementation, these subagents should fire automatically:</p>
+<ol>
+<li><strong>Paper Alignment Auditor</strong> — cross-references against STAR paper equations</li>
+<li><strong>JAX Logic Auditor</strong> — traces shapes through the new quantizer</li>
+<li><strong>Silent Bug Detector</strong> — scans for broadcasting bugs, wrong reduction axes</li>
+<li><strong>Regression Guard</strong> — verifies existing configs still work</li>
+</ol>
+<p>If they don't activate, explicitly request them:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Run the paper alignment auditor on the ResidualVectorQuantizer comparing
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>against the equations in scratch/paper-notes/star-rvq.md
+</code></pre></div>
+<p>Then validate:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Run validation gates on the ResidualVectorQuantizer. Specifically test:
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>1. Shape test: encoder output (B, 60) → RVQ output (B, 60)
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>2. Gradient flow: loss.backward() produces non-zero gradients for both codebooks
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>3. Overfit test: 5 samples, 100 steps, loss should decrease
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>4. Regression: existing VQ config produces identical output before and after
+</code></pre></div>
+<p><strong>Clear context between components</strong> — update the <code>scratch/</code> README checklist before clearing so the next session knows what's done.</p>
+<h3 id="phase-5-debugging">Phase 5: Debugging<a class="headerlink" href="#phase-5-debugging" title="Permanent link">&para;</a></h3>
+<p>When training goes wrong, use structured debugging. For example, codebook utilization drops:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>/debug-training codebook utilization drops from 80% to 5% after 10k steps
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>with RVQ. Depth 1 uses all 64 codes but depth 2 collapses to 3 codes. Loss
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>is still decreasing overall.
+</code></pre></div>
+<p>Or call the Failure Mode Researcher for literature-backed solutions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Use the failure mode researcher. My depth-2 codebook in RVQ is collapsing
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>to 3 active codes while depth-1 stays healthy. Commitment cost is 0.5 for
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>both depths. Loss is still decreasing. I&#39;ve tried increasing depth-2
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>commitment cost to 1.0 but it didn&#39;t help.
+</code></pre></div>
+<p>The researcher searches arxiv, GitHub issues, and forums, then delivers prioritized fixes with <strong>exact hyperparameter values</strong> — not "adjust learning rate" but "reduce lr from 3e-4 to 1e-4 because [source] found VQ-VAE with commitment loss &gt; 0.5 needs lr &lt; 1e-4".</p>
+<h3 id="phase-6-capture-learnings">Phase 6: Capture Learnings<a class="headerlink" href="#phase-6-capture-learnings" title="Permanent link">&para;</a></h3>
+<p>After the implementation works:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Let&#39;s do a retrospective on this RVQ implementation. Capture what we learned.
+</code></pre></div>
+<p>The retrospective skill saves to <code>scratch/registry/</code> with: setup, what worked, failed attempts table (the most valuable part), exact hyperparameters, and next steps. This persists across <code>/clear</code> and across sessions.</p>
+<hr />
+<h2 id="end-to-end-example">End-to-End Example<a class="headerlink" href="#end-to-end-example" title="Permanent link">&para;</a></h2>
+<p>Minimal <code>.claude/</code> folder structure used for this project:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>.claude/
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>├── CLAUDE.md
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├── settings.local.json
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>├── commands/
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│   ├── primer.md
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│   ├── read-paper.md
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   ├── debug-training.md
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│   ├── trace-shapes.md
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│   └── fix-github-issue.md
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>├── skills/
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   ├── investigation/SKILL.md
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>│   ├── retrospective/SKILL.md
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   ├── think-deeply/SKILL.md
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>│   ├── deep-research/SKILL.md
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>│   └── paper-extraction/SKILL.md
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>└── agents/
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>    ├── paper-alignment-auditor.md
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>    ├── jax-logic-auditor.md
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>    ├── silent-bug-detector.md
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>    ├── regression-guard.md
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>    ├── data-flow-tracer.md
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>    ├── validation-gates.md
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>    ├── failure-mode-researcher.md
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>    └── documentation-manager.md
+</code></pre></div>
+<p>All of these files are available in the <a href="https://github.com/KevinBian107/Kaiwen-Wiki/tree/master/docs/articles/vibe_coding/claude_resources/">claude_resources</a> folder and can be copied directly into your project's <code>.claude/</code> directory.</p>
+<h3 id="the-prompt-that-started-it">The Prompt That Started It<a class="headerlink" href="#the-prompt-that-started-it" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Read this codebase very carefully with /primer and make sure that you
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>understand everything. I want to implement a great change in the codebase
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>and I want you to ask any questions regarding things you are not so clear
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>or if I didn&#39;t state it clearly. You must think /retrospective. I want you
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>to start an /investigation on thinking the integration of this paper&#39;s
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>architecture (https://arxiv.org/html/2506.03863v1). As of current, we
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>observe the following issue with our vanilla VQVAE setup:
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>- (1) Superposition does exist, meaning that one code may be encoding
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>different semantic meanings depending on the proprioceptive input that it
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>receive. When we fixiate the proprioceptive input and looking at the code
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>sequence that are similar and looking at their qpos, the qpos are quite
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>similar under w2 distance, think /retrospective about whether this
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>observation is valid for showing the superposition hypothesis.
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>- (2) Superposition is not the real issue, it is an expected behavior we
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>would see when we just try to use a handful of codes to control a fully
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>embodied agent. The real issue is this phenomenon where we call it
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>population coding. This is when multiple codes encode similar semantic
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>informations (kind of like redundancy). The real issue is that it&#39;s really
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>hard to quantify which code and which code is similar. We have tried to
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>use spectral clustering on the transition matrix to try to identify
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>population communities. However, this is quite difficult due to how these
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>transition matrix need to be conditioned on the proprioception.
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>- (3) Less codes does not improve interpretability, when trying to recreate
+<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>the skill space tsne/umap, we observe that 64 codes tsne seems to be making
+<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>much more sense and much more structured compared to the 16 or 32 codes.
+<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>
+<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>- (4) The code seems to be representing at all granularity level, it is not
+<a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>fixed that all codes may be representing subtle motor behavior or all just
+<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>the coarse behavior. Instead, some are related to smaller behaviors and some
+<a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>are related to much more coarse grain behaviors.
+<a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>
+<a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a>The above is all the observations that we have made so far. Please first
+<a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a>understand them deeply and /think-deeply about how the setup in STAR may
+<a id="__codelineno-20-37" name="__codelineno-20-37" href="#__codelineno-20-37"></a>resolve the issues we are seeing now. Present your thinkings in the
+<a id="__codelineno-20-38" name="__codelineno-20-38" href="#__codelineno-20-38"></a>investigation logging. After you have done so, proceed to an implementation
+<a id="__codelineno-20-39" name="__codelineno-20-39" href="#__codelineno-20-39"></a>planning document. Note that in your investigation should have two md files,
+<a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a>one regarding the thinking and planning and one regarding the
+<a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a>implementations.
+<a id="__codelineno-20-42" name="__codelineno-20-42" href="#__codelineno-20-42"></a>
+<a id="__codelineno-20-43" name="__codelineno-20-43" href="#__codelineno-20-43"></a>Regarding the implementations, there are rules:
+<a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a>
+<a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a>- (1) Use your subagents wisely, make sure you are constantly checking with
+<a id="__codelineno-20-46" name="__codelineno-20-46" href="#__codelineno-20-46"></a>Paper Alignment Auditor, JAX Logic Auditor, Silent Bug Detector, Regression
+<a id="__codelineno-20-47" name="__codelineno-20-47" href="#__codelineno-20-47"></a>Guard, and Data Flow Tracer.
+<a id="__codelineno-20-48" name="__codelineno-20-48" href="#__codelineno-20-48"></a>
+<a id="__codelineno-20-49" name="__codelineno-20-49" href="#__codelineno-20-49"></a>- (2) Regarding regression, you DO NOT need to create a separate pipeline
+<a id="__codelineno-20-50" name="__codelineno-20-50" href="#__codelineno-20-50"></a>for backward compatibility. The (depth=1, no rotation trick) version should
+<a id="__codelineno-20-51" name="__codelineno-20-51" href="#__codelineno-20-51"></a>be exactly identical to the current vanilla VQVAE with bias. Each part of
+<a id="__codelineno-20-52" name="__codelineno-20-52" href="#__codelineno-20-52"></a>STAR should be toggleable in the config. Activate rvq by setting depth &gt; 1,
+<a id="__codelineno-20-53" name="__codelineno-20-53" href="#__codelineno-20-53"></a>activate rotation tricks by true/false.
+<a id="__codelineno-20-54" name="__codelineno-20-54" href="#__codelineno-20-54"></a>
+<a id="__codelineno-20-55" name="__codelineno-20-55" href="#__codelineno-20-55"></a>- (3) Regarding video logging and eval logging, there will be logic changes.
+<a id="__codelineno-20-56" name="__codelineno-20-56" href="#__codelineno-20-56"></a>Remove the current conditioned transition matrix and the associated community
+<a id="__codelineno-20-57" name="__codelineno-20-57" href="#__codelineno-20-57"></a>finding and video logging. Remove the vq/latent_pca. Remove the global
+<a id="__codelineno-20-58" name="__codelineno-20-58" href="#__codelineno-20-58"></a>transition matrix. Propose what would be a good illustration to show that
+<a id="__codelineno-20-59" name="__codelineno-20-59" href="#__codelineno-20-59"></a>codes at different depths are (1) meaningful and (2) capturing details at
+<a id="__codelineno-20-60" name="__codelineno-20-60" href="#__codelineno-20-60"></a>different granularity. The rendering should be based on the residual
+<a id="__codelineno-20-61" name="__codelineno-20-61" href="#__codelineno-20-61"></a>quantization at the lowest level, with quantized residuals from the same
+<a id="__codelineno-20-62" name="__codelineno-20-62" href="#__codelineno-20-62"></a>parents in similar color scheme — a natural community separation.
+<a id="__codelineno-20-63" name="__codelineno-20-63" href="#__codelineno-20-63"></a>
+<a id="__codelineno-20-64" name="__codelineno-20-64" href="#__codelineno-20-64"></a>- (4) Default depth to 2, but code should work with arbitrary depth.
+<a id="__codelineno-20-65" name="__codelineno-20-65" href="#__codelineno-20-65"></a>
+<a id="__codelineno-20-66" name="__codelineno-20-66" href="#__codelineno-20-66"></a>- (5) Consider impact on analysis code. Ensure existing analysis still works
+<a id="__codelineno-20-67" name="__codelineno-20-67" href="#__codelineno-20-67"></a>for level-1 codes. For depth-2 codes, propose what analysis makes sense.
+<a id="__codelineno-20-68" name="__codelineno-20-68" href="#__codelineno-20-68"></a>
+<a id="__codelineno-20-69" name="__codelineno-20-69" href="#__codelineno-20-69"></a>This is a lot of requirement, so please take some time to understand them by
+<a id="__codelineno-20-70" name="__codelineno-20-70" href="#__codelineno-20-70"></a>/think-deeply and /retrospective.
+</code></pre></div>
+<h3 id="the-implementation-prompt-after-clear">The Implementation Prompt (After /clear)<a class="headerlink" href="#the-implementation-prompt-after-clear" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Read this codebase very carefully with /primer and make sure that you
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>understand everything. I want to implement a great change in the codebase.
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>We have made proposition and implementation detailed plans in
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>/scratch/2026-02-08-star-rvq-integration and have actually carried out the
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>implementations. The code runs successfully, but there are definitely some
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>bugs in the system. We observe that reaching the 15th iteration of epoch,
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>we are only seeing one code being used for the entire rollout. In addition,
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>we did not have video rendering with the stacked bars (indicating codes at
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>different levels) like how we wanted before in the proposition. Start an
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>/investigation on this issue using /debug-training. Think /retrospective and
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>/think-deeply. Use agents that may be useful like Silent Bug Detector,
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>Failure Mode Researcher, Regression Guard, Data Flow Tracer, and JAX Logic
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>Auditor. Write a proposition in the /scratch logging first to tell me what
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>is the problem and the solution you propose to resolve it. You should also
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>check /vqvae_jax/outputs/wandb/latest-run to see the actual outputs logging.
+</code></pre></div>
+<h3 id="what-agents-did-what">What Agents Did What<a class="headerlink" href="#what-agents-did-what" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>What You Say</th>
+<th>What Activates</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paper reading</td>
+<td><code>/read-paper</code></td>
+<td>Command</td>
+<td>Extract structured reference from STAR paper</td>
+</tr>
+<tr>
+<td>Codebase analysis</td>
+<td>"investigate..trace the code path"</td>
+<td>Investigation skill</td>
+<td>Scaffolds scratch/ with living README</td>
+</tr>
+<tr>
+<td>Literature survey</td>
+<td>"what alternatives exist"</td>
+<td>Deep-research skill</td>
+<td>Comparison table of RVQ vs FSQ vs LFQ</td>
+</tr>
+<tr>
+<td>Critical review</td>
+<td>"won't this double the loss weight?"</td>
+<td>Think-deeply skill</td>
+<td>Forces critical evaluation, not agreement</td>
+</tr>
+<tr>
+<td>After implementation</td>
+<td><em>(automatic)</em></td>
+<td>Paper Alignment Auditor</td>
+<td>Cross-references code against paper equations</td>
+</tr>
+<tr>
+<td>After implementation</td>
+<td><em>(automatic)</em></td>
+<td>JAX Logic Auditor</td>
+<td>Traces shapes through new quantizer + scan</td>
+</tr>
+<tr>
+<td>After implementation</td>
+<td><em>(automatic)</em></td>
+<td>Silent Bug Detector</td>
+<td>Checks for broadcasting, wrong axis, gradient flow</td>
+</tr>
+<tr>
+<td>After implementation</td>
+<td><em>(automatic)</em></td>
+<td>Regression Guard</td>
+<td>Verifies existing VQ configs still work</td>
+</tr>
+<tr>
+<td>After implementation</td>
+<td><em>(explicit)</em></td>
+<td>Validation Gates</td>
+<td>Scaffolds gradient/shape/overfit tests</td>
+</tr>
+<tr>
+<td>After implementation</td>
+<td><em>(automatic)</em></td>
+<td>Documentation Manager</td>
+<td>Updates ARCHITECTURE.md and MODELS.md</td>
+</tr>
+<tr>
+<td>Training issues</td>
+<td><code>/debug-training</code></td>
+<td>Command</td>
+<td>Structured diagnostic with scripts</td>
+</tr>
+<tr>
+<td>Stuck on failure</td>
+<td>"use the failure mode researcher"</td>
+<td>Failure Mode Researcher</td>
+<td>Searches internet, delegates to other agents</td>
+</tr>
+<tr>
+<td>Session end</td>
+<td>"retrospective"</td>
+<td>Retrospective skill</td>
+<td>Captures learnings for future sessions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="good-habits">Good Habits<a class="headerlink" href="#good-habits" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Always <code>/clear</code> before context gets too long</strong> — Claude degrades with long history. Record findings in scratch READMEs first.</li>
+<li><strong>Always use <code>ultrathink</code></strong> for important reasoning.</li>
+<li><strong>Ask Claude to ask questions</strong> — "ask any questions if things are unclear" starts a conversation that ensures understanding.</li>
+<li><strong>Extract paper PDFs as PNGs</strong> — Claude reads figures better from images.</li>
+<li><strong>Don't let Claude race ahead</strong> — if you say "next", mean "not now". Enforce this explicitly.</li>
+<li><strong>Guard against sycophancy</strong> — question Claude's proposals against the paper. If the investigation blueprint is correct, the code will be correct.</li>
+<li><strong>Use subagents wisely</strong> — read-only auditors can run in parallel. Don't parallelize agents that write to the same files.</li>
+<li><strong>Capture retrospectives</strong> — the failed attempts table prevents repeating mistakes across sessions.</li>
+</ol>
+<hr />
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>For a complete structured constraint framework that enforces verification gates, domain-specific auditors, and human-in-the-loop checkpoints throughout the research workflow, see <a href="https://github.com/KevinBian107/propel"><strong>Propel</strong></a> — a framework for guiding Claude Code through research workflows using structured constraints across three operational modes (Researcher, Engineer, Trainer).</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code Documentation</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">Claude Code Subagents Documentation</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/hooks">Claude Code Hooks Documentation</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/mcp">MCP Documentation</a></li>
+<li><a href="https://github.com/talmolab/sleap-io/blob/main/.claude/skills/investigation/SKILL.md?plain=1">Talmo's sleap-io investigation skill</a> — inspiration for the investigation workflow</li>
+<li><a href="https://huggingface.co/blog/sionic-ai/claude-code-skills-training">Sionic AI's experiment registry pattern</a> — inspiration for the retrospective skill</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Kaiwen Bian – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/KevinBian107" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://kbian.org/" target="_blank" rel="noopener" title="Back to my website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+    
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.expand", "navigation.prune", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tooltips", "content.code.select", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+      
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
