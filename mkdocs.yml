@@ -1,8 +1,8 @@
-site_name: Wiki
-site_description: Perspectives on Neuroscience, Mathematics, and Machine Learning
+site_name: Misc
+site_description: Perspectives on Neuroscience, Mathematics, Machine Learning, and Vibe Coding
 site_author: Kaiwen Bian
 site_url: https://kbian.org/Kaiwen-Wiki/
-repo_url: https://github.com/KevinBian107/Kaiwen-Wiki
+# repo_url: https://github.com/KevinBian107/Kaiwen-Wiki
 
 theme:
   name: material
@@ -161,7 +161,7 @@ copyright: >
   <a href="#__consent">Change cookie settings</a>
 
 nav:
-  - My Wiki: index.md
+  - My Misc: index.md
   - Neuroscience:
     - articles/neuroscience/index.md
     - Comprehensive Notes on Neuroscience: articles/neuroscience/comprehensive_neuroscience.md
@@ -179,6 +179,9 @@ nav:
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
     - From Random Walks to Generating Molecules: articles/mathamatics/graph_learning.md
+  - Vibe Coding:
+    - articles/vibe_coding/index.md
+    - Structured Vibe Coding with Claude Code Agents: articles/vibe_coding/structured_agentic_vibe_coding.md
   - Notes:
     - Notes: literature/notes.md
 
