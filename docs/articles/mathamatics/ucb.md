@@ -175,8 +175,8 @@ A quote from Professor Gao that captures this beautifully: *"With every try, you
 ## References
 
 - Sicun Gao, CSE 257, UCSD --- Bandits and MCTS lecture slides
-- [UCB derivation notes](../../../assets/math/ucb.pdf)
-- [UCB example walkthrough](../../../assets/math/ucb_example.pdf)
+- [UCB derivation notes](../../assets/math/ucb.pdf)
+- [UCB example walkthrough](../../assets/math/ucb_example.pdf)
 
 1. Auer, P., Cesa-Bianchi, N., & Fischer, P. **Finite-time Analysis of the Multiarmed Bandit Problem.** *Machine Learning*, 2002.
 2. Silver, D., et al. **Mastering the game of Go with deep neural networks and tree search.** *Nature*, 2016.

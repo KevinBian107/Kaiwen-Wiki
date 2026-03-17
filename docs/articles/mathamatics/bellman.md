@@ -276,8 +276,8 @@ But all four are rooted in the same contraction mapping principle. All four conv
 ## References
 
 - Sicun Gao, CSE 257, UCSD --- MDP and Reinforcement Learning lecture slides
-- [Bellman update contraction mapping proof notes](../../../assets/math/mdp_bellman_update_proof.pdf)
-- [Q-Learning algorithm derivation](../../../assets/math/mdp_q_algorithm.pdf)
+- [Bellman update contraction mapping proof notes](../../assets/math/mdp_bellman_update_proof.pdf)
+- [Q-Learning algorithm derivation](../../assets/math/mdp_q_algorithm.pdf)
 
 1. Bellman, R. **Dynamic Programming.** Princeton University Press, 1957.
 2. Watkins, C.J.C.H. & Dayan, P. **Q-Learning.** *Machine Learning*, 1992.
