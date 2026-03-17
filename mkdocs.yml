@@ -174,7 +174,7 @@ nav:
   - Machine Learning:
     - articles/mathamatics/index.md
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
-    - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
+    - Constraints as Guidance, Not Hindrance: articles/mathamatics/constraint.md
     # - Building Everything From Sets: articles/mathamatics/point_set_topology.md
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md

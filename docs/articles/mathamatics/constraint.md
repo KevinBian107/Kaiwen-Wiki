@@ -11,7 +11,7 @@
 
 When I first learned about the idea  of constraint solving (I belive it was in a class taught by professor Sichun Gao in UCSD CSE called *"Search and optimization"*), I wasn't as exiciting as I am. I thought of constraint solving just as a small sub-branch of optimization, but I was wrong. It is actually the ***"class"*** that can generates any other type optimization, reasoning, or machine learning techniques when you look at if from the right perspective. Quoting from what professor Gao said himself: ***"All you need is constraint solving"***. If I wnat to summarize the ideas in this article, it would be:
 
-1. Theporitically, constraints greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.
+1. Theoretically, constraints greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.
 2. Practically, "doability" is always part of the puzzle, in theory we can do everything but in practice we can't, so how do we optimize with these constraint not as a hinderance but as a helper?
 
 This article tries to go over some quite complicated topic, which I focuesed more on the intuition of it and less on the athamatical deriviation.
@@ -160,6 +160,7 @@ When taking the gradient, we can borrow the same re-parametrize trick from Black
 Notice that this is a ***constraint solving*** problem again. We are maximizing the first term (decoder) to get improved in acccuracy while minimizing the second term (encoder) which is measuring divergence. With more trials, we get better encoder,hence, better decoder, and hence, better encoder. In the same trend of thoughts, further extensions of VAE such as ***Variational Information Bottleneck*** (IB) can alsobe framed into an constraint optimization as well.
 
 
+<!--
 ## Practical "Doability" Constraint
 This constraint solving philosophy does not live in theory only, it is also widely used in practical domains, but just from an different perspective. I will be describiing two eaxmples that I think illustrate this idea quite well, one from the domain of  recommender system and one from the domain of database management.
 
@@ -172,16 +173,17 @@ The ***data*** (projecting onto data space similar to what we discuessed in [gra
 When thinking about database management, something that people wouldn't really think to have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), is actually filled with need of constraint solving.
 
 Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design optimal transport? This is a constraint, a constraint on the cost and efficiency of what you can do: ***"sometimes taking the mean is not worst than doing computer vision"***.
+-->
 
-## Life as Tree Constraint Solving
+## Constraint Solving and Life
 
-Maybe life itself can be framed as a constraint solving problem. Life is not a supervised learning problem --- you cannot copy someone else's "success model" and hope it works, let alone having an analytical solution. The environment takes you to the next state and you can only choose from the actions available to you. It is a search and optimization problem, and the constraint is not a hindrance but rather a guidance: the ***tree*** you have grown.
+Maybe life itself can be framed as a constraint solving problem. Life is not a supervised learning problem --- you cannot copy someone else's "success model" and hope it works, let alone having an analytical solution. You face two kinds of constraints at every moment: the ***environment's constraints*** (the state you're in, the actions available to you, the transitions you cannot control) and the ***constraints you've built*** (your history, your experiences, the tree you have grown). Neither is a hindrance. Both are guidance.
 
-You grow your tree independently from other trees, doing your own search and generating backtracking statistics along the way --- much like Monte Carlo Tree Search. With any new task you encounter or any new paradigm you step into, you don't try to graft yourself onto someone else's tree. Instead, you branch out a leaf from your own tree and see what the returning statistics tell you. You have traveled a long way, expanded the tree far, and everything works just fine. Trust your \(q\) function. Trust the constraint that your history and your tree have given you.
+The environment constrains you the way physics constrains optimization --- it defines the feasible region. You don't get to choose which state you're born into, which opportunities appear, or how the world responds to your actions. You have to work within what the environment gives you, just as every constraint solver must respect the boundaries of the problem. But with these constraints, the search direction is narrowed and more directed.
 
-Don't be afraid to branch out to unknown places, since ***the key of going to the unknown is to make mistakes***. No matter where you go, your tree leaves a mark in the space. The further you travel, the more marks you leave, and when they are abundant enough, they form a shape --- a more intricate structure --- that tells you who you are.
+The tree you grow is the other constraint, and it is yours alone. You grow it independently from other trees, doing your own search and generating backtracking statistics along the way. With any new task you encounter or any new paradigm you step into, you don't try to graft yourself onto someone else's tree. Instead, you branch out a leaf from your own tree and see what the returning statistics tell you. The tree constrains your search in the best possible way: it tells you which directions have been explored, which returned high value, which led to dead ends. It narrows the search space not by limiting you but by ***informing*** you. You have traveled a long way, expanded the tree far, and everything works just fine. Trust your \(q\) function. Trust the constraint that your history and your tree have given you.
 
-A quote from Professor Gao that captures this beautifully: *"With every try, you have explored the space a little bit more, grown the subtree a little bit deeper, and pushed more values into the table. Success never comes from one good state but rather the path you have explored and the large subtree you have built: the tree has been explored and nothing is lost."*
+Don't be afraid to branch out to unknown places, since ***the key of going to the unknown is to make mistakes***. No matter where you go, your tree leaves a mark in the space. The further you travel, the more marks you leave, and when they are abundant enough, they form a shape --- a more intricate structure --- that tells you who you are. The constraints don't shrink your world. They sharpen it.
 
 ## References
 

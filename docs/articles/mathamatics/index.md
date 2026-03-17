@@ -7,7 +7,7 @@ I find theoretical math and machine learning to be pretty fun. I think that good
 - [**Twitch on Theory In Convex Optimization**](optimization.md)
   *Deriving everything we want in optimization from Taylor Theory and with small modification on some assumptions or the way we design things, we get completely different families of algorithms.*
 
-- [**All You Need Is Constraint Solving**](constraint.md)
+- [**Constraints as Guidance, Not Hindrance**](constraint.md)
   *All hard problems that we want to solve can be framed as a constraint solving process if we look at them from a particular perspective. Both in math and in life.*
 
 - [**Unfolding Stochasticity Sequentially**](stochastic.md)

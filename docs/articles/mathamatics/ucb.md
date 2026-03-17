@@ -170,6 +170,8 @@ The mathematically optimal strategy for minimizing regret is *not* to always pla
 
 UCB tells us: the less you know about something, the more reason you have to try it. And the beautiful part is that this isn't just feel-good advice dressed up in math --- it's the *provably optimal* strategy. The universe rewards the curious.
 
+A quote from Professor Gao that captures this beautifully: *"With every try, you have explored the space a little bit more, grown the subtree a little bit deeper, and pushed more values into the table. Success never comes from one good state but rather the path you have explored and the large subtree you have built: the tree has been explored and nothing is lost."*
+
 ## References
 
 - Sicun Gao, CSE 257, UCSD --- Bandits and MCTS lecture slides
