@@ -10,9 +10,6 @@ I find theoretical math and machine learning to be pretty fun. I think that good
 - [**All You Need Is Constraint Solving**](constraint.md)
   *All hard problems that we want to solve can be framed as a constraint solving process if we look at them from a particular perspective. Both in math and in life.*
 
-- [**From Set We Create All**](point_set_topology.md)
-  *A very simplified and naive attempt to discuss about how mathematics are built up from sets using point set topology, that the usual math in R^n is just a small example of the realm of mathematics.*
-
 - [**Unfolding Stochasticity Sequentially**](stochastic.md)
   *Modeling interactions between stochasticity across time sequentially through the key representational example of Random Walk.*
 
@@ -21,3 +18,9 @@ I find theoretical math and machine learning to be pretty fun. I think that good
 
 - [**From Random Walks to Generating Molecules**](graph_learning.md)
   *From random walks to graph transformers to hierarchical graph generation, tracing how the field learned to represent and generate graph-structured data.*
+
+- [**Optimism in the Face of Uncertainty**](ucb.md)
+  *From the multi-armed bandit problem to AlphaGo, deriving the Upper Confidence Bound and why the mathematically optimal strategy for minimizing regret is to explore the unknown.*
+
+- [**Walking Towards Singularity in All Reality**](bellman.md)
+  *From the Bellman equation to contraction mappings to Q-learning --- tracing how a simple recurrence converges to the singularity, the unique optimal value in the space of all possibilities.*

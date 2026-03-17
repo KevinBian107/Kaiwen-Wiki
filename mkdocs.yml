@@ -175,10 +175,12 @@ nav:
     - articles/mathamatics/index.md
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - All You Need Is Constraint Solving: articles/mathamatics/constraint.md
-    - Building Everything From Sets: articles/mathamatics/point_set_topology.md
+    # - Building Everything From Sets: articles/mathamatics/point_set_topology.md
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
     - From Random Walks to Generating Molecules: articles/mathamatics/graph_learning.md
+    - Optimism in the Face of Uncertainty: articles/mathamatics/ucb.md
+    - Walking Towards Singularity in All Reality: articles/mathamatics/bellman.md
   - Vibe Coding:
     - articles/vibe_coding/index.md
     - Structured Vibe Coding with Claude Code Agents: articles/vibe_coding/structured_agentic_vibe_coding.md
