@@ -1,0 +1,1467 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Perspectives on Neuroscience, Mathematics, Machine Learning, and Vibe Coding">
+      
+      
+        <meta name="author" content="Kaiwen Bian">
+      
+      
+        <link rel="canonical" href="https://kbian.org/Kaiwen-Wiki/articles/mathamatics/ucb/">
+      
+      
+        <link rel="prev" href="../graph_learning/">
+      
+      
+        <link rel="next" href="../bellman/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/index/wiki_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Optimism in the Face of Uncertainty - Misc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-V7MWLE7LXW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-V7MWLE7LXW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-V7MWLE7LXW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-multi-armed-bandit-problem" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Misc" class="md-header__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Misc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Optimism in the Face of Uncertainty
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__translate">
+      <button class="translate-btn" onclick="toggleTranslate()" aria-label="Translate" title="Translate">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+      </button>
+      <div id="google_translate_element"></div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  My Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../neuroscience/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neuroscience
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Machine Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vibe_coding/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vibe Coding
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../literature/notes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Misc" class="md-nav__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    Misc
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Misc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../neuroscience/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neuroscience
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Machine Learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitch on Convex Optimization Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constraint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints as Guidance, Not Hindrance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stochastic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unfolding Stochasticity Sequentially
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../confidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lend It Some Confidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Random Walks to Generating Molecules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimism in the Face of Uncertainty
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimism in the Face of Uncertainty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-multi-armed-bandit-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Multi-Armed Bandit Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regret-the-cost-of-not-knowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regret --- The Cost of Not Knowing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-strategies-and-their-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Strategies and Their Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concentration-bounds-the-key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concentration Bounds --- The Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-upper-confidence-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Upper Confidence Bound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-bandits-to-trees-mcts-and-uct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Bandits to Trees --- MCTS and UCT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alphago-ucb-meets-deep-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AlphaGo --- UCB Meets Deep Learning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ucb-and-life-choosing-the-uncertain-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UCB and Life --- Choosing the Uncertain Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bellman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walking Towards Singularity in All Reality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../vibe_coding/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vibe Coding
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../literature/notes/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-multi-armed-bandit-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Multi-Armed Bandit Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regret-the-cost-of-not-knowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regret --- The Cost of Not Knowing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-strategies-and-their-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Strategies and Their Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concentration-bounds-the-key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concentration Bounds --- The Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-upper-confidence-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Upper Confidence Bound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-bandits-to-trees-mcts-and-uct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Bandits to Trees --- MCTS and UCT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alphago-ucb-meets-deep-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AlphaGo --- UCB Meets Deep Learning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ucb-and-life-choosing-the-uncertain-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UCB and Life --- Choosing the Uncertain Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Optimism in the Face of Uncertainty</h1>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="wrapper">
+  <div class="profile">
+    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <div class="profile-details">
+      <span class="name">Kaiwen Bian</span>
+      <span class="metadata">20 min read · Mar 16, 2026</span>
+    </div>
+  </div>
+</div>
+
+<p>In March 2016, AlphaGo defeated Lee Sedol --- one of the greatest Go players in history --- in a 4--1 match that stunned the world. The narrative everyone tells is about deep reinforcement learning and neural networks. But the secret weapon that really made it work was a much older, more elegant idea: the <strong>Upper Confidence Bound</strong>. Before AlphaGo could use neural networks to evaluate board positions, it needed a principled way to decide which moves to even <em>consider</em> --- how to balance exploring new, untested moves versus exploiting moves already known to be strong. This is the <strong>multi-armed bandit problem</strong>, and UCB is the provably optimal solution. The math behind it is surprisingly beautiful, and the intuition extends far beyond slot machines and board games.</p>
+<h2 id="the-multi-armed-bandit-problem">The Multi-Armed Bandit Problem<a class="headerlink" href="#the-multi-armed-bandit-problem" title="Permanent link">&para;</a></h2>
+<p>You're in a casino with <span class="arithmatex">\(K\)</span> slot machines (the "arms"). Each machine has an unknown payout distribution with mean <span class="arithmatex">\(\mu_i\)</span>. You have <span class="arithmatex">\(T\)</span> rounds to play. At each round, you pick one machine, pull its arm, and receive a random reward. Your goal: <strong>maximize your total reward</strong> --- or equivalently, <strong>minimize your regret</strong> from not always playing the best machine.</p>
+<p>Here's a concrete version. You have two unfair coins with unknown means <span class="arithmatex">\(\mu_1\)</span> and <span class="arithmatex">\(\mu_2\)</span>. At each round, you pick a coin to bet on; it lands heads with its unknown probability, and your payoff is in <span class="arithmatex">\([0, 1]\)</span>. You're making sequential bets, and the challenge is that you don't know which coin is better. Every time you play the worse coin, you lose expected value compared to someone who knew the answer from the start.</p>
+<p>This has the structure of an <strong>expectimax tree</strong>: at each step you choose an action (which coin), then nature reveals a stochastic outcome. The twist is that the distribution parameters are unknown, so you can't just compute the optimal policy --- you have to <em>learn</em> it while playing.</p>
+<p>The bandit setting appears everywhere: clinical trials (which treatment to assign), ad placement (which ad to show), recommendation systems (which content to suggest), and hyperparameter tuning (which configuration to try). Any time you must make sequential decisions under uncertainty with limited feedback, you're facing a bandit problem.</p>
+<h2 id="regret-the-cost-of-not-knowing">Regret --- The Cost of Not Knowing<a class="headerlink" href="#regret-the-cost-of-not-knowing" title="Permanent link">&para;</a></h2>
+<p>To measure how well a strategy <span class="arithmatex">\(\sigma\)</span> performs, we define <strong>regret</strong> --- the expected loss compared to an oracle that always plays the best arm:</p>
+<div class="arithmatex">\[
+R_\sigma(t) = \mathbb{E}_{c_i \sim \sigma}\left[\mu^* t - \sum_{i=1}^{t} \mu(c_i)\right]
+\]</div>
+<p>where <span class="arithmatex">\(\mu^* = \max_i \mu_i\)</span> is the mean of the best arm, and <span class="arithmatex">\(c_i\)</span> is the arm chosen at round <span class="arithmatex">\(i\)</span> by strategy <span class="arithmatex">\(\sigma\)</span>.</p>
+<p>Think about the extremes:</p>
+<ul>
+<li><strong>Always wrong</strong> (always play the worst arm): regret grows linearly with slope <span class="arithmatex">\(\mu_1 - \mu_2\)</span>. This is the worst case --- linear regret, <span class="arithmatex">\(\Theta(t)\)</span>.</li>
+<li><strong>Always right</strong> (always play the best arm): zero regret. But this requires knowing the answer in advance.</li>
+<li><strong>Uniformly random</strong> (flip a fair coin to decide): linear regret with slope <span class="arithmatex">\((\mu_1 - \mu_2)/2\)</span>. Still linear --- still bad.</li>
+</ul>
+<p>The fundamental question: <strong>can we achieve sublinear regret?</strong> Can we design a strategy that, over time, loses less and less per round compared to the oracle? The answer is yes, and the best possible rate is <span class="arithmatex">\(O(\log t)\)</span>.</p>
+<h2 id="simple-strategies-and-their-limits">Simple Strategies and Their Limits<a class="headerlink" href="#simple-strategies-and-their-limits" title="Permanent link">&para;</a></h2>
+<h3 id="explore-then-commit">Explore-Then-Commit<a class="headerlink" href="#explore-then-commit" title="Permanent link">&para;</a></h3>
+<p>The most natural idea: spend the first <span class="arithmatex">\(N\)</span> rounds exploring (play each coin <span class="arithmatex">\(N\)</span> times to estimate its mean), then commit to whichever looks better for the remaining <span class="arithmatex">\(T - 2N\)</span> rounds.</p>
+<p>This works, but the regret is:</p>
+<div class="arithmatex">\[
+R(T) = O\left(T^{2/3}(\log T)^{1/3}\right)
+\]</div>
+<p>with the optimal choice of <span class="arithmatex">\(N\)</span>. The problem is a fundamental tension: if <span class="arithmatex">\(N\)</span> is too large, you waste exploitation time on exploration you didn't need; if <span class="arithmatex">\(N\)</span> is too small, your estimates are noisy and you might commit to the wrong arm. You have to decide <em>in advance</em> how much to explore, with no way to adapt.</p>
+<h3 id="epsilon-greedy">Epsilon-Greedy<a class="headerlink" href="#epsilon-greedy" title="Permanent link">&para;</a></h3>
+<p>A more adaptive idea: at each round, with probability <span class="arithmatex">\(1 - \varepsilon\)</span> play the arm with the best empirical mean (exploit), and with probability <span class="arithmatex">\(\varepsilon\)</span> play the other arm uniformly at random (explore).</p>
+<p>With the optimal decaying schedule <span class="arithmatex">\(\varepsilon = c \cdot t^{-1/3}(\log t)^{1/3}\)</span>, the regret is:</p>
+<div class="arithmatex">\[
+R(T) = O\left(T^{2/3}(\log T)^{1/3}\right)
+\]</div>
+<p>The same <span class="arithmatex">\(O(T^{2/3})\)</span> rate. Epsilon-greedy is more adaptive than explore-then-commit, but it still explores <em>blindly</em> --- it doesn't use what it knows about each arm's uncertainty to guide exploration. We can do much better.</p>
+<h2 id="concentration-bounds-the-key-insight">Concentration Bounds --- The Key Insight<a class="headerlink" href="#concentration-bounds-the-key-insight" title="Permanent link">&para;</a></h2>
+<p>The breakthrough comes from <strong>Hoeffding's inequality</strong>, which tells us exactly how concentrated sample means are around true means:</p>
+<div class="arithmatex">\[
+P\left(|\bar{X} - \mu| \geq \varepsilon\right) \leq 2e^{-2N\varepsilon^2}
+\]</div>
+<p>where <span class="arithmatex">\(\bar{X}\)</span> is the sample mean of <span class="arithmatex">\(N\)</span> i.i.d. observations from a distribution with mean <span class="arithmatex">\(\mu\)</span> and support in <span class="arithmatex">\([0, 1]\)</span>.</p>
+<p>The more samples you have, the tighter the concentration. Setting the confidence radius to:</p>
+<div class="arithmatex">\[
+\varepsilon = \sqrt{\frac{c \log T}{N}}
+\]</div>
+<p>gives:</p>
+<div class="arithmatex">\[
+P\left(|\bar{X} - \mu| \geq \varepsilon\right) \leq \frac{2}{T^{2c}}
+\]</div>
+<p>This is incredibly powerful. With high probability (at least <span class="arithmatex">\(1 - 2/T^{2c}\)</span>), the sample mean is within <span class="arithmatex">\(\varepsilon\)</span> of the true mean. And <span class="arithmatex">\(\varepsilon\)</span> shrinks as <span class="arithmatex">\(\sqrt{1/N}\)</span> --- the more you sample an arm, the more precisely you know its value. This is what makes UCB possible: we can <em>quantify</em> our uncertainty about each arm and use it to make intelligent exploration decisions.</p>
+<h2 id="the-upper-confidence-bound">The Upper Confidence Bound<a class="headerlink" href="#the-upper-confidence-bound" title="Permanent link">&para;</a></h2>
+<p>UCB combines exploitation and exploration into a single elegant formula. For each arm <span class="arithmatex">\(i\)</span> at time <span class="arithmatex">\(t\)</span>, compute:</p>
+<div class="arithmatex">\[
+B(i, t, n_i(t)) = \bar{X}_i + \sqrt{\frac{2\log t}{n_i(t)}}
+\]</div>
+<p>where <span class="arithmatex">\(\bar{X}_i\)</span> is the empirical mean reward of arm <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(n_i(t)\)</span> is the number of times arm <span class="arithmatex">\(i\)</span> has been played up to time <span class="arithmatex">\(t\)</span>. Then <strong>play the arm with the largest</strong> <span class="arithmatex">\(B\)</span>.</p>
+<p>The formula has two terms:</p>
+<ul>
+<li><strong>First term</strong> <span class="arithmatex">\(\bar{X}_i\)</span>: <strong>exploitation</strong>. Favor arms with high observed rewards.</li>
+<li><strong>Second term</strong> <span class="arithmatex">\(\sqrt{2\log t / n_i(t)}\)</span>: <strong>exploration bonus</strong>. Favor arms that have been played less (large when <span class="arithmatex">\(n_i\)</span> is small relative to <span class="arithmatex">\(t\)</span>).</li>
+</ul>
+<p>In the first <span class="arithmatex">\(K\)</span> rounds, every arm has <span class="arithmatex">\(n_i = 0\)</span>, so the exploration term is <span class="arithmatex">\(\infty\)</span> --- every arm gets tried at least once. After that, the exploration bonus naturally decays for well-sampled arms while remaining large for underexplored ones. UCB is <strong>optimistic in the face of uncertainty</strong>: it assumes each arm is as good as it could plausibly be, given the data so far.</p>
+<h3 id="the-regret-theorem">The Regret Theorem<a class="headerlink" href="#the-regret-theorem" title="Permanent link">&para;</a></h3>
+<p><strong>Theorem</strong> (Auer et al., 2002). Under UCB, each suboptimal arm <span class="arithmatex">\(i\)</span> (with gap <span class="arithmatex">\(\Delta_i = \mu^* - \mu_i &gt; 0\)</span>) is played at most:</p>
+<div class="arithmatex">\[
+\mathbb{E}[n_i(t)] \leq \frac{8\log t}{\Delta_i^2} + O(1)
+\]</div>
+<p>times. Suboptimal arms are played <em>logarithmically</em> often --- exponentially less than linear. The overall regret bound is:</p>
+<div class="arithmatex">\[
+R_{\text{UCB}}(t) = \sum_{i=1}^{K} \Delta_i \cdot \mathbb{E}[n_i(t)] \leq \sum_{i=1}^{K} \frac{8\log t}{\Delta_i} + O(1)
+\]</div>
+<p>This is <span class="arithmatex">\(O(\log t)\)</span> --- <strong>dramatically better</strong> than the <span class="arithmatex">\(O(T^{2/3})\)</span> regret of explore-then-commit and epsilon-greedy. Moreover, Lai and Robbins (1985) proved that <span class="arithmatex">\(O(\log t)\)</span> is the <em>best possible</em> rate for any consistent strategy, so UCB is <strong>order-optimal</strong>.</p>
+<p>The key intuition: UCB doesn't waste exploration. It explores arms <em>precisely as much as needed</em> to be confident about their quality, then naturally shifts to exploitation. Arms that are clearly bad get abandoned quickly (small <span class="arithmatex">\(\Delta_i\)</span> means more exploration is needed, but the penalty per play is also small). The balance is automatic --- no tuning of exploration parameters required.</p>
+<h2 id="from-bandits-to-trees-mcts-and-uct">From Bandits to Trees --- MCTS and UCT<a class="headerlink" href="#from-bandits-to-trees-mcts-and-uct" title="Permanent link">&para;</a></h2>
+<p>The bandit problem assumes no sequential structure --- each arm is independent, and pulling one arm tells you nothing about the others. But in games like Go, choices form a <strong>tree</strong>: your move determines the opponent's options, which determine your future options, and so on. How do we apply bandit ideas here?</p>
+<p><strong>Monte Carlo Tree Search (MCTS)</strong> builds a search tree incrementally using four steps:</p>
+<ol>
+<li><strong>Selection</strong>: Starting from the root, traverse the tree by choosing children until you reach a leaf node. At each internal node, the choice of which child to visit is a multi-armed bandit problem.</li>
+<li><strong>Expansion</strong>: Add one or more children to the leaf node.</li>
+<li><strong>Simulation</strong> (rollout): From the new node, play randomly until the game ends to get an outcome.</li>
+<li><strong>Backpropagation</strong>: Update the win/visit statistics for all nodes on the path from root to leaf.</li>
+</ol>
+<p>The key insight is that step 1 --- choosing which child to explore at each node --- is <em>exactly</em> a multi-armed bandit problem. Each child is an "arm," the simulation outcomes are the "rewards," and we need to balance exploring less-visited children versus exploiting children with high win rates.</p>
+<p><strong>UCT</strong> (UCB applied to Trees) uses the UCB formula at each node. The BestChild selection is:</p>
+<div class="arithmatex">\[
+\text{argmax}_{s' \in \text{children}(s)} \left(\frac{Q(s')}{N(s')} + c\sqrt{\frac{2\ln N(s)}{N(s')}}\right)
+\]</div>
+<p>where <span class="arithmatex">\(Q(s')\)</span> is the total reward through child <span class="arithmatex">\(s'\)</span>, <span class="arithmatex">\(N(s')\)</span> is the visit count of child <span class="arithmatex">\(s'\)</span>, and <span class="arithmatex">\(N(s)\)</span> is the visit count of the parent. The first term <span class="arithmatex">\(Q(s')/N(s')\)</span> is exploitation (average win rate), and the second term <span class="arithmatex">\(c\sqrt{2\ln N(s)/N(s')}\)</span> is the exploration bonus (try less-visited nodes). The constant <span class="arithmatex">\(c\)</span> controls the exploration-exploitation trade-off.</p>
+<p>UCT inherits UCB's theoretical guarantees: it converges to the optimal move as the number of simulations grows, and it does so efficiently by focusing search on the most promising parts of the tree.</p>
+<h2 id="alphago-ucb-meets-deep-learning">AlphaGo --- UCB Meets Deep Learning<a class="headerlink" href="#alphago-ucb-meets-deep-learning" title="Permanent link">&para;</a></h2>
+<p>AlphaGo (Silver et al., 2016) combined MCTS+UCT with deep neural networks to achieve superhuman Go play. The architecture has three components:</p>
+<ul>
+<li><strong>Policy network</strong>: A deep CNN trained on 30 million positions from human expert games, predicting the probability of each move. Achieves 57% accuracy at predicting expert moves --- for a game with ~250 legal moves per position.</li>
+<li><strong>Value network</strong>: A deep CNN trained via self-play reinforcement learning, predicting the probability of winning from any board position. This replaces the random rollouts in vanilla MCTS with learned evaluation.</li>
+<li><strong>MCTS+UCT</strong>: The search algorithm that ties everything together. The policy network guides which moves to expand (prior probabilities in the tree), and the value network evaluates leaf positions.</li>
+</ul>
+<p>The UCB exploration bonus is what makes this work as more than just "play the neural network's top suggestion." Without exploration, AlphaGo would be limited by the biases in its training data --- it would only play moves that human experts played. The exploration term ensures that uncertain but potentially strong moves get investigated. This is precisely why AlphaGo made "creative" moves that surprised human experts --- moves like Move 37 in Game 2 against Lee Sedol, which no human would have played but turned out to be brilliant. The UCB principle said: "this move is uncertain, so it might be great --- let's find out."</p>
+<p>The combination is greater than its parts. MCTS provides structured search. Neural networks provide learned intuition. UCB provides the principled exploration that connects them. Remove any one component and the system fails.</p>
+<h2 id="ucb-and-life-choosing-the-uncertain-path">UCB and Life --- Choosing the Uncertain Path<a class="headerlink" href="#ucb-and-life-choosing-the-uncertain-path" title="Permanent link">&para;</a></h2>
+<p>In life, we face bandit problems constantly. Which career path to pursue? Which city to live in? Which skill to invest in? Which relationship to nurture? At every fork, we're trading off exploiting what we know works against exploring something new that might be better --- or worse.</p>
+<p>The UCB principle offers a mathematically grounded philosophy: <strong>when you know very little about an option, its exploration bonus is huge --- you should try it.</strong> Only when you've gathered enough information should you commit to exploiting the best known option. The formula literally says that the value of trying something is highest when your uncertainty about it is greatest.</p>
+<p>The mathematically optimal strategy for minimizing regret is <em>not</em> to always play it safe with what you know. It's to be <strong>optimistic in the face of uncertainty</strong> --- to choose the uncertain path precisely <em>because</em> you haven't explored it enough. The regret from never trying something is worse than the regret from trying and learning it's not for you. One gives you information; the other gives you nothing but the nagging question of "what if?"</p>
+<p>UCB tells us: the less you know about something, the more reason you have to try it. And the beautiful part is that this isn't just feel-good advice dressed up in math --- it's the <em>provably optimal</em> strategy. The universe rewards the curious.</p>
+<p>A quote from Professor Gao that captures this beautifully: <em>"With every try, you have explored the space a little bit more, grown the subtree a little bit deeper, and pushed more values into the table. Success never comes from one good state but rather the path you have explored and the large subtree you have built: the tree has been explored and nothing is lost."</em></p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sicun Gao, CSE 257, UCSD --- Bandits and MCTS lecture slides</li>
+<li><a href="../../../assets/math/ucb.pdf">UCB derivation notes</a></li>
+<li>
+<p><a href="../../../assets/math/ucb_example.pdf">UCB example walkthrough</a></p>
+</li>
+<li>
+<p>Auer, P., Cesa-Bianchi, N., &amp; Fischer, P. <strong>Finite-time Analysis of the Multiarmed Bandit Problem.</strong> <em>Machine Learning</em>, 2002.</p>
+</li>
+<li>Silver, D., et al. <strong>Mastering the game of Go with deep neural networks and tree search.</strong> <em>Nature</em>, 2016.</li>
+<li>Kocsis, L. &amp; Szepesvari, C. <strong>Bandit based Monte-Carlo Planning.</strong> <em>ECML</em>, 2006.</li>
+<li>Lai, T.L. &amp; Robbins, H. <strong>Asymptotically efficient adaptive allocation rules.</strong> <em>Advances in Applied Mathematics</em>, 1985.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Kaiwen Bian – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/KevinBian107" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://kbian.org/" target="_blank" rel="noopener" title="Back to my website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+    
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.expand", "navigation.prune", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tooltips", "content.code.select", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+      
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../js/main.js"></script>
+      
+    
+  </body>
+</html>

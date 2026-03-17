@@ -18,7 +18,7 @@
         <link rel="prev" href="../optimization/">
       
       
-        <link rel="next" href="../point_set_topology/">
+        <link rel="next" href="../stochastic/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>All You Need Is Constraint Solving - Misc</title>
+        <title>Constraints as Guidance, Not Hindrance - Misc</title>
       
     
     
@@ -133,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              All You Need Is Constraint Solving
+              Constraints as Guidance, Not Hindrance
             
           </span>
         </div>
@@ -502,6 +502,8 @@
       
         
       
+        
+      
     
     
     
@@ -610,7 +612,7 @@
   <span class="md-ellipsis">
     
   
-    All You Need Is Constraint Solving
+    Constraints as Guidance, Not Hindrance
   
 
     
@@ -628,7 +630,7 @@
   <span class="md-ellipsis">
     
   
-    All You Need Is Constraint Solving
+    Constraints as Guidance, Not Hindrance
   
 
     
@@ -674,21 +676,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-doability-constraint" class="md-nav__link">
+  <a href="#constraint-solving-and-life" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practical "Doability" Constraint
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#life-tree-constraint-solving" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Life? Tree Constraint Solving? 🌲
+        Constraint Solving and Life
       
     </span>
   </a>
@@ -710,34 +701,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../point_set_topology/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building Everything From Sets
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -814,6 +777,62 @@
     
   
     From Random Walks to Generating Molecules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ucb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimism in the Face of Uncertainty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bellman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walking Towards Singularity in All Reality
   
 
     
@@ -1001,21 +1020,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-doability-constraint" class="md-nav__link">
+  <a href="#constraint-solving-and-life" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practical "Doability" Constraint
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#life-tree-constraint-solving" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Life? Tree Constraint Solving? 🌲
+        Constraint Solving and Life
       
     </span>
   </a>
@@ -1050,7 +1058,7 @@
 
 
 
-  <h1>All You Need Is Constraint Solving</h1>
+  <h1>Constraints as Guidance, Not Hindrance</h1>
 
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <div class="wrapper">
@@ -1065,7 +1073,7 @@
 
 <p>When I first learned about the idea  of constraint solving (I belive it was in a class taught by professor Sichun Gao in UCSD CSE called <em>"Search and optimization"</em>), I wasn't as exiciting as I am. I thought of constraint solving just as a small sub-branch of optimization, but I was wrong. It is actually the <strong><em>"class"</em></strong> that can generates any other type optimization, reasoning, or machine learning techniques when you look at if from the right perspective. Quoting from what professor Gao said himself: <strong><em>"All you need is constraint solving"</em></strong>. If I wnat to summarize the ideas in this article, it would be:</p>
 <ol>
-<li>Theporitically, constraints greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.</li>
+<li>Theoretically, constraints greatly reduced our search problem because among all the answers we can search for, we only care about the ones  that matches with our constraint.</li>
 <li>Practically, "doability" is always part of the puzzle, in theory we can do everything but in practice we can't, so how do we optimize with these constraint not as a hinderance but as a helper?</li>
 </ol>
 <p>This article tries to go over some quite complicated topic, which I focuesed more on the intuition of it and less on the athamatical deriviation.</p>
@@ -1164,18 +1172,26 @@ q(x,y) = \frac{\exp\{f_{\text{data}}(x,y;D)\}}{Z} \approx \tilde{p}_d(x,y)
 \end{align*}
 \]</div>
 <p>Notice that this is a <strong><em>constraint solving</em></strong> problem again. We are maximizing the first term (decoder) to get improved in acccuracy while minimizing the second term (encoder) which is measuring divergence. With more trials, we get better encoder,hence, better decoder, and hence, better encoder. In the same trend of thoughts, further extensions of VAE such as <strong><em>Variational Information Bottleneck</em></strong> (IB) can alsobe framed into an constraint optimization as well.</p>
-<h2 id="practical-doability-constraint">Practical "Doability" Constraint<a class="headerlink" href="#practical-doability-constraint" title="Permanent link">&para;</a></h2>
-<p>This constraint solving philosophy does not live in theory only, it is also widely used in practical domains, but just from an different perspective. I will be describiing two eaxmples that I think illustrate this idea quite well, one from the domain of  recommender system and one from the domain of database management.</p>
-<h3 id="recommender-system-and-netflix-price">Recommender System and Netflix Price<a class="headerlink" href="#recommender-system-and-netflix-price" title="Permanent link">&para;</a></h3>
-<p>Without going too much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by <strong><em>over-engineered</em></strong> towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that <strong><em>true intelligence comes from the data</em></strong>, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.</p>
-<p>The <strong><em>data</em></strong> (projecting onto data space similar to what we discuessed in <a href="../optimization/#all-families-comes-from-twitch">gradient descent</a>) and <strong><em>domain</em></strong> (telling you what you  can and can't do, what cost you can afford, and what you can extract from the data.) is essentially a constraint that we put on the model (The goals in the domain may change, the constraint always changes, and the model that is designed to the particular constraint also changes).</p>
-<h3 id="database-management">Database Management<a class="headerlink" href="#database-management" title="Permanent link">&para;</a></h3>
-<p>When thinking about database management, something that people wouldn't really think to have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), is actually filled with need of constraint solving.</p>
-<p>Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design optimal transport? This is a constraint, a constraint on the cost and efficiency of what you can do: <strong><em>"sometimes taking the mean is not worst than doing computer vision"</em></strong>.</p>
-<h2 id="life-tree-constraint-solving">Life? Tree Constraint Solving? 🌲<a class="headerlink" href="#life-tree-constraint-solving" title="Permanent link">&para;</a></h2>
-<p>Maybe life itself can be framed as a constraint solving or constraint search problem. I think that life itself is not even a supervised problem, you can't just copy someone else's "success models" ad hope it works, let along having an analytical solution. The enviornment would take you to the next stage and you can only take the actions. It is a search and optimization problem with a constraint that may not be a hinderance but rather a guidance: the <strong><em>tree</em></strong> yoiu have grown.</p>
-<p>You should have grown your tree independently from other trees, doing your search and generating more backtracking statistics along the way (similar to the idea mentioned on my <a href="https://kbian.org/idea.html">ideology page</a>, referencing to Monte Carlo Tree Search). With any new tasks you try to solve or any new paradigms that you step in, you don't try to just adapt to someone elses's tree but rather branch out a leaf from your tree to see what the returnning statistics tells you. You have traveled a long way, expanded the tree to so far, and everything works just fine, so you should trust your <span class="arithmatex">\(q\)</span> function, trust the constraint that your history and your tree have given upon you.</p>
-<p>Don't be afraid to branch out to unknown places since <strong><em>the key of going to the unknown is to make mistakes</em></strong>. No matter where you go, your tree leaves a mark in the space and as the further you travel to, the more marks you leave and when they are abundant enough, they form a shape, a more intricate machine, that tell you who you are. At last, I want to put down a quote that inspired me greatly from professor Gao: "with every try, you have explored the space a little bit more, grown the subtree a little bit deeper, and pushed more values into the table. Success never comes from one good state but rather the path you have explored and the large subtree you have built: The tree has been explored and nothing is lost".</p>
+<!--
+## Practical "Doability" Constraint
+This constraint solving philosophy does not live in theory only, it is also widely used in practical domains, but just from an different perspective. I will be describiing two eaxmples that I think illustrate this idea quite well, one from the domain of  recommender system and one from the domain of database management.
+
+### Recommender System and Netflix Price
+Without going too much into recommender and the Netxflix price, this price is for a contest of seeing who can build the best recommender system that best predict the rating changes in actual Netflix user data. Turns out the best model was the one that captured temporal trends (designed temporal user bias as a parametric function to fit the shape of the data) in ratings by ***over-engineered*** towards the particular dataset that the contest was using (not over-fit training data, but over-engineer on the construct of the entire dataset). It teaches us a few really nice engineeing lessons that aligns with what we said before, that ***true intelligence comes from the data***, you should only use a temporal model if your data tells you so, not just by imaginations. There is no "penacea" model for recommendation, it's not like the introduction of transformer would suddenly solve all problem in recommender domains. You want to over-engineer and squeeze all the values from the data of a particular problem and in the particular domain.
+
+The ***data*** (projecting onto data space similar to what we discuessed in [gradient descent](../optimization/#all-families-comes-from-twitch)) and ***domain*** (telling you what you  can and can't do, what cost you can afford, and what you can extract from the data.) is essentially a constraint that we put on the model (The goals in the domain may change, the constraint always changes, and the model that is designed to the particular constraint also changes).
+
+### Database Management
+When thinking about database management, something that people wouldn't really think to have anything to do with optimization (just talking about the higher level management here, not optimizations in data access and retrieving), is actually filled with need of constraint solving.
+
+Imagine that you want to store population data with precise geographical locations and you have data for the overall region but not to each clusters of where people are living at. In theory you can use settlelite images and establish a computer vision task with some clustering algorithm to figure out where are the major cluster that people live at. In theory you can, but what if this population data storage is only one small part of your project, your actual problem is trying to design optimal transport? This is a constraint, a constraint on the cost and efficiency of what you can do: ***"sometimes taking the mean is not worst than doing computer vision"***.
+-->
+
+<h2 id="constraint-solving-and-life">Constraint Solving and Life<a class="headerlink" href="#constraint-solving-and-life" title="Permanent link">&para;</a></h2>
+<p>Maybe life itself can be framed as a constraint solving problem. Life is not a supervised learning problem --- you cannot copy someone else's "success model" and hope it works, let alone having an analytical solution. You face two kinds of constraints at every moment: the <strong><em>environment's constraints</em></strong> (the state you're in, the actions available to you, the transitions you cannot control) and the <strong><em>constraints you've built</em></strong> (your history, your experiences, the tree you have grown). Neither is a hindrance. Both are guidance.</p>
+<p>The environment constrains you the way physics constrains optimization --- it defines the feasible region. You don't get to choose which state you're born into, which opportunities appear, or how the world responds to your actions. You have to work within what the environment gives you, just as every constraint solver must respect the boundaries of the problem. But with these constraints, the search direction is narrowed and more directed.</p>
+<p>The tree you grow is the other constraint, and it is yours alone. You grow it independently from other trees, doing your own search and generating backtracking statistics along the way. With any new task you encounter or any new paradigm you step into, you don't try to graft yourself onto someone else's tree. Instead, you branch out a leaf from your own tree and see what the returning statistics tell you. The tree constrains your search in the best possible way: it tells you which directions have been explored, which returned high value, which led to dead ends. It narrows the search space not by limiting you but by <strong><em>informing</em></strong> you. You have traveled a long way, expanded the tree far, and everything works just fine. Trust your <span class="arithmatex">\(q\)</span> function. Trust the constraint that your history and your tree have given you.</p>
+<p>Don't be afraid to branch out to unknown places, since <strong><em>the key of going to the unknown is to make mistakes</em></strong>. No matter where you go, your tree leaves a mark in the space. The further you travel, the more marks you leave, and when they are abundant enough, they form a shape --- a more intricate structure --- that tells you who you are. The constraints don't shrink your world. They sharpen it.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>DSC 190, Zhiting Hu, UC San Diego</li>

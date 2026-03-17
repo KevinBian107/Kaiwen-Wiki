@@ -1,0 +1,1523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Perspectives on Neuroscience, Mathematics, Machine Learning, and Vibe Coding">
+      
+      
+        <meta name="author" content="Kaiwen Bian">
+      
+      
+        <link rel="canonical" href="https://kbian.org/Kaiwen-Wiki/articles/mathamatics/bellman/">
+      
+      
+        <link rel="prev" href="../ucb/">
+      
+      
+        <link rel="next" href="../../vibe_coding/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/index/wiki_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Walking Towards Singularity in All Reality - Misc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-V7MWLE7LXW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-V7MWLE7LXW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-V7MWLE7LXW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-mdp-framework" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Misc" class="md-header__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Misc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Walking Towards Singularity in All Reality
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__translate">
+      <button class="translate-btn" onclick="toggleTranslate()" aria-label="Translate" title="Translate">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+      </button>
+      <div id="google_translate_element"></div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  My Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../neuroscience/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neuroscience
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Machine Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vibe_coding/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vibe Coding
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../literature/notes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Misc" class="md-nav__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    Misc
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Misc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../neuroscience/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neuroscience
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Machine Learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitch on Convex Optimization Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constraint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints as Guidance, Not Hindrance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stochastic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unfolding Stochasticity Sequentially
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../confidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lend It Some Confidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Random Walks to Generating Molecules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ucb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimism in the Face of Uncertainty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walking Towards Singularity in All Reality
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walking Towards Singularity in All Reality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-mdp-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MDP Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#value-and-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Value and Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bellman-equation-from-global-to-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Bellman Equation --- From Global to Local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-in-rn-the-contraction-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Walking in R^n --- The Contraction Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-value-iteration-to-temporal-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Value Iteration to Temporal Difference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning-the-full-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q-Learning --- The Full Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-chain-bellman-to-td-to-q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Chain --- Bellman to TD to Q
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../vibe_coding/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vibe Coding
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../literature/notes/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-mdp-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MDP Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#value-and-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Value and Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bellman-equation-from-global-to-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Bellman Equation --- From Global to Local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-in-rn-the-contraction-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Walking in R^n --- The Contraction Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-value-iteration-to-temporal-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Value Iteration to Temporal Difference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning-the-full-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q-Learning --- The Full Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-chain-bellman-to-td-to-q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Chain --- Bellman to TD to Q
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Walking Towards Singularity in All Reality</h1>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="wrapper">
+  <div class="profile">
+    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <div class="profile-details">
+      <span class="name">Kaiwen Bian</span>
+      <span class="metadata">25 min read · Mar 16, 2026</span>
+    </div>
+  </div>
+</div>
+
+<p>Reinforcement learning is fundamentally about making sequential decisions under uncertainty. The narrative everyone tells focuses on policy gradients and deep RL --- the flashy stuff that makes headlines. But the mathematical foundation that makes it all work is much more elegant: the <strong>Bellman equation</strong> and its update rule. What's astonishing is that this simple recurrence --- "my value equals my immediate reward plus the discounted value of where I go next" --- when applied iteratively, is <strong>guaranteed to converge to a unique fixed point</strong>. My handwritten notes call this fixed point "the singularity" --- a single point in the space of all possible value assignments where every state has its true optimal value. Every path through the value space leads to the same destination. The initial guess doesn't matter. This article traces how we get there.</p>
+<h2 id="the-mdp-framework">The MDP Framework<a class="headerlink" href="#the-mdp-framework" title="Permanent link">&para;</a></h2>
+<p>A <strong>Markov Decision Process (MDP)</strong> is defined by:</p>
+<ul>
+<li>A set of states <span class="arithmatex">\(S\)</span></li>
+<li>A set of actions <span class="arithmatex">\(A\)</span></li>
+<li>A transition model <span class="arithmatex">\(P(s' \mid s, a)\)</span> --- the probability of landing in state <span class="arithmatex">\(s'\)</span> given you take action <span class="arithmatex">\(a\)</span> in state <span class="arithmatex">\(s\)</span></li>
+<li>A reward function <span class="arithmatex">\(R(s)\)</span> --- the immediate reward for being in state <span class="arithmatex">\(s\)</span></li>
+<li>A discount factor <span class="arithmatex">\(\gamma \in [0, 1)\)</span></li>
+</ul>
+<p>A <strong>policy</strong> <span class="arithmatex">\(\pi: S \to A\)</span> maps each state to an action. The agent chooses actions; the environment chooses outcomes stochastically. The environment is a "chance player" --- you pick what to do, and nature decides where you end up.</p>
+<p>Consider a concrete example: you're skateboarding to class on a university campus. At each intersection, you choose whether to take the fast route (skateboard through a crowded plaza --- fast if it works, but risk of crashing) or the slow route (walk around). The states are intersections, the actions are route choices, the transitions encode the probability of crashing or arriving smoothly, and the rewards capture how much time you save or lose. Each decision point branches into a tree of possibilities.</p>
+<p>The key insight: an MDP turns the world into an <strong>expectimax tree</strong> where you (the max player) alternate with the environment (the chance player). At your nodes, you choose the action that maximizes value. At nature's nodes, the outcome is a probability-weighted average over successor states. This alternating structure is the foundation for everything that follows.</p>
+<h2 id="value-and-policy">Value and Policy<a class="headerlink" href="#value-and-policy" title="Permanent link">&para;</a></h2>
+<p>The <strong>value function</strong> under a policy <span class="arithmatex">\(\pi\)</span> measures the expected total discounted reward starting from state <span class="arithmatex">\(s\)</span>:</p>
+<div class="arithmatex">\[
+V^\pi(s) = \mathbb{E}\left[\sum_{i=0}^{\infty} \gamma^i R(s_i) \;\Big|\; s_0 = s\right]
+\]</div>
+<p>where the expectation is taken over the stochastic transitions under policy <span class="arithmatex">\(\pi\)</span>.</p>
+<p>There's a problem with infinite paths: without discounting, the sum of rewards can diverge to infinity. The discount factor <span class="arithmatex">\(\gamma \in [0, 1)\)</span> solves this. Since the rewards are bounded by some <span class="arithmatex">\(R_{\max}\)</span>, the geometric series gives us:</p>
+<div class="arithmatex">\[
+V^\pi(s) \leq \sum_{i=0}^{\infty} \gamma^i R_{\max} = \frac{R_{\max}}{1 - \gamma}
+\]</div>
+<p>Two justifications for discounting. <strong>Conceptually</strong>, future rewards are uncertain --- a dollar today is worth more than a dollar tomorrow because the world might change. <strong>Mathematically</strong>, convergence requires it --- without <span class="arithmatex">\(\gamma &lt; 1\)</span>, the value function may not even be well-defined.</p>
+<p>The <strong>optimal policy</strong> <span class="arithmatex">\(\pi^*\)</span> maximizes <span class="arithmatex">\(V^\pi(s)\)</span> for <strong>all</strong> states simultaneously. This is a remarkable fact --- there exists a single policy that is best everywhere at once. The optimal value function is:</p>
+<div class="arithmatex">\[
+V^*(s) = \max_\pi V^\pi(s)
+\]</div>
+<h2 id="the-bellman-equation-from-global-to-local">The Bellman Equation --- From Global to Local<a class="headerlink" href="#the-bellman-equation-from-global-to-local" title="Permanent link">&para;</a></h2>
+<p>This is the key insight. Start with the global definition of value:</p>
+<div class="arithmatex">\[
+V^\pi(s_0) = \mathbb{E}\left[\sum_{i=0}^{\infty} \gamma^i R(s_i)\right]
+\]</div>
+<p>Now watch what happens when we split off the first term:</p>
+<p><strong>Step 1.</strong> Separate the immediate reward from the future:</p>
+<div class="arithmatex">\[
+V^\pi(s_0) = R(s_0) + \mathbb{E}\left[\sum_{i=1}^{\infty} \gamma^i R(s_i)\right]
+\]</div>
+<p><strong>Step 2.</strong> Factor out <span class="arithmatex">\(\gamma\)</span> from the remaining sum:</p>
+<div class="arithmatex">\[
+V^\pi(s_0) = R(s_0) + \gamma \cdot \mathbb{E}\left[\sum_{i=0}^{\infty} \gamma^i R(s_{i+1})\right]
+\]</div>
+<p><strong>Step 3.</strong> Recognize that the inner sum is exactly <span class="arithmatex">\(V^\pi(s_1)\)</span> --- the value starting from the next state:</p>
+<div class="arithmatex">\[
+V^\pi(s) = R(s) + \gamma \sum_{s'} P(s' \mid s, \pi(s)) \cdot V^\pi(s')
+\]</div>
+<p>This is the <strong>Bellman Expectation Equation</strong>.</p>
+<p>The astonishing thing --- and this cannot be overstated --- is what we've done here. We've turned a <strong>global</strong> estimate (an infinite sum over all future trajectories, requiring knowledge of the entire future) into a <strong>local</strong> recurrence (one step of reward plus the discounted value of the next state). The value of a state is fully characterized by its immediate neighborhood. This is deeply elegant. The infinite collapses into the local.</p>
+<p>For the <strong>optimal</strong> value, we add a maximization over actions:</p>
+<div class="arithmatex">\[
+V^*(s) = R(s) + \gamma \max_a \sum_{s'} P(s' \mid s, a) \cdot V^*(s')
+\]</div>
+<p>This is the <strong>Bellman Optimality Equation</strong> --- exactly generalized Expectimax. At each state, you pick the action that maximizes the expected discounted future, and nature resolves the stochastic transition.</p>
+<h2 id="walking-in-rn-the-contraction-mapping">Walking in R^n --- The Contraction Mapping<a class="headerlink" href="#walking-in-rn-the-contraction-mapping" title="Permanent link">&para;</a></h2>
+<p>This is the "singularity" concept from my notes, and it's the most beautiful part of the theory.</p>
+<p>The value function <span class="arithmatex">\(V\)</span> is a <strong>vector in <span class="arithmatex">\(\mathbb{R}^n\)</span></strong>, where <span class="arithmatex">\(n = |S|\)</span> is the number of states. Each entry <span class="arithmatex">\(V(s)\)</span> is the value assigned to state <span class="arithmatex">\(s\)</span>. Every possible assignment of values to states is a point in this <span class="arithmatex">\(n\)</span>-dimensional space. The <strong>Bellman update operator</strong> <span class="arithmatex">\(B\)</span> takes one vector <span class="arithmatex">\(V\)</span> and produces a new vector <span class="arithmatex">\(B(V)\)</span>:</p>
+<div class="arithmatex">\[
+B(V)(s) = R(s) + \gamma \max_a \sum_{s'} P(s' \mid s, a) \cdot V(s')
+\]</div>
+<p>Starting from <strong>any</strong> initial vector <span class="arithmatex">\(V_0 \in \mathbb{R}^n\)</span> --- completely random values, all zeros, anything --- applying <span class="arithmatex">\(B\)</span> repeatedly produces a sequence:</p>
+<div class="arithmatex">\[
+V_0, \quad V_1 = B(V_0), \quad V_2 = B(V_1), \quad V_3 = B(V_2), \quad \ldots
+\]</div>
+<p>The <strong>Contraction Mapping Theorem</strong> says: <span class="arithmatex">\(B\)</span> is a <span class="arithmatex">\(\gamma\)</span>-contraction in the infinity norm:</p>
+<div class="arithmatex">\[
+\|B(V) - B(V')\|_\infty \leq \gamma \cdot \|V - V'\|_\infty
+\]</div>
+<p>This means every application of <span class="arithmatex">\(B\)</span> brings <strong>any</strong> two vectors closer together by a factor of <span class="arithmatex">\(\gamma\)</span>. Since <span class="arithmatex">\(0 \leq \gamma &lt; 1\)</span>, the distance between successive iterates shrinks exponentially. The sequence <span class="arithmatex">\(V_0, V_1, V_2, \ldots\)</span> converges to a <strong>unique fixed point</strong> <span class="arithmatex">\(V^*\)</span>, regardless of where you start.</p>
+<p>From my notes: <em>"The vector <span class="arithmatex">\(V\)</span> stores one possible reality of the MDP. The max update converges to a single reality, the SINGULARITY, that has all the best states."</em> This is the singularity --- the unique point in <span class="arithmatex">\(\mathbb{R}^n\)</span> where the Bellman equation is satisfied exactly. Every path through the value space leads to the same destination. The initial guess doesn't matter. The map is a contraction. The singularity pulls everything toward itself.</p>
+<h3 id="sketch-of-the-proof">Sketch of the Proof<a class="headerlink" href="#sketch-of-the-proof" title="Permanent link">&para;</a></h3>
+<p>We use the <strong>infinity norm</strong>: <span class="arithmatex">\(\|V\|_\infty = \max_s |V(s)|\)</span>.</p>
+<p>Consider two value vectors <span class="arithmatex">\(V\)</span> and <span class="arithmatex">\(V'\)</span>. For any state <span class="arithmatex">\(s\)</span>:</p>
+<div class="arithmatex">\[
+|B(V)(s) - B(V')(s)| = \gamma \left|\max_a \sum_{s'} P(s'|s,a) V(s') - \max_a \sum_{s'} P(s'|s,a) V'(s')\right|
+\]</div>
+<p>The key step uses the fact that <span class="arithmatex">\(\max\)</span> is Lipschitz:</p>
+<div class="arithmatex">\[
+\left|\max_a Q_a(V) - \max_a Q_a(V')\right| \leq \max_a |Q_a(V) - Q_a(V')|
+\]</div>
+<p>Then for any fixed action <span class="arithmatex">\(a\)</span>:</p>
+<div class="arithmatex">\[
+\left|\sum_{s'} P(s'|s,a)(V(s') - V'(s'))\right| \leq \sum_{s'} P(s'|s,a)|V(s') - V'(s')| \leq \|V - V'\|_\infty \sum_{s'} P(s'|s,a) = \|V - V'\|_\infty
+\]</div>
+<p>where the last equality uses the fact that transition probabilities sum to 1. Combining:</p>
+<div class="arithmatex">\[
+\|B(V) - B(V')\|_\infty \leq \gamma \|V - V'\|_\infty
+\]</div>
+<p><strong>Convergence rate:</strong> After <span class="arithmatex">\(k\)</span> iterations:</p>
+<div class="arithmatex">\[
+\|V_k - V^*\|_\infty \leq \gamma^k \|V_0 - V^*\|_\infty
+\]</div>
+<p>This is <strong>exponential convergence</strong>. For <span class="arithmatex">\(\gamma = 0.9\)</span>, after 100 iterations the error is at most <span class="arithmatex">\(0.9^{100} \approx 2.66 \times 10^{-5}\)</span> times the initial error. The singularity is inevitable.</p>
+<h2 id="from-value-iteration-to-temporal-difference">From Value Iteration to Temporal Difference<a class="headerlink" href="#from-value-iteration-to-temporal-difference" title="Permanent link">&para;</a></h2>
+<p><strong>Value iteration</strong> --- repeatedly applying the Bellman update <span class="arithmatex">\(B\)</span> --- requires knowing the full MDP: all transition probabilities <span class="arithmatex">\(P(s'|s,a)\)</span> and all rewards <span class="arithmatex">\(R(s)\)</span>. This is called <strong>model-based</strong> RL. But what if you don't have the model? What if you can only interact with the environment, take actions, and observe what happens?</p>
+<p><strong>Temporal Difference (TD) Learning</strong> modifies the Bellman update with a sampling flavor --- it updates without perfect knowledge of the transition model. Instead of computing the exact expected value over all successor states, you observe a single transition <span class="arithmatex">\(s \to s'\)</span> and update:</p>
+<div class="arithmatex">\[
+V^{\text{new}}(s) = V^{\text{old}}(s) + \alpha \left(R(s) + \gamma V^{\text{old}}(s') - V^{\text{old}}(s)\right)
+\]</div>
+<p>The term <span class="arithmatex">\(R(s) + \gamma V^{\text{old}}(s')\)</span> is the <strong>TD target</strong> --- one sample of what the Bellman equation says the value should be. The term <span class="arithmatex">\(V^{\text{old}}(s)\)</span> is the current estimate. Their difference is the <strong>TD error</strong>. The learning rate <span class="arithmatex">\(\alpha\)</span> controls how much to adjust.</p>
+<p>This is the <strong>incremental update formula</strong> familiar from statistics:</p>
+<div class="arithmatex">\[
+\mu_k = \mu_{k-1} + \alpha_k (x_k - \mu_{k-1})
+\]</div>
+<p>One new observation adjusts the old estimate toward the new sample. You don't need to store all past observations --- just the running estimate and the new data point.</p>
+<p>From my notes: <em>"Walking on the <span class="arithmatex">\(\mathbb{R}^n\)</span> space but just incrementally updating each entry by one instance learning, it is still a contraction mapping."</em> The magic is that even though we're using noisy, one-sample estimates instead of exact expectations, the contraction property still holds in expectation. The singularity still pulls us in --- just more slowly and with some noise along the way.</p>
+<h2 id="q-learning-the-full-picture">Q-Learning --- The Full Picture<a class="headerlink" href="#q-learning-the-full-picture" title="Permanent link">&para;</a></h2>
+<p>From my notes: <em>"Reinforcement learning is both Search and Optimization. Both search and optimization is already an abstraction on the real problem, one frames it in an infinite tree's scope, one frames it in a landscape's scope."</em></p>
+<p>Instead of learning <span class="arithmatex">\(V(s)\)</span>, we can learn <strong>Q-values</strong> <span class="arithmatex">\(Q(s, a)\)</span> --- the value of taking action <span class="arithmatex">\(a\)</span> in state <span class="arithmatex">\(s\)</span> and then acting optimally:</p>
+<div class="arithmatex">\[
+V(s) = \max_a Q(s, a)
+\]</div>
+<p>The Q-value captures something richer than the state value: it tells you the value of each specific action, not just the best one. The Bellman equation for Q-values is:</p>
+<div class="arithmatex">\[
+Q(s, a) = \sum_{s'} P(s'|s,a) \left(R(s) + \gamma \max_{a'} Q(s', a')\right)
+\]</div>
+<p>The <strong>Q-Learning update</strong> is the TD version of this:</p>
+<div class="arithmatex">\[
+Q(s, a) \leftarrow Q(s, a) + \alpha \left(R(s) + \gamma \max_{a'} Q(s', a') - Q(s, a)\right)
+\]</div>
+<p>Key insights from my notes:</p>
+<ol>
+<li>
+<p><strong>The max operator ensures we always update toward the BEST understanding</strong>, not a random bad rollout. This is what makes Q-learning an <em>off-policy</em> method --- it learns about the optimal policy regardless of what exploration policy the agent actually follows.</p>
+</li>
+<li>
+<p><strong>Random initialization works</strong>: <em>"The global state is instantiated to be random, the conceptual global vector in vector space is randomly initiated. As learning goes on, because of the learning rate, the initial starting point doesn't really matter and correctness converges."</em> The contraction mapping doesn't care where you start.</p>
+</li>
+<li>
+<p><strong>Repeated visits matter</strong>: <em>"RL agents need to really visit one state multiple times to actually learn and understand the state."</em> A single visit gives you one noisy sample. Many visits average out the noise and bring the Q-value closer to the true value.</p>
+</li>
+</ol>
+<p>Here is a basic Q-learning implementation with epsilon-greedy exploration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">q_learning</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">num_episodes</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Q-Learning with epsilon-greedy exploration.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">env</span><span class="o">.</span><span class="n">num_states</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">num_actions</span><span class="p">))</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            <span class="c1"># Epsilon-greedy action selection</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">num_actions</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>            <span class="c1"># Take action, observe outcome</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            <span class="c1"># Q-Learning update: use max over next actions (off-policy)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="n">td_target</span> <span class="o">=</span> <span class="n">reward</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">next_state</span><span class="p">])</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            <span class="n">td_error</span> <span class="o">=</span> <span class="n">td_target</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            <span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">td_error</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">return</span> <span class="n">Q</span>
+</code></pre></div>
+<p>The structure is simple: explore with probability <span class="arithmatex">\(\varepsilon\)</span>, exploit with probability <span class="arithmatex">\(1 - \varepsilon\)</span>. Observe a transition. Compute the TD target using the max over next-state Q-values. Update toward the target. Repeat. The contraction mapping guarantees that <span class="arithmatex">\(Q\)</span> converges to <span class="arithmatex">\(Q^*\)</span>.</p>
+<h2 id="the-chain-bellman-to-td-to-q">The Chain --- Bellman to TD to Q<a class="headerlink" href="#the-chain-bellman-to-td-to-q" title="Permanent link">&para;</a></h2>
+<p>The entire progression forms a clean hierarchy, each building on the previous:</p>
+<p><strong>Bellman Expected Update</strong> (model-based, evaluate a fixed policy):</p>
+<div class="arithmatex">\[
+V^\pi(s) \leftarrow R(s) + \gamma \sum_{s'} P(s'|s, \pi(s)) \cdot V^\pi(s')
+\]</div>
+<p><strong>Bellman Max Update</strong> (model-based, find optimal values --- value iteration):</p>
+<div class="arithmatex">\[
+V(s) \leftarrow R(s) + \gamma \max_a \sum_{s'} P(s'|s,a) \cdot V(s')
+\]</div>
+<p><strong>TD Evaluation</strong> (model-free, evaluate a fixed policy from samples):</p>
+<div class="arithmatex">\[
+V^\pi(s) \leftarrow V^\pi(s) + \alpha \left(R(s) + \gamma V^\pi(s') - V^\pi(s)\right)
+\]</div>
+<p><strong>Q-Learning</strong> (model-free, find optimal values from samples):</p>
+<div class="arithmatex">\[
+Q(s,a) \leftarrow Q(s,a) + \alpha \left(R(s) + \gamma \max_{a'} Q(s',a') - Q(s,a)\right)
+\]</div>
+<p>Each step in this chain relaxes an assumption. The Bellman expected update needs the full model and a fixed policy. The Bellman max update needs the full model but finds the optimal policy. TD drops the model requirement but needs a fixed policy. Q-learning drops both --- it's model-free and off-policy.</p>
+<p>But all four are rooted in the same contraction mapping principle. All four converge to the singularity --- the unique fixed point where every value is correct. The form changes; the mathematics doesn't. The singularity doesn't care how you walk toward it. It only cares that you keep walking.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sicun Gao, CSE 257, UCSD --- MDP and Reinforcement Learning lecture slides</li>
+<li><a href="../../../assets/math/mdp_bellman_update_proof.pdf">Bellman update contraction mapping proof notes</a></li>
+<li>
+<p><a href="../../../assets/math/mdp_q_algorithm.pdf">Q-Learning algorithm derivation</a></p>
+</li>
+<li>
+<p>Bellman, R. <strong>Dynamic Programming.</strong> Princeton University Press, 1957.</p>
+</li>
+<li>Watkins, C.J.C.H. &amp; Dayan, P. <strong>Q-Learning.</strong> <em>Machine Learning</em>, 1992.</li>
+<li>Sutton, R.S. &amp; Barto, A.G. <strong>Reinforcement Learning: An Introduction.</strong> MIT Press, 2018.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Kaiwen Bian – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/KevinBian107" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://kbian.org/" target="_blank" rel="noopener" title="Back to my website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+    
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.expand", "navigation.prune", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tooltips", "content.code.select", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+      
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../js/main.js"></script>
+      
+    
+  </body>
+</html>
