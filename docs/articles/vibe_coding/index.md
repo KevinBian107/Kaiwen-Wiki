@@ -1,6 +1,10 @@
 # Vibe Coding
 
-Explorations in vibe coding — building software by feel, intuition, and rapid iteration with AI tools. Sometimes the best way to build is to just start and let the code flow.
+> *"Vibe coding isn't witchcraft. It's meticulous planning."* — klöss
+
+Don't expect vibe coding to conjure black magic. Code agents can only do what you tell them to do — and in fact, they are *remarkably* good at their jobs when you know what you want. The real skill isn't prompting; it's thinking clearly before you prompt. What problem are you solving? What output do you expect to see? What are the potential failure modes, and what should the agent be checking for?
+
+Define the problem. Specify the output. Anticipate the pitfalls. The agent handles the rest.
 
 ---
 
