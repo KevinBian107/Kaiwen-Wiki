@@ -13,3 +13,6 @@ Define the problem. Specify the output. Anticipate the pitfalls. The agent handl
 
 - [**Why You Suck at Vibe Coding (Adapted)**](why_your_vibe_coding_sucks.md)
   *Adapted from klöss's comprehensive guide, rewritten for research and ML development workflows.*
+
+- [**Research Workflow in the AI Age**](research_workflow.md)
+  *Traditional vs. AI-driven research pipelines for building foundation neural models --- how the feedback loop compresses, the bottleneck shifts from execution to taste, and serial becomes parallel.*
