@@ -24,3 +24,6 @@ I find theoretical math and machine learning to be pretty fun. I think that good
 
 - [**Walking Towards Singularity in All Reality**](bellman.md)
   *From the Bellman equation to contraction mappings to Q-learning --- tracing how a simple recurrence converges to the singularity, the unique optimal value in the space of all possibilities.*
+
+- [**If the Universe Is the Answer, What Is the Question?**](haystack.md)
+  *In the AI era the inner loop of optimization is solved; the hard part is choosing the objective in the first place and verifying what you found. A functional-optimization view of science, research, and life.*
