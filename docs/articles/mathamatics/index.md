@@ -1,4 +1,10 @@
-# Machine Learning
+---
+hide:
+  - navigation
+  - toc
+---
+
+# Mathematics and Computations
 
 I find theoretical math and machine learning to be pretty fun. I think that good practical techniques that work well are derived from a theoretical root.
 
@@ -18,6 +24,9 @@ I find theoretical math and machine learning to be pretty fun. I think that good
 
 - [**From Random Walks to Generating Molecules**](graph_learning.md)
   *From random walks to graph transformers to hierarchical graph generation, tracing how the field learned to represent and generate graph-structured data.*
+
+- [**The Graph Hiding in the Ridges**](discrete_morse_graph.md)
+  *A graph can hide inside a cloud of points, in the ridges of the density it piles up into. Discrete Morse theory extracts those ridges as a skeleton, and persistence tells the real ones from noise.*
 
 - [**Optimism in the Face of Uncertainty**](ucb.md)
   *From the multi-armed bandit problem to AlphaGo, deriving the Upper Confidence Bound and why the mathematically optimal strategy for minimizing regret is to explore the unknown.*

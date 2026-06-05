@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 ## Formulation & Proof's Notes
 
 This is the section is for putting the hand written script of what I might put it into an article later.

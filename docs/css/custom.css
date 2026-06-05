@@ -281,3 +281,21 @@ body > .skiptranslate:first-child {
   display: none !important;
   height: 0 !important;
 }
+/* ============================================================
+   Article layout: no left navigation sidebar + table of contents
+   moved from the right to the left.
+   Pages opt in with `hide: navigation` front matter, which marks
+   the primary sidebar [hidden]; the :has() rule then flips the
+   secondary (TOC) sidebar to the left of the content.
+   ============================================================ */
+.md-main__inner:has(.md-sidebar--primary[hidden]) .md-sidebar--secondary {
+  order: -1;
+  margin-left: 0;
+  margin-right: 0.6rem;
+}
+
+/* On these pages the right margin is now empty; let the content
+   breathe a little rather than hugging the far right. */
+.md-main__inner:has(.md-sidebar--primary[hidden]) .md-content {
+  margin-right: auto;
+}

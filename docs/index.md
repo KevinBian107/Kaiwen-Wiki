@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 # Welcome to My Misc Page
@@ -14,7 +20,7 @@ Some perspectives and random thoughts I have on **Neuroscience**, **Mathematics*
 </a>
 
 <a href="articles/mathamatics/" style="flex: 1; min-width: 250px; padding: 1.5em; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; color: inherit; display: block; cursor: pointer; transition: box-shadow 0.2s;">
-<h3 style="margin-top: 0;">Machine Learning</h3>
+<h3 style="margin-top: 0;">Mathematics and Computations</h3>
 <p>Tracing the theoretical roots behind practical algorithms — from optimization and stochastic processes to graph learning and reinforcement.</p>
 </a>
 

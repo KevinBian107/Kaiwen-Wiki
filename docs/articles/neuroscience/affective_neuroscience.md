@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 <div class="wrapper">
   <div class="profile">
     <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">

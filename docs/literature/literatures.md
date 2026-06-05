@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 Stuff I find to be an interesting read... discussing novel ideas in mathematics, neuroscience, machine learning, or their intersections.  
 [My notes on literatures](../literature/notes.md)
 

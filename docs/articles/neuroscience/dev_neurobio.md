@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # What We Think Deternmines What We Can Think
 
 <div class="profile">

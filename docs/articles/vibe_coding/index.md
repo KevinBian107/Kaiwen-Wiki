@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # Vibe Coding
 
 > *"Vibe coding isn't witchcraft. It's meticulous planning."* — klöss

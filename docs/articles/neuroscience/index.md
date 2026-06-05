@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # Neuroscience
 
 The ability to be grounded, to sense, in itself is magnificent. Not discussing any of the cognitive part of the brain, just feeling the world, sensing that wind blowing against your face, listening to the drumbeat from that far ends of the road while hearing the man next to you yelling "Black berry! Strawberry!" with the words of your love ones, and seeing the sunshine shining on the people walking by, in itself, both computationally and perception wise, is amazing.

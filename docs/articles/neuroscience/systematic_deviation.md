@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Neural Adaptation With Cost: Systematic Balance Distortion
 
 <div class="wrapper">

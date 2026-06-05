@@ -171,7 +171,7 @@ nav:
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
     - What We Think Determines What We Can Think: articles/neuroscience/dev_neurobio.md
     - What You Think May Not Be What You Think: articles/neuroscience/out_of_helplessness.md
-  - Machine Learning:
+  - Mathematics and Computations:
     - articles/mathamatics/index.md
     - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
     - Constraints as Guidance, Not Hindrance: articles/mathamatics/constraint.md
@@ -179,6 +179,7 @@ nav:
     - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
     - Lend It Some Confidence: articles/mathamatics/confidence.md
     - From Random Walks to Generating Molecules: articles/mathamatics/graph_learning.md
+    - The Graph Hiding in the Ridges: articles/mathamatics/discrete_morse_graph.md
     - Optimism in the Face of Uncertainty: articles/mathamatics/ucb.md
     - Walking Towards Singularity in All Reality: articles/mathamatics/bellman.md
     - If the Universe Is the Answer, What Is the Question?: articles/mathamatics/haystack.md
