@@ -1,0 +1,1601 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Perspectives on Neuroscience, Mathematics, Machine Learning, and Vibe Coding">
+      
+      
+        <meta name="author" content="Kaiwen Bian">
+      
+      
+        <link rel="canonical" href="https://kbian.org/Kaiwen-Wiki/articles/mathamatics/discrete_morse_graph/">
+      
+      
+        <link rel="prev" href="../graph_learning/">
+      
+      
+        <link rel="next" href="../ucb/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/index/wiki_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>The Graph Hiding in the Ridges - Misc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-V7MWLE7LXW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-V7MWLE7LXW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-V7MWLE7LXW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-graph-hiding-in-a-density-field" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Misc" class="md-header__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Misc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Graph Hiding in the Ridges
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__translate">
+      <button class="translate-btn" onclick="toggleTranslate()" aria-label="Translate" title="Translate">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+      </button>
+      <div id="google_translate_element"></div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  My Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../neuroscience/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neuroscience
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Mathematics and Computations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vibe_coding/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vibe Coding
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../literature/notes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Misc" class="md-nav__button md-logo" aria-label="Misc" data-md-component="logo">
+      
+  <img src="../../../assets/index/wiki_logo.svg" alt="logo">
+
+    </a>
+    Misc
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Misc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../neuroscience/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neuroscience
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mathematics and Computations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Mathematics and Computations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitch on Convex Optimization Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constraint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints as Guidance, Not Hindrance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stochastic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unfolding Stochasticity Sequentially
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../confidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lend It Some Confidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Random Walks to Generating Molecules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Graph Hiding in the Ridges
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Graph Hiding in the Ridges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-graph-hiding-in-a-density-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Graph Hiding in a Density Field
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-smooth-picture-terrains-critical-points-ridges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Smooth Picture: Terrains, Critical Points, Ridges
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-combinatorial-discrete-morse-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Going Combinatorial: Discrete Morse Theory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-dimension-equals-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Dimension Equals Role
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-telling-real-ridges-from-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistence: Telling Real Ridges From Noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-algorithm-made-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Algorithm, Made Simple
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-a-clean-grid-to-a-raw-point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From a Clean Grid to a Raw Point Cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-it-is-trustworthy-the-guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It Is Trustworthy: The Guarantees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where It Is Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ucb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimism in the Face of Uncertainty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bellman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walking Towards Singularity in All Reality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../haystack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    If the Universe Is the Answer, What Is the Question?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../vibe_coding/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vibe Coding
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../literature/notes/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-graph-hiding-in-a-density-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Graph Hiding in a Density Field
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-smooth-picture-terrains-critical-points-ridges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Smooth Picture: Terrains, Critical Points, Ridges
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-combinatorial-discrete-morse-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Going Combinatorial: Discrete Morse Theory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-dimension-equals-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Dimension Equals Role
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-telling-real-ridges-from-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistence: Telling Real Ridges From Noise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-algorithm-made-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Algorithm, Made Simple
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-a-clean-grid-to-a-raw-point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From a Clean Grid to a Raw Point Cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-it-is-trustworthy-the-guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It Is Trustworthy: The Guarantees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where It Is Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>The Graph Hiding in the Ridges</h1>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="wrapper">
+  <div class="profile">
+    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <div class="profile-details">
+      <span class="name">Kaiwen Bian</span>
+      <span class="metadata">20 min read · Jun 4, 2026</span>
+    </div>
+  </div>
+</div>
+
+<p>Some structure does not announce itself. It hides. A road network does not arrive labeled as a graph --- it arrives as millions of GPS pings scattered across a city. A neuron does not arrive as a tree of branches --- it arrives as a faint, broken smear of intensity in a microscope volume. In both cases the object you actually want, <em>a clean one-dimensional graph</em>, is buried inside a cloud of points where some places are crowded and some are empty. The whole question of this article is: <strong>how do you read a graph back out of where the data piles up?</strong></p>
+<p>The answer is a beautiful one, and it has a single sentence at its center:</p>
+<blockquote>
+<p>Treat your data as a <strong>density field</strong> --- where are samples piled up? The structure you want to recover is the set of <strong>ridges</strong> of that density terrain. <strong>Discrete Morse theory</strong> is a robust, combinatorial way to extract those ridges as a graph, and <strong>persistence</strong> decides which ridges are real and which are noise.</p>
+</blockquote>
+<p>Everything below is an unpacking of that one sentence. We will build it up in layers: first the picture (a graph hiding in a terrain), then the smooth calculus version, then its robust combinatorial twin, then persistence as a noise filter, then the algorithm itself, and finally the version that runs on a raw point cloud in any dimension --- which is the one you would actually deploy. No topology background is assumed.</p>
+<h2 id="a-graph-hiding-in-a-density-field">A Graph Hiding in a Density Field<a class="headerlink" href="#a-graph-hiding-in-a-density-field" title="Permanent link">&para;</a></h2>
+<p>Imagine millions of GPS pings from cars in a city, each a point in <span class="arithmatex">\(\mathbb{R}^2\)</span>, and the goal of recovering the road network as an actual graph: intersections are nodes, roads are edges. Two facts make this <em>the</em> canonical problem, and they will recur in every other setting.</p>
+<ul>
+<li><strong>Roads are where pings pile up.</strong> Count pings per unit area and you get a <em>density field</em> <span class="arithmatex">\(\rho(x)\)</span>: high on roads, very high at busy intersections, low in the empty space between roads.</li>
+<li><strong>The data is messy.</strong> GPS scatters off the road (noise), and a highway gets far more pings than an adjacent side street (<em>non-uniform sampling</em>). So you cannot simply threshold <span class="arithmatex">\(\rho\)</span>: a cutoff high enough to kill the side-street noise also erases the side street itself.</li>
+</ul>
+<p>Now picture <span class="arithmatex">\(\rho\)</span> as the <strong>height</strong> of a terrain over the city map. Roads become <strong>mountain ridges</strong> of that terrain, busy intersections become <strong>peaks</strong>, and the empty blocks become <strong>valleys</strong>. The road network is exactly the ridge lines joining the peaks. That single reframing --- <strong><em>the hidden graph is the ridge set of the density terrain</em></strong> --- is the whole idea.</p>
+<p>And it is general. The same picture recovers neuronal branches from a microscopy image (where the density <em>is</em> the image intensity), or any other graph-like structure that its samples concentrate on. Once you start seeing data this way, "find the structure" becomes "find the ridges," and ridges are a thing mathematics knows how to chase.</p>
+<h2 id="the-smooth-picture-terrains-critical-points-ridges">The Smooth Picture: Terrains, Critical Points, Ridges<a class="headerlink" href="#the-smooth-picture-terrains-critical-points-ridges" title="Permanent link">&para;</a></h2>
+<p>Before the combinatorial machinery, here is the calculus picture, because it is where all the vocabulary comes from.</p>
+<p>Let <span class="arithmatex">\(\rho : \Omega \to \mathbb{R}\)</span> be a smooth density on a region <span class="arithmatex">\(\Omega \subseteq \mathbb{R}^2\)</span>. Its graph <span class="arithmatex">\(\{(x, \rho(x))\}\)</span> is a terrain. <strong>Critical points</strong> are where the terrain is flat, <span class="arithmatex">\(\nabla \rho(x) = 0\)</span>, and in 2D there are exactly three kinds:</p>
+<ul>
+<li><strong>maxima</strong> (peaks): busy intersections,</li>
+<li><strong>minima</strong> (valley bottoms): empty block centers,</li>
+<li><strong>saddles</strong> (passes): the low point along a ridge between two peaks.</li>
+</ul>
+<p>There is a number attached to each critical point, the <strong>index</strong>: the count of independent <em>downhill</em> directions (the number of negative eigenvalues of the Hessian). It is <span class="arithmatex">\(0\)</span> at a minimum, <span class="arithmatex">\(1\)</span> at a saddle, <span class="arithmatex">\(2\)</span> at a maximum. Hold onto this number --- in the discrete world it will become a <em>dimension</em>, and that coincidence is not an accident.</p>
+<p>An <strong>integral line</strong> is the path you trace by always following the gradient: drop a marble and let it roll, and it traces an integral line that starts and ends (in the limit) at critical points. The object we care about is the <strong>unstable 1-manifold of a saddle</strong>: the <em>two uphill lines</em> leaving it, each climbing to a peak. Glue these together over all saddles and you get the <strong>mountain-ridge network</strong>, threading peak <span class="arithmatex">\(\to\)</span> saddle <span class="arithmatex">\(\to\)</span> peak. That ridge network <em>is</em> the road graph.</p>
+<p>One sign-flip is worth pinning down now, because it shows up everywhere. It is algorithmically easier to compute the mirror-image <em>valley ridges</em> (saddle down to <em>minima</em>, called the <strong>stable 1-manifolds</strong>) than mountain ridges. So the algorithms run on <span class="arithmatex">\(f = -\rho\)</span> instead of <span class="arithmatex">\(\rho\)</span>. Flipping the sign turns peaks into pits and mountain ridges into valley ridges, so "mountain ridges of <span class="arithmatex">\(\rho\)</span>" equals "valley ridges of <span class="arithmatex">\(-\rho\)</span>." Whenever you later see <span class="arithmatex">\(-\rho\)</span> or "lower-star filtration with respect to <span class="arithmatex">\(-\rho\)</span>," this is all that is happening --- a computational convenience, nothing deeper.</p>
+<h2 id="going-combinatorial-discrete-morse-theory">Going Combinatorial: Discrete Morse Theory<a class="headerlink" href="#going-combinatorial-discrete-morse-theory" title="Permanent link">&para;</a></h2>
+<p>The smooth story needs derivatives and clean flow-lines. Real data has neither --- you have samples, not a function, and estimated gradients are noisy, especially in high dimensions. So the field replaced <em>all of it</em> with bookkeeping on a mesh. This is <strong>discrete Morse theory</strong>, due to Robin Forman (1998), and it is one of those rare reformulations that loses essentially nothing while needing no calculus at all.</p>
+<p>The data now lives on a <strong>simplicial complex</strong> <span class="arithmatex">\(K\)</span> built from the samples:</p>
+<ul>
+<li><strong>0-simplices</strong> = vertices (your sample points),</li>
+<li><strong>1-simplices</strong> = edges (pairs of points joined),</li>
+<li><strong>2-simplices</strong> = triangles (triples).</li>
+</ul>
+<p>For graph reconstruction you never need anything above triangles --- the "2-skeleton" is enough.</p>
+<p>The smooth gradient gets replaced by a <strong>discrete gradient vector field</strong> <span class="arithmatex">\(M(K)\)</span>, which is nothing more than a <em>pairing</em> of simplices (this is Forman's definition). It pairs each simplex <span class="arithmatex">\(\sigma^{p}\)</span> with one simplex <span class="arithmatex">\(\tau^{p+1}\)</span> exactly one dimension higher that contains it as a face --- a vertex with one of its edges, or an edge with one of its triangles --- subject to two rules: (1) <strong>every simplex appears in at most one pair</strong>, and (2) <strong>the pairs, read as arrows, never form a closed loop</strong> (no nontrivial cyclic V-path).</p>
+<p>Think of each pair as a small flow arrow pointing from the small simplex into the big one. A <strong>critical simplex</strong> is one left unpaired --- it is the discrete stand-in for a critical point. And here the index-becomes-dimension coincidence pays off exactly:</p>
+<div class="arithmatex">\[
+\underbrace{\text{critical vertex}}_{\text{index } 0} = \text{minimum}, \qquad
+\underbrace{\text{critical edge}}_{\text{index } 1} = \text{saddle}, \qquad
+\underbrace{\text{critical triangle}}_{\text{index } 2} = \text{maximum}.
+\]</div>
+<p>A <strong>V-path</strong> is the discrete flow-line: an alternating sequence of simplices following the arrows. The <strong>stable 1-manifold of a critical edge</strong> is then the discrete valley ridge --- the vertex-edge V-paths descending from that saddle edge down to critical vertices (minima). Those V-paths are precisely the ridges we are after.</p>
+<p>Finally, the one cleanup operation: <strong>Morse cancellation</strong>. If a critical pair <span class="arithmatex">\((\sigma, \tau)\)</span> is connected by a <em>unique</em> V-path, you can "cancel" them by reversing the arrows along that path, so neither stays critical. Cancelling deletes a pair of critical simplices and simplifies the ridge structure. The uniqueness matters --- cancellation is only legal when there is <em>exactly one</em> gradient V-path between the two cells, not merely when one exists. The entire denoising step is just "cancel the unimportant critical simplices," and the next two sections are about deciding which ones are unimportant.</p>
+<h2 id="why-dimension-equals-role">Why Dimension Equals Role<a class="headerlink" href="#why-dimension-equals-role" title="Permanent link">&para;</a></h2>
+<p>It is worth pausing on <em>why</em> vertex = min, edge = saddle, triangle = max, beyond the bookkeeping fact that dimension equals Morse index. There is a clean structural reason, and it makes the whole algorithm feel inevitable.</p>
+<p>A <span class="arithmatex">\(p\)</span>-simplex <strong>encodes a relationship among the <span class="arithmatex">\((p-1)\)</span>-simplices on its boundary</strong>. An edge's boundary is its two vertices, so an edge <em>is a relation between two vertices</em>. A triangle's boundary is its three edges, so a triangle <em>is a relation among three edges</em>. A vertex has empty boundary, so it relates nothing --- it just exists. (This "the boundary of a <span class="arithmatex">\(p\)</span>-thing is made of <span class="arithmatex">\((p-1)\)</span>-things" is the boundary operator <span class="arithmatex">\(\partial_p\)</span>, the backbone of homology.)</p>
+<p>Now overlay one fact from persistence. As the complex grows, each simplex entering is either <strong>positive</strong> --- it <em>creates</em> a new hole of its own dimension, a <em>birth</em> --- or <strong>negative</strong> --- it <em>destroys</em> a hole one dimension down, a <em>death</em>. Match that against what each dimension is even <em>capable</em> of:</p>
+<ul>
+<li><strong>Vertex: can only create.</strong> It has nothing below it to destroy, so a vertex is always positive --- it can only start a new connected component. A pure creator <span class="arithmatex">\(\Rightarrow\)</span> <strong>minimum</strong>.</li>
+<li><strong>Triangle: can only destroy</strong> (on a surface there is no 2-void to create), so a triangle only ever fills a loop. A pure destroyer <span class="arithmatex">\(\Rightarrow\)</span> <strong>maximum</strong>.</li>
+<li><strong>Edge: can do both.</strong> It is the only ambivalent object, the hinge between creation and destruction --- which is exactly what a <strong>saddle</strong> is.</li>
+</ul>
+<p>So the saddle being the edge is not arbitrary. A saddle is by nature the in-between critical point, and the edge is the only simplex that can be either creator or destroyer.</p>
+<p>This positive/negative split is exactly the two kinds of feature a graph skeleton carries: the <strong>negative edges</strong> assemble its tree structure --- the connections between peaks --- while the <strong>positive edges</strong> of high persistence are its independent loops, its <span class="arithmatex">\(H_1\)</span> cycles. We will see both fall straight out of the algorithm.</p>
+<h2 id="persistence-telling-real-ridges-from-noise">Persistence: Telling Real Ridges From Noise<a class="headerlink" href="#persistence-telling-real-ridges-from-noise" title="Permanent link">&para;</a></h2>
+<p>If you extracted <em>every</em> ridge you would get a hairball, because noise manufactures tiny spurious peaks and saddles everywhere. <strong>Persistent homology</strong> ranks features by how <em>robust</em> they are, so you can keep the real ones and cancel the rest. It is the part that turns a fragile heuristic into something principled.</p>
+<p><strong>Filtration.</strong> Flood the terrain from the bottom up. Formally, the <strong>lower-star filtration</strong> with respect to <span class="arithmatex">\(f = -\rho\)</span> adds simplices in order of increasing <span class="arithmatex">\(f\)</span> (equivalently, <em>decreasing density</em>):</p>
+<div class="arithmatex">\[
+\emptyset = K_0 \subset K_1 \subset \cdots \subset K_N = K,
+\]</div>
+<p>so <strong><em>dense regions enter first</em></strong>. As the flood rises, connected pieces are born and later merge, and loops are born and later filled.</p>
+<p><strong>Persistence value.</strong> Each topological feature gets a birth-death pair of simplices <span class="arithmatex">\((\sigma_b, \sigma_d)\)</span>, and its <strong>persistence</strong> measures how long it survived the flood:</p>
+<div class="arithmatex">\[
+\mathrm{pers}(\sigma_b, \sigma_d) \;=\; \bigl| \rho(\sigma_d) - \rho(\sigma_b) \bigr|.
+\]</div>
+<p>A feature with <strong>large</strong> persistence --- a peak that stood tall over a long range of heights, or a loop that stayed open for a long range --- is <strong>real structure</strong>. A feature with <strong>tiny</strong> persistence --- born and immediately killed --- is <strong>noise</strong>. This gives a single knob, a threshold <span class="arithmatex">\(\delta\)</span>: keep features with <span class="arithmatex">\(\mathrm{pers} &gt; \delta\)</span>, treat <span class="arithmatex">\(\mathrm{pers} \le \delta\)</span> as noise.</p>
+<p><strong>Persistence-guided cancellation.</strong> Now connect persistence back to Morse cancellation: process the critical pairs in increasing persistence order and cancel every pair with <span class="arithmatex">\(\mathrm{pers} \le \delta\)</span>. What remains are the saddles of <em>genuine</em> ridges, and tracing their stable 1-manifolds gives a clean graph. The threshold <span class="arithmatex">\(\delta\)</span> is <strong>the denoising dial</strong>: small <span class="arithmatex">\(\delta\)</span> keeps fine structure (and noise), large <span class="arithmatex">\(\delta\)</span> keeps only the boldest ridges.</p>
+<p>There is even a topological floor that makes this safe. The <strong>weak Morse inequalities</strong> say the number of surviving critical <span class="arithmatex">\(p\)</span>-simplices is at least the <span class="arithmatex">\(p\)</span>-th Betti number, <span class="arithmatex">\(c_p \ge \beta_p\)</span>. Two genuinely persistent basins <em>force</em> at least two critical minima to survive; a genuinely unfilled loop forces at least one critical edge to survive. You can simplify aggressively, but you cannot accidentally cancel away real topology --- persistence is exactly how you decide what counts as "real."</p>
+<h2 id="the-algorithm-made-simple">The Algorithm, Made Simple<a class="headerlink" href="#the-algorithm-made-simple" title="Permanent link">&para;</a></h2>
+<p>Here is the practical surprise, due to Dey, Wang &amp; Wang (2018): you <strong>never have to build or maintain the gradient vector field at all</strong>. The discrete gradient field is a proof device; the <em>output</em> can be read straight off the persistence pairing. That is what makes the method fast and easy to implement.</p>
+<div class="admonition example">
+<p class="admonition-title">Algorithm: DM-graph<span class="arithmatex">\((K, \rho, \delta)\)</span></p>
+<p><strong>Input:</strong> complex <span class="arithmatex">\(K\)</span>, density <span class="arithmatex">\(\rho\)</span> on its vertices, persistence threshold <span class="arithmatex">\(\delta\)</span>.
+<strong>Output:</strong> graph skeleton <span class="arithmatex">\(G_\delta\)</span>.</p>
+<ol>
+<li>Compute the persistence pairing <span class="arithmatex">\(P\)</span> from the lower-star filtration with respect to <span class="arithmatex">\(-\rho\)</span>.</li>
+<li>Let <span class="arithmatex">\(T_\delta = \{\text{negative edges } e \text{ with } \mathrm{pers}(e) \le \delta\}\)</span>. These edges form a <strong>forest</strong>; root each tree <span class="arithmatex">\(T\)</span> at its highest-density vertex, <span class="arithmatex">\(r(T) = \arg\min_{v \in T}\,(-\rho(v))\)</span>.</li>
+<li>For each <em>surviving</em> critical edge <span class="arithmatex">\(e = (u,v)\)</span> with <span class="arithmatex">\(\mathrm{pers}(e) &gt; \delta\)</span>, output <span class="arithmatex">\(e\)</span> together with the unique tree paths <span class="arithmatex">\(\pi_T\)</span> from its endpoints up to their roots:</li>
+</ol>
+<div class="arithmatex">\[
+G_\delta \;=\; \bigcup_{\substack{e=(u,v)\\ \mathrm{pers}(e) &gt; \delta}} \Bigl\{\, e \,\cup\, \pi_{T_u}\!\bigl(u, r(T_u)\bigr) \,\cup\, \pi_{T_v}\!\bigl(v, r(T_v)\bigr) \,\Bigr\}.
+\]</div>
+</div>
+<p>In words: each surviving saddle edge is connected, through unique tree paths, to the two density peaks it sits between --- and those tree paths <em>are</em> the stable 1-manifolds, the ridges, recovered without ever building the gradient field. The roots are the peaks (intersections), the surviving critical edges are the passes (roads), and stitching them together gives the graph. Steps 2 and 3 run in time linear in the number of vertices and edges.</p>
+<p>So the three ideas compose into one clean pipeline: <strong>density terrain <span class="arithmatex">\(\to\)</span> persistence ranks its ridges <span class="arithmatex">\(\to\)</span> keep the ridges above <span class="arithmatex">\(\delta\)</span>, traced as tree paths to peaks.</strong></p>
+<h2 id="from-a-clean-grid-to-a-raw-point-cloud">From a Clean Grid to a Raw Point Cloud<a class="headerlink" href="#from-a-clean-grid-to-a-raw-point-cloud" title="Permanent link">&para;</a></h2>
+<p>Everything so far assumed you already had a complex <span class="arithmatex">\(K\)</span> and a density living on it. That is true for an image --- pixels are the grid, intensity is the density. But often you have <em>neither</em>: only a bare point cloud <span class="arithmatex">\(P \subset \mathbb{R}^d\)</span>, possibly high-dimensional, with <strong>no density handed to you</strong>. Magee &amp; Wang (2022) close both gaps, and this is the version you would actually run.</p>
+<p><strong>Why the naive fix fails.</strong> The obvious plan --- build a <em>Rips complex</em> (join any two points closer than a radius <span class="arithmatex">\(r\)</span>, fill in triangles), estimate density by counting neighbors, run <code>DM-graph</code> --- breaks in four ways, and each failure motivates the real design:</p>
+<ul>
+<li>There is <strong>no single good radius <span class="arithmatex">\(r\)</span></strong>: too small and the shape disconnects; too large and you manufacture spurious loops of <em>infinite</em> persistence that <span class="arithmatex">\(\delta\)</span> cannot remove, and you lose resolution.</li>
+<li><strong>Non-uniform sampling</strong> means a dense highway and a sparse alley cannot share one <span class="arithmatex">\(r\)</span> --- the highway problem again.</li>
+<li>A usable <span class="arithmatex">\(r\)</span> makes the complex <strong>enormous</strong>, and persistence on a huge complex is slow.</li>
+<li><strong>Background noise</strong> gets bridged by the radius, connecting things that should stay separate.</li>
+</ul>
+<p><strong>A density built into the complex.</strong> The fix is to derive the density from the points themselves, via the <strong>distance-to-measure (DTM)</strong> weight. For each point <span class="arithmatex">\(p\)</span>, define a weight from its <span class="arithmatex">\(k\)</span> nearest neighbors:</p>
+<div class="arithmatex">\[
+w_p \;=\; \sqrt{\frac{1}{k} \sum_{q \,\in\, \mathrm{kNN}(p)} d_P(p,q)^2 }.
+\]</div>
+<p>This is the average distance to your <span class="arithmatex">\(k\)</span> nearest neighbors: <strong>small in dense regions, large in sparse regions.</strong> So <span class="arithmatex">\(w_p\)</span> is an <em>inverse density estimator</em>, and <span class="arithmatex">\(k\)</span> is the only density parameter. Bake it into the complex by giving each point a weighted radius <span class="arithmatex">\(r_p(\alpha) = \sqrt{\alpha^2 - w_p^2}\)</span> and letting a simplex <span class="arithmatex">\(\sigma = \{p_0, \dots, p_s\}\)</span> enter the filtration at scale</p>
+<div class="arithmatex">\[
+\rho_w(\sigma) \;=\; \min\Bigl\{ \alpha \;:\; w_{p_i} \le \alpha \ \text{ and } \ d_P(p_i, p_j) \le r_{p_i}(\alpha) + r_{p_j}(\alpha) \ \ \forall i \ne j \Bigr\}.
+\]</div>
+<p>The effect is that <strong><em>simplices spanned by higher-density points enter earlier</em></strong> --- the same "dense first" ordering as the lower-star filtration, now derived directly from the points. Sweeping all scales at once, rather than fixing one radius <span class="arithmatex">\(r\)</span>, dissolves the radius, sampling, and noise problems together. A <strong>sparsified</strong> version <span class="arithmatex">\(\widehat{\mathcal{F}}_{\rho_w}(\varepsilon)\)</span> with parameter <span class="arithmatex">\(\varepsilon\)</span> then keeps the size manageable.</p>
+<div class="admonition example">
+<p class="admonition-title">Algorithm: DM-PCD<span class="arithmatex">\((P, k, \varepsilon, \delta)\)</span></p>
+<ol>
+<li>Build the sparse weighted (DTM) Rips filtration <span class="arithmatex">\(\widehat{\mathcal{F}}_{\rho_w}(\varepsilon)\)</span> using <span class="arithmatex">\(k\)</span> (density weights) and <span class="arithmatex">\(\varepsilon\)</span> (sparsification).</li>
+<li>Run the generalized <code>DM-graph</code> on that filtration with threshold <span class="arithmatex">\(\delta\)</span>.</li>
+</ol>
+</div>
+<p>Three parameters, all now meaningful: <span class="arithmatex">\(k\)</span> (density neighborhood, paper default <span class="arithmatex">\(15\)</span>), <span class="arithmatex">\(\varepsilon\)</span> (sparsification, trades exactness for speed, common default <span class="arithmatex">\(0.99\)</span>), and <span class="arithmatex">\(\delta\)</span> (the persistence / denoising dial from before, problem-dependent).</p>
+<p>It is worth resolving the "density" versus "inverse density" wording while we are here, since it trips people up. The DTM weight <span class="arithmatex">\(w_p\)</span> is <em>large</em> where points are sparse, so it is literally an inverse density, and the filtration is ordered by it. The smooth algorithm equivalently runs on <span class="arithmatex">\(f = -\rho\)</span>. In both cases the governing scalar is <em>small where data is dense</em>, so dense regions flood first. The object of interest is always just the <strong>density field</strong>; whether you phrase the construction through <span class="arithmatex">\(\rho\)</span>, through <span class="arithmatex">\(-\rho\)</span>, or through the inverse-density weight is an internal convention of the filtration, not a different method.</p>
+<h2 id="why-it-is-trustworthy-the-guarantees">Why It Is Trustworthy: The Guarantees<a class="headerlink" href="#why-it-is-trustworthy-the-guarantees" title="Permanent link">&para;</a></h2>
+<p>Two theorems lift this from "a heuristic that seems to work" to "a method with proofs."</p>
+<p><strong>Topology preserved under noise (Dey--Wang--Wang).</strong> Define an honest noise model. Call <span class="arithmatex">\(\rho\)</span> a <span class="arithmatex">\((\beta, \nu, \omega)\)</span>-approximation of a connected graph <span class="arithmatex">\(G\)</span> if there is an <span class="arithmatex">\(\omega\)</span>-thick tube <span class="arithmatex">\(G^\omega\)</span> around <span class="arithmatex">\(G\)</span> that deformation-retracts to <span class="arithmatex">\(G\)</span>, the density is in <span class="arithmatex">\([\beta, \beta+\nu]\)</span> inside the tube and in <span class="arithmatex">\([0, \nu]\)</span> outside it, with a clear signal-to-noise gap <span class="arithmatex">\(\beta &gt; 2\nu\)</span>. Then for any threshold <span class="arithmatex">\(\delta \in [\nu, \beta - \nu)\)</span> --- an interval that is nonempty <em>precisely because</em> <span class="arithmatex">\(\beta &gt; 2\nu\)</span> --- the reconstruction <span class="arithmatex">\(\widehat{G}\)</span> lies inside the <span class="arithmatex">\(\omega\)</span>-neighborhood of <span class="arithmatex">\(G\)</span> and has the <strong>same first Betti number</strong> <span class="arithmatex">\(\beta_1\)</span>. In the planar case this strengthens all the way to homotopy equivalence (<span class="arithmatex">\(G^\omega\)</span> deformation-retracts to both <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(\widehat{G}\)</span>). Informally: if the density genuinely concentrates on the hidden graph with a clear margin, the output is geometrically close and topologically correct.</p>
+<p><strong>Optimal loops (Magee--Wang, Theorem 3.5).</strong> The generalized algorithm's output <span class="arithmatex">\(G_\delta\)</span> contains a <strong>lexicographically-optimal persistent cycle basis</strong> for the loops of persistence <span class="arithmatex">\(&gt; \delta\)</span>, and its first Betti number equals the number of those loops. "Lex-optimal" is defined with respect to the <em>filtration order</em>: among all the ways to draw a given loop, it picks the one whose edges come in <em>as early as possible</em>. And because, under the DTM weighting, the earliest edges are exactly those spanned by the highest-density points, the algorithm draws each loop <strong>hugging the densest, most reliable data</strong> rather than taking an arbitrary detour.</p>
+<p>Together: if the data really does concentrate on a structure with a clear margin, the recovered skeleton is geometrically close, topologically correct, and the loops it reports are the persistence-optimal, highest-density ones.</p>
+<h2 id="where-it-is-used">Where It Is Used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<p><strong>Road networks</strong> (Wang--Wang--Li, 2015). The origin of the method and the source of all the road/ridge vocabulary: GPS samples give a density field, Morse ridges give road centerlines, and persistence simplification removes spurious branches --- while Morse theory copes with the non-uniform-sampling problem inside one unified framework. If the opening section made sense, you already have the gist.</p>
+<p><strong>Neuron tracing</strong> (Banerjee et al., 2020). In microscopy volumes the density field is the image intensity (or a network's pixel-probability map), and neuronal branches are its ridges. A pixelwise classifier is locally accurate but will happily break a single neuron into disconnected blobs across a faint gap, because it has <em>no notion of global connectivity</em>. The DM-graph supplies a <strong>topological prior</strong>: it enforces that the traced structure is a connected graph with the right branch and loop topology, exactly the long-range connectivity the pixel classifier misses. Fused with an encoder--decoder network it beats either part alone. The general lesson: <strong><em>DM-graph is most valuable precisely when connectivity and topology matter more than per-point labels.</em></strong></p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>What I find genuinely beautiful here is the move at the very start, before any theorem: the decision to stop looking at the <em>points</em> and start looking at <em>where the points pile up</em>. A point cloud has no shape --- it is just a set. But the density it induces has a terrain, and a terrain has ridges, and ridges have a graph. The structure was never in the data; it was in the <em>accumulation</em> of the data. Discrete Morse theory is the apparatus that makes "accumulation" into something you can compute on without derivatives, and persistence is the apparatus that tells you which accumulations to believe.</p>
+<p>There is a quiet lesson in that, beyond the algorithm. The naive instinct --- threshold the density, keep the dense stuff, drop the rest --- fails for a precise reason: a global cutoff cannot tell a faint-but-real side street from faint-but-spurious noise, because <em>faintness is not the signal</em>. The signal is <strong>persistence</strong>: how stubbornly a feature survives as you sweep the whole range of scales at once. The honest move is never to pick one scale; it is to look across all of them and ask which structures refuse to die. That is a good habit for far more than graph reconstruction.</p>
+<p>And the topology is a <em>prior</em>, not an afterthought. A per-point classifier optimizes each pixel and forgets that a neuron is one connected thing; the density-ridge view never forgets, because connectivity is the object it is built from. Whenever the thing you care about is the <em>shape of how parts connect</em> --- a road map, a neuron, a trajectory through some latent space --- the right unit of analysis is not the point but the ridge it lives on. The graph was hiding in the density the whole time. You just have to know that ridges are where to look.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>The framing here comes largely from the work and teaching of <strong><em>Yusu Wang</em></strong> (UC San Diego), whose group is behind most of the discrete-Morse graph-reconstruction line below.</p>
+<ol>
+<li>S. Wang, Y. Wang, Y. Li. <strong>Efficient Map Reconstruction and Augmentation via Topological Methods</strong>. <em>Proc. 23<sup>rd</sup> ACM SIGSPATIAL</em>, 2015.</li>
+<li>T. K. Dey, J. Wang, Y. Wang. <strong>Graph Reconstruction by Discrete Morse Theory</strong>. <em>34<sup>th</sup> Symp. on Computational Geometry (SoCG)</em>, 31:1--31:15, 2018. (<a href="https://arxiv.org/abs/1803.05093">arXiv:1803.05093</a>)</li>
+<li>L. Magee, Y. Wang. <strong>Graph Skeletonization of High-Dimensional Point Cloud Data via Topological Method</strong>. <em>Journal of Computational Geometry</em>, 13(1):429--470, 2022. (<a href="https://arxiv.org/abs/2109.07606">arXiv:2109.07606</a>)</li>
+<li>S. Banerjee et al. <strong>Semantic Segmentation of Microscopic Neuroanatomical Data by Combining Topological Priors with Encoder--Decoder Deep Networks</strong>. <em>Nature Machine Intelligence</em>, 2:585--594, 2020.</li>
+<li>R. Forman. <strong>Morse Theory for Cell Complexes</strong>. <em>Advances in Mathematics</em>, 134(1):90--145, 1998.</li>
+<li>F. Chazal, D. Cohen-Steiner, Q. Mérigot. <strong>Geometric Inference for Probability Measures</strong>. <em>Foundations of Computational Mathematics</em>, 11(6):733--751, 2011.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Kaiwen Bian – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/KevinBian107" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://kbian.org/" target="_blank" rel="noopener" title="Back to my website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+    
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.expand", "navigation.prune", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tooltips", "content.code.select", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+      
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../js/main.js"></script>
+      
+    
+  </body>
+</html>
