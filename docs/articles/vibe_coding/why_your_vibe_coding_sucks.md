@@ -5,7 +5,7 @@ hide:
 
 <div class="wrapper">
   <div class="profile">
-    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <img src="../../../assets/index/profile.png" alt="Profile Picture">
     <div class="profile-details">
       <span class="name">Kaiwen Bian</span>
       <span class="metadata">25 min read · Mar 16, 2026</span>
@@ -409,4 +409,3 @@ The AI doesn't need to be smarter. You need to be more structured. Write down wh
 ## References
 
 - [klöss (@kloss_xyz) — Why You Suck at Vibe Coding](https://x.com/kloss_xyz/status/2018097344345223455) — the original article this piece is adapted from
-- [Structured Vibe Coding with Claude Code Agents](structured_agentic_vibe_coding.md) — the agent architecture and workflow for implementing these ideas with Claude Code

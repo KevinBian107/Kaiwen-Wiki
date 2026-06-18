@@ -1,5 +1,5 @@
 site_name: Misc
-site_description: Perspectives on Neuroscience, Mathematics, Machine Learning, and Vibe Coding
+site_description: Perspectives on Neuroscience and Cognition, Mathematics, Machine Learning, Vibe Coding and AI Agents
 site_author: Kaiwen Bian
 site_url: https://kbian.org/Kaiwen-Wiki/
 # repo_url: https://github.com/KevinBian107/Kaiwen-Wiki
@@ -8,7 +8,7 @@ theme:
   name: material
   custom_dir: docs/overrides
   logo: assets/index/wiki_logo.svg
-  favicon: assets/index/wiki_logo.svg
+  favicon: assets/index/wiki_logo_favicon.svg
   icon:
     repo: fontawesome/brands/github
 
@@ -152,9 +152,12 @@ extra_javascript:
   - https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - js/main.js
+  - js/sections.js
 
 extra_css:
   - css/custom.css
+  - css/figures.css
+  - css/sections.css
 
 copyright: >
   Copyright &copy; 2024 Kaiwen Bian –
@@ -162,7 +165,30 @@ copyright: >
 
 nav:
   - My Misc: index.md
-  - Neuroscience:
+  - Mathematics and Computations:
+    - articles/mathamatics/index.md
+    - Optimization & Its Many Faces:
+      - Every Algorithm Is a Twitch on Taylor's Theorem: articles/mathamatics/optimization.md
+      - Constraints as Guidance, Not Hindrance: articles/mathamatics/constraint.md
+      # - Building Everything From Sets: articles/mathamatics/point_set_topology.md
+      - If the Universe Is the Answer, What Is the Question?: articles/mathamatics/haystack.md
+    - Probability & Statistics:
+      - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
+      - Lend It Some Confidence: articles/mathamatics/confidence.md
+    - Graphs & Geometry:
+      - From Random Walks to Generating Molecules: articles/mathamatics/graph_learning.md
+      - The Graph Hiding in the Ridges: articles/mathamatics/discrete_morse_graph.md
+    - Sequential Decision-Making:
+      - Optimism in the Face of Uncertainty: articles/mathamatics/ucb.md
+      - Walking Towards Singularity in All Reality: articles/mathamatics/bellman.md
+  - Vibe Coding and AI Agents:
+    - articles/vibe_coding/index.md
+    - Why You Suck at Vibe Coding: articles/vibe_coding/why_your_vibe_coding_sucks.md
+    - Structured Vibe Coding: articles/vibe_coding/structured_agentic_vibe_coding.md
+    - How Autonomous Agents Should Be Built: articles/vibe_coding/autonomous_agents.md
+    - Building Agents With Better Human Preference: articles/vibe_coding/agent_taste.md
+    - Research Workflow in the AI Age: articles/vibe_coding/research_workflow.md
+  - Neuroscience and Cognition:
     - articles/neuroscience/index.md
     - Comprehensive Notes on Neuroscience: articles/neuroscience/comprehensive_neuroscience.md
     - Cognitive Neuroscience's Perspective: articles/neuroscience/cognitive_brain.md
@@ -171,23 +197,6 @@ nav:
     - Neural Adaptation With Cost: articles/neuroscience/systematic_deviation.md
     - What We Think Determines What We Can Think: articles/neuroscience/dev_neurobio.md
     - What You Think May Not Be What You Think: articles/neuroscience/out_of_helplessness.md
-  - Mathematics and Computations:
-    - articles/mathamatics/index.md
-    - Twitch on Convex Optimization Theory: articles/mathamatics/optimization.md
-    - Constraints as Guidance, Not Hindrance: articles/mathamatics/constraint.md
-    # - Building Everything From Sets: articles/mathamatics/point_set_topology.md
-    - Unfolding Stochasticity Sequentially: articles/mathamatics/stochastic.md
-    - Lend It Some Confidence: articles/mathamatics/confidence.md
-    - From Random Walks to Generating Molecules: articles/mathamatics/graph_learning.md
-    - The Graph Hiding in the Ridges: articles/mathamatics/discrete_morse_graph.md
-    - Optimism in the Face of Uncertainty: articles/mathamatics/ucb.md
-    - Walking Towards Singularity in All Reality: articles/mathamatics/bellman.md
-    - If the Universe Is the Answer, What Is the Question?: articles/mathamatics/haystack.md
-  - Vibe Coding:
-    - articles/vibe_coding/index.md
-    - Structured Vibe Coding with Claude Code Agents: articles/vibe_coding/structured_agentic_vibe_coding.md
-    - Why You Suck at Vibe Coding (Adapted): articles/vibe_coding/why_your_vibe_coding_sucks.md
-    - Research Workflow in the AI Age: articles/vibe_coding/research_workflow.md
-  - Notes:
-    - Notes: literature/notes.md
+  # - Notes:                                  # hidden from nav (files kept on disk under docs/literature/)
+  #   - Notes: literature/notes.md
 

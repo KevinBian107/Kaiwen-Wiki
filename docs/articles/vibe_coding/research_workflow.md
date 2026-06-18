@@ -5,7 +5,7 @@ hide:
 
 <div class="wrapper">
   <div class="profile">
-    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <img src="../../../assets/index/profile.png" alt="Profile Picture">
     <div class="profile-details">
       <span class="name">Kaiwen Bian</span>
       <span class="metadata">30 min read · Mar 28, 2026</span>
@@ -305,11 +305,4 @@ AI inverts this. When implementation is cheap and fast, the optimal strategy shi
 The researchers who will define the next generation of foundation models aren't the ones who can write the most PyTorch. They're the ones who can ask the best questions, choose the most promising directions, and iterate on ideas with the speed and rigor that AI tools now make possible. The tools don't make you a better researcher. But if you're already a good researcher, they let you be the researcher you always could have been --- unconstrained by the serial, slow, expensive pipeline that used to be the only option.
 
 The pipeline has changed. The science hasn't. That's the point.
-
----
-
-## References
-
-- [Structured Vibe Coding with Claude Code Agents](structured_agentic_vibe_coding.md) --- the agent architecture for AI-driven implementation
-- [Why You Suck at Vibe Coding (Adapted)](why_your_vibe_coding_sucks.md) --- the documentation system and structured workflow
 

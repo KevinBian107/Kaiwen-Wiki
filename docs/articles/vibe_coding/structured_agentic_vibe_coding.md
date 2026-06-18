@@ -5,7 +5,7 @@ hide:
 
 <div class="wrapper">
   <div class="profile">
-    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <img src="../../../assets/index/profile.png" alt="Profile Picture">
     <div class="profile-details">
       <span class="name">Kaiwen Bian</span>
       <span class="metadata">20 min read · Mar 16, 2026</span>
@@ -483,12 +483,6 @@ check /vqvae_jax/outputs/wandb/latest-run to see the actual outputs logging.
 8. **Capture retrospectives** — the failed attempts table prevents repeating mistakes across sessions.
 
 ---
-
-## Next Steps and Further Reading
-
-- [**Why You Suck at Vibe Coding (Adapted)**](why_your_vibe_coding_sucks.md) — klöss's documentation-first approach adapted for research and ML development workflows.
-- [**Propel**](https://github.com/KevinBian107/propel) — a structured constraint framework for guiding Claude Code through research workflows using verification gates, domain-specific auditors, and human-in-the-loop checkpoints across three operational modes (Researcher, Engineer, Trainer).
-- [**Why You Suck at Vibe Coding (Original)**](https://x.com/kloss_xyz/status/2018097344345223455) by klöss — the original comprehensive guide covering the six canonical documents, coding vocabulary, and the full system for software engineering pipelines.
 
 ## References
 

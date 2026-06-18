@@ -1,0 +1,177 @@
+/* ============================================================
+   Section landing "explorer"
+   A two-pane layout for the section index pages (Vibe Coding,
+   Mathematics, Neuroscience): a list of articles on the left and
+   a sticky live preview on the right that updates on hover/focus.
+   Colours come from Material's CSS variables so it adapts to the
+   light/dark toggle automatically. Collapses to stacked cards on
+   narrow screens (preview hidden, descriptions shown in full).
+   ============================================================ */
+
+.md-typeset .article-explorer {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.6rem;
+  margin: 1.6rem 0 1rem;
+  align-items: start;
+}
+
+/* ---------- left: the list ---------- */
+.md-typeset .article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.md-typeset .article-group {
+  margin: 1.15rem 0 0.25rem;
+  padding: 0 0.25rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .article-group:first-child { margin-top: 0; }
+
+.md-typeset a.article-item {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: 0.55rem;
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              transform 0.12s ease;
+}
+.md-typeset a.article-item:hover,
+.md-typeset a.article-item.is-active {
+  background-color: var(--md-code-bg-color);
+  border-color: var(--md-default-fg-color--lightest);
+  border-left-color: var(--md-default-fg-color);
+  transform: translateX(2px);
+}
+.md-typeset .article-item__title {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.md-typeset .article-item__desc {
+  margin-top: 0.15rem;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--md-default-fg-color--light);
+  /* one line on desktop — the preview pane carries the full text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/* ---------- right: the sticky preview ---------- */
+.md-typeset .article-preview {
+  position: sticky;
+  top: 4.8rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background-color: var(--md-default-bg-color);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+}
+.md-typeset .article-preview__accent {
+  height: 6px;
+  background: linear-gradient(90deg, #52525b, #18181b);
+}
+.md-typeset .article-preview__body {
+  padding: 1.5rem 1.6rem 1.7rem;
+}
+.md-typeset .article-preview__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color);
+  background: rgba(113, 113, 122, 0.16);
+}
+.md-typeset .article-preview__title {
+  margin: 0 0 0.55rem;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--md-default-fg-color);
+}
+.md-typeset .article-preview__desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset a.article-preview__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.4rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #3f3f46, #18181b);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.md-typeset a.article-preview__link:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ---------- responsive: stack to cards, drop the preview ---------- */
+@media screen and (max-width: 59.9375em) {
+  .md-typeset .article-explorer {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .md-typeset .article-preview { display: none; }
+  .md-typeset a.article-item {
+    background-color: var(--md-code-bg-color);
+    border-color: var(--md-default-fg-color--lightest);
+    margin-bottom: 0.2rem;
+  }
+  .md-typeset a.article-item:hover {
+    transform: none;
+  }
+  .md-typeset .article-item__desc { -webkit-line-clamp: 3; }
+}
+
+/* ---------- home page section cards ---------- */
+.md-typeset .home-card {
+  flex: 1;
+  min-width: 250px;
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+  background: var(--md-default-bg-color);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.md-typeset .home-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--md-default-fg-color);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+.md-typeset .home-card h3 { margin-top: 0; margin-bottom: 0.4rem; }
+.md-typeset .home-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--md-default-fg-color--light);
+}

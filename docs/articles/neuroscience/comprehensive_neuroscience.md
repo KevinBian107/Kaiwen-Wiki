@@ -5,7 +5,7 @@ hide:
 
 <div class="wrapper">
   <div class="profile">
-    <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+    <img src="../../../assets/index/profile.png" alt="Profile Picture">
     <div class="profile-details">
       <span class="name">Kaiwen Bian</span>
       <span class="metadata">10 min read · Apr 16, 2025</span>

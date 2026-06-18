@@ -6,7 +6,7 @@ hide:
 # What We Think Deternmines What We Can Think
 
 <div class="profile">
-  <img src="../../../assets/index/profile_pic.jpeg" alt="Profile Picture">
+  <img src="../../../assets/index/profile.png" alt="Profile Picture">
   <div class="profile-details">
     <span class="name">Kaiwen Bian</span>
     <span class="metadata">10 min read · Aug 20, 2024</span>
