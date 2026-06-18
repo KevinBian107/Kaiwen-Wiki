@@ -1120,14 +1120,30 @@
 </div>
 
 <p>Here are the load-bearing pieces.</p>
-<p><strong>Tool orchestration.</strong> The model can only affect the world through tools — reading files, running code, hitting a browser, querying a database. Orchestration is deciding which tools exist, how they're described, and how their outputs flow back in. Anthropic's long-running coding agent, for instance, drives a real browser through Puppeteer to test its own work end-to-end rather than trusting that the code "looks right."<sup id="fnref2:young"><a class="footnote-ref" href="#fn:young">1</a></sup></p>
-<p><strong>State and context persistence.</strong> A model has no memory between context windows. If your task is longer than one window — and any genuinely autonomous task is — you need an external memory the agent writes to and reads back. The simplest version that works astonishingly well is a plain progress log: Anthropic's harness keeps a <code>claude-progress.txt</code> file recording what's been done so the next session knows where to pick up.<sup id="fnref3:young"><a class="footnote-ref" href="#fn:young">1</a></sup> This is the same idea as the <code>progress.txt</code> and scratch READMEs from the <a href="../why_your_vibe_coding_sucks/">structured workflow</a> — external memory is external memory whether a human or an agent is the one resuming.</p>
-<p><strong>Task decomposition.</strong> Don't ask for the whole thing at once. Ask for one feature, finished and verified, then the next. Anthropic's agent works <em>"one feature at a time,"</em> and the design-focused harness breaks work into sprints where each sprint negotiates <em>"what done looks like"</em> before any code is written.<sup id="fnref:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> Decomposition is what keeps scope from quietly ballooning.</p>
-<p><strong>Verification loops.</strong> This is the difference between an agent that <em>claims</em> it's done and one that <em>is</em> done. The harness forces the agent to check its own work against something concrete before moving on — Anthropic's instruction is blunt: <em>"Self-verify all features. Only mark features as 'passing' after careful testing."</em><sup id="fnref4:young"><a class="footnote-ref" href="#fn:young">1</a></sup> The verification has to bite, which is exactly why the next piece matters.</p>
-<p><strong>Subagents.</strong> Not every job should be done by the same agent in the same context. A read-only auditor, a testing agent, a cleanup agent, a separate evaluator — each gets a clean window and a narrow mandate. Anthropic's design harness uses a three-agent split — a planner, a generator, and an evaluator — precisely because <em>"separating the evaluator from the generator"</em> is more tractable than asking one agent to both produce work and judge it honestly.<sup id="fnref2:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup></p>
+<ul>
+<li>
+<p><strong>Tool orchestration.</strong> The model can only affect the world through tools — reading files, running code, hitting a browser, querying a database. Orchestration is deciding which tools exist, how they're described, and how their outputs flow back in. Anthropic's long-running coding agent, for instance, drives a real browser through Puppeteer to test its own work end-to-end rather than trusting that the code "looks right."<sup id="fnref4:young"><a class="footnote-ref" href="#fn:young">1</a></sup></p>
+</li>
+<li>
+<p><strong>State and context persistence.</strong> A model has no memory between context windows. If your task is longer than one window — and any genuinely autonomous task is — you need an external memory the agent writes to and reads back. The simplest version that works astonishingly well is a plain progress log: Anthropic's harness keeps a <code>claude-progress.txt</code> file recording what's been done so the next session knows where to pick up.<sup id="fnref5:young"><a class="footnote-ref" href="#fn:young">1</a></sup> This is the same idea as the <code>progress.txt</code> and scratch READMEs from the <a href="../why_your_vibe_coding_sucks/">structured workflow</a> — external memory is external memory whether a human or an agent is the one resuming.</p>
+</li>
+<li>
+<p><strong>Task decomposition.</strong> Don't ask for the whole thing at once. Ask for one feature, finished and verified, then the next. Anthropic's agent works <em>"one feature at a time,"</em> and the design-focused harness breaks work into sprints where each sprint negotiates <em>"what done looks like"</em> before any code is written.<sup id="fnref6:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> Decomposition is what keeps scope from quietly ballooning.</p>
+</li>
+<li>
+<p><strong>Verification loops.</strong> This is the difference between an agent that <em>claims</em> it's done and one that <em>is</em> done. The harness forces the agent to check its own work against something concrete before moving on — Anthropic's instruction is blunt: <em>"Self-verify all features. Only mark features as 'passing' after careful testing."</em><sup id="fnref6:young"><a class="footnote-ref" href="#fn:young">1</a></sup> The verification has to bite, which is exactly why the next piece matters.</p>
+</li>
+<li>
+<p><strong>Subagents.</strong> Not every job should be done by the same agent in the same context. A read-only auditor, a testing agent, a cleanup agent, a separate evaluator — each gets a clean window and a narrow mandate. Anthropic's design harness uses a three-agent split — a planner, a generator, and an evaluator — precisely because <em>"separating the evaluator from the generator"</em> is more tractable than asking one agent to both produce work and judge it honestly.<sup id="fnref7:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup></p>
+</li>
+<li>
 <p><strong>Permission sandboxing.</strong> Autonomy without guardrails is just a faster way to do damage. The harness defines what the agent is allowed to touch — which commands run without asking, which never run at all — so it can move fast inside a fenced yard. Never hand an unsupervised loop a blanket <code>rm -rf</code>.</p>
+</li>
+<li>
 <p><strong>A review / check-back mechanism.</strong> Something — a gate, a test suite, a human at a checkpoint, another agent — has to be able to say "no, not yet" and send the work back. An agent with no path back to its own output just accumulates plausible-looking mistakes.</p>
-<p>Each of these exists for a reason, and the reason is always the same: <em>every component in a harness encodes an assumption about what the model can't do on its own.</em><sup id="fnref3:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> That sentence is the whole design philosophy in one line, and it has a sharp corollary we'll come back to at the end.</p>
+</li>
+</ul>
+<p>Each of these exists for a reason, and the reason is always the same: <em>every component in a harness encodes an assumption about what the model can't do on its own.</em><sup id="fnref:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> That sentence is the whole design philosophy in one line, and it has a sharp corollary we'll come back to at the end.</p>
 <hr />
 <h2 id="the-long-horizon-problem">The Long-Horizon Problem<a class="headerlink" href="#the-long-horizon-problem" title="Permanent link">&para;</a></h2>
 <p>Why is any of this necessary? Because the failure modes of a model running by itself for a long time are specific, repeatable, and not the ones you'd guess. The whole game is what happens as the task stretches across context windows:</p>
@@ -1150,10 +1166,10 @@
 </div>
 
 <ul>
-<li><strong>Objective drift.</strong> Over a long enough horizon, the agent slowly forgets what it was actually for. It starts polishing the wrong thing, or — more insidiously — it <em>"declare[s] the job done"</em> prematurely because finishing feels like progress.<sup id="fnref5:young"><a class="footnote-ref" href="#fn:young">1</a></sup> You set it loose for a day and come back to something confidently complete and subtly wrong.</li>
-<li><strong>Context anxiety.</strong> As the window fills up, some models get visibly nervous about running out of room and start wrapping up early, cutting corners to "make it fit."<sup id="fnref5:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> The work degrades not because the task got harder but because the agent can see the edge of its own memory approaching.</li>
-<li><strong>Running out of context mid-task.</strong> Without persistence, hitting the window limit halfway through an implementation leaves you with something <em>"half-implemented and undocumented"</em> — worse than not starting.<sup id="fnref6:young"><a class="footnote-ref" href="#fn:young">1</a></sup></li>
-<li><strong>Self-evaluation bias.</strong> Agents consistently overrate their own output, especially on anything subjective where there's no binary pass/fail.<sup id="fnref6:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> An agent asked "is this good?" will almost always say yes. This is why verification has to come from outside the agent doing the work.</li>
+<li><strong>Objective drift.</strong> Over a long enough horizon, the agent slowly forgets what it was actually for. It starts polishing the wrong thing, or — more insidiously — it <em>"declare[s] the job done"</em> prematurely because finishing feels like progress.<sup id="fnref2:young"><a class="footnote-ref" href="#fn:young">1</a></sup> You set it loose for a day and come back to something confidently complete and subtly wrong.</li>
+<li><strong>Context anxiety.</strong> As the window fills up, some models get visibly nervous about running out of room and start wrapping up early, cutting corners to "make it fit."<sup id="fnref3:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> The work degrades not because the task got harder but because the agent can see the edge of its own memory approaching.</li>
+<li><strong>Running out of context mid-task.</strong> Without persistence, hitting the window limit halfway through an implementation leaves you with something <em>"half-implemented and undocumented"</em> — worse than not starting.<sup id="fnref3:young"><a class="footnote-ref" href="#fn:young">1</a></sup></li>
+<li><strong>Self-evaluation bias.</strong> Agents consistently overrate their own output, especially on anything subjective where there's no binary pass/fail.<sup id="fnref4:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> An agent asked "is this good?" will almost always say yes. This is why verification has to come from outside the agent doing the work.</li>
 </ul>
 <p>None of these are model-quality problems. A smarter model drifts more eloquently. They are <em>harness</em> problems, and they're solved with harness machinery: persistence to survive the window boundary, decomposition to keep the objective in view, an external evaluator to break the self-grading loop.</p>
 <hr />
@@ -1161,7 +1177,7 @@
 <p>The most useful framing in Anthropic's work on this is that they didn't invent new tricks — they <em>"looked to human engineers for inspiration in creating a more effective agent harness."</em><sup id="fnref:x"><a class="footnote-ref" href="#fn:x">3</a></sup> Think about how a human team actually ships something across days and weeks:</p>
 <ul>
 <li>They keep a log of what's done and what's next, so anyone can pick up the thread (state persistence).</li>
-<li>They write a handoff when they leave for the day, so tomorrow-them isn't reconstructing context from scratch (context resets with structured handoffs, which Anthropic argues beats blindly summarizing the old conversation in place<sup id="fnref7:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup>).</li>
+<li>They write a handoff when they leave for the day, so tomorrow-them isn't reconstructing context from scratch (context resets with structured handoffs, which Anthropic argues beats blindly summarizing the old conversation in place<sup id="fnref5:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup>).</li>
 <li>They break a quarter into sprints with an agreed definition of done (task decomposition).</li>
 <li>They don't merge their own code — someone else reviews it (separating generator from evaluator).</li>
 </ul>
@@ -1175,10 +1191,29 @@
 <li><strong>Fan out into sub-processes.</strong> The work is decomposed into many subagents running in parallel — finders, builders, auditors — each in its own context, rather than one agent grinding through everything linearly.</li>
 <li><strong>Verify adversarially.</strong> Outputs aren't trusted because the maker is confident; independent verifiers are spun up to <em>refute</em> them, and only what survives is kept. It's the generator/evaluator split from earlier, applied at scale.</li>
 </ul>
+<div class="pipe">
+  <span class="pipe__stage pipe__stage--io">Plan</span>
+  <span class="pipe__arrow"><em>compile</em>→</span>
+  <span class="pipe__stage">Verifiable code<small>gates · tests · schemas</small></span>
+  <span class="pipe__arrow"><em>fan out</em>→</span>
+  <div class="pipe__fan">
+    <span class="pipe__node">finder</span>
+    <span class="pipe__node">builder</span>
+    <span class="pipe__node">auditor</span>
+    <span class="pipe__node">tester</span>
+    <span class="pipe__node pipe__node--more">+ N more</span>
+  </div>
+  <span class="pipe__arrow"><em>fan in</em>→</span>
+  <span class="pipe__stage pipe__stage--verify">Verify adversarially<small>keep only what survives</small></span>
+  <span class="pipe__arrow">→</span>
+  <span class="pipe__stage pipe__stage--done">Verified result</span>
+  <span class="pipe__caption">many subagents run in parallel, each in its own context</span>
+</div>
+
 <p>The principle underneath is that the <em>ideal</em> harness isn't a script written once — it's a scheduling logic generated in real time, sized to the task. So the human stops hand-coding the orchestration and instead invests in the things that make dynamic orchestration possible: a way to turn plans into checks, a stable interface for fanning out, and an adversarial verification pass to filter the results. The harness becomes something the agent <em>assembles for the job</em> rather than something you built in advance — which is the last step before it starts assembling harnesses for <em>itself</em>.</p>
 <hr />
 <h2 id="the-ultimate-agents-that-build-their-own-harness">The Ultimate: Agents That Build Their Own Harness<a class="headerlink" href="#the-ultimate-agents-that-build-their-own-harness" title="Permanent link">&para;</a></h2>
-<p>Here's the corollary I promised. If <em>every component in a harness encodes an assumption about what the model can't do on its own</em>, then <strong>every harness has an expiration date.</strong> The progress file exists because the model can't hold the whole task in its head — until the window is large enough that it can. The verification loop exists because the model overrates its own work — until it doesn't. As models improve, scaffolding that was essential becomes dead weight; Anthropic notes that components needed for one model version <em>"became unnecessary"</em> on the next.<sup id="fnref4:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> The right discipline is to <em>stress-test</em> each assumption and delete the ones that no longer hold.</p>
+<p>Here's the corollary I promised. If <em>every component in a harness encodes an assumption about what the model can't do on its own</em>, then <strong>every harness has an expiration date.</strong> The progress file exists because the model can't hold the whole task in its head — until the window is large enough that it can. The verification loop exists because the model overrates its own work — until it doesn't. As models improve, scaffolding that was essential becomes dead weight; Anthropic notes that components needed for one model version <em>"became unnecessary"</em> on the next.<sup id="fnref2:prithvi"><a class="footnote-ref" href="#fn:prithvi">2</a></sup> The right discipline is to <em>stress-test</em> each assumption and delete the ones that no longer hold.</p>
 <p>Follow that to its end and you get the interesting destination. Today, a human builds the harness — chooses the tools, writes the progress-file convention, defines what verification means. The ultimate version is one where the human no longer has to: the agent inspects its own failures, notices where it keeps drifting, and writes the missing piece of harness itself — its own progress convention, its own checks, its own rules for when to spin up a subagent. The harness stops being something we build <em>for</em> the agent and becomes something the agent builds <em>for itself</em>, then uses to govern its own behavior.</p>
 <p>That's the recursive loop worth pointing at: a model good enough to engineer the harness that makes a model that strong actually reliable. We're not there. But you can see the gradient from here, and it explains why "how should an autonomous agent be built?" is, in the long run, a question the agent will increasingly answer on its own.</p>
 <hr />
