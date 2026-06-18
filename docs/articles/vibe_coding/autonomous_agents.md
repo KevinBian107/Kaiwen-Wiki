@@ -91,19 +91,19 @@ A harness isn't one thing; it's a small kit of mechanisms, each of which exists 
 
 Here are the load-bearing pieces.
 
-**Tool orchestration.** The model can only affect the world through tools — reading files, running code, hitting a browser, querying a database. Orchestration is deciding which tools exist, how they're described, and how their outputs flow back in. Anthropic's long-running coding agent, for instance, drives a real browser through Puppeteer to test its own work end-to-end rather than trusting that the code "looks right."[^young]
+- **Tool orchestration.** The model can only affect the world through tools — reading files, running code, hitting a browser, querying a database. Orchestration is deciding which tools exist, how they're described, and how their outputs flow back in. Anthropic's long-running coding agent, for instance, drives a real browser through Puppeteer to test its own work end-to-end rather than trusting that the code "looks right."[^young]
 
-**State and context persistence.** A model has no memory between context windows. If your task is longer than one window — and any genuinely autonomous task is — you need an external memory the agent writes to and reads back. The simplest version that works astonishingly well is a plain progress log: Anthropic's harness keeps a `claude-progress.txt` file recording what's been done so the next session knows where to pick up.[^young] This is the same idea as the `progress.txt` and scratch READMEs from the [structured workflow](why_your_vibe_coding_sucks.md) — external memory is external memory whether a human or an agent is the one resuming.
+- **State and context persistence.** A model has no memory between context windows. If your task is longer than one window — and any genuinely autonomous task is — you need an external memory the agent writes to and reads back. The simplest version that works astonishingly well is a plain progress log: Anthropic's harness keeps a `claude-progress.txt` file recording what's been done so the next session knows where to pick up.[^young] This is the same idea as the `progress.txt` and scratch READMEs from the [structured workflow](why_your_vibe_coding_sucks.md) — external memory is external memory whether a human or an agent is the one resuming.
 
-**Task decomposition.** Don't ask for the whole thing at once. Ask for one feature, finished and verified, then the next. Anthropic's agent works *"one feature at a time,"* and the design-focused harness breaks work into sprints where each sprint negotiates *"what done looks like"* before any code is written.[^prithvi] Decomposition is what keeps scope from quietly ballooning.
+- **Task decomposition.** Don't ask for the whole thing at once. Ask for one feature, finished and verified, then the next. Anthropic's agent works *"one feature at a time,"* and the design-focused harness breaks work into sprints where each sprint negotiates *"what done looks like"* before any code is written.[^prithvi] Decomposition is what keeps scope from quietly ballooning.
 
-**Verification loops.** This is the difference between an agent that *claims* it's done and one that *is* done. The harness forces the agent to check its own work against something concrete before moving on — Anthropic's instruction is blunt: *"Self-verify all features. Only mark features as 'passing' after careful testing."*[^young] The verification has to bite, which is exactly why the next piece matters.
+- **Verification loops.** This is the difference between an agent that *claims* it's done and one that *is* done. The harness forces the agent to check its own work against something concrete before moving on — Anthropic's instruction is blunt: *"Self-verify all features. Only mark features as 'passing' after careful testing."*[^young] The verification has to bite, which is exactly why the next piece matters.
 
-**Subagents.** Not every job should be done by the same agent in the same context. A read-only auditor, a testing agent, a cleanup agent, a separate evaluator — each gets a clean window and a narrow mandate. Anthropic's design harness uses a three-agent split — a planner, a generator, and an evaluator — precisely because *"separating the evaluator from the generator"* is more tractable than asking one agent to both produce work and judge it honestly.[^prithvi]
+- **Subagents.** Not every job should be done by the same agent in the same context. A read-only auditor, a testing agent, a cleanup agent, a separate evaluator — each gets a clean window and a narrow mandate. Anthropic's design harness uses a three-agent split — a planner, a generator, and an evaluator — precisely because *"separating the evaluator from the generator"* is more tractable than asking one agent to both produce work and judge it honestly.[^prithvi]
 
-**Permission sandboxing.** Autonomy without guardrails is just a faster way to do damage. The harness defines what the agent is allowed to touch — which commands run without asking, which never run at all — so it can move fast inside a fenced yard. Never hand an unsupervised loop a blanket `rm -rf`.
+- **Permission sandboxing.** Autonomy without guardrails is just a faster way to do damage. The harness defines what the agent is allowed to touch — which commands run without asking, which never run at all — so it can move fast inside a fenced yard. Never hand an unsupervised loop a blanket `rm -rf`.
 
-**A review / check-back mechanism.** Something — a gate, a test suite, a human at a checkpoint, another agent — has to be able to say "no, not yet" and send the work back. An agent with no path back to its own output just accumulates plausible-looking mistakes.
+- **A review / check-back mechanism.** Something — a gate, a test suite, a human at a checkpoint, another agent — has to be able to say "no, not yet" and send the work back. An agent with no path back to its own output just accumulates plausible-looking mistakes.
 
 Each of these exists for a reason, and the reason is always the same: *every component in a harness encodes an assumption about what the model can't do on its own.*[^prithvi] That sentence is the whole design philosophy in one line, and it has a sharp corollary we'll come back to at the end.
 
@@ -163,6 +163,25 @@ That's the mechanism behind what Claude Code surfaces as **ultracode mode**. Ins
 - **Turn the plan into verifiable code.** The plan isn't prose the agent hopes to follow; it's compiled into checks — gates, tests, schemas — so that "done" has a concrete definition the work can be measured against. The plan *becomes* the verification.
 - **Fan out into sub-processes.** The work is decomposed into many subagents running in parallel — finders, builders, auditors — each in its own context, rather than one agent grinding through everything linearly.
 - **Verify adversarially.** Outputs aren't trusted because the maker is confident; independent verifiers are spun up to *refute* them, and only what survives is kept. It's the generator/evaluator split from earlier, applied at scale.
+
+<div class="pipe">
+  <span class="pipe__stage pipe__stage--io">Plan</span>
+  <span class="pipe__arrow"><em>compile</em>→</span>
+  <span class="pipe__stage">Verifiable code<small>gates · tests · schemas</small></span>
+  <span class="pipe__arrow"><em>fan out</em>→</span>
+  <div class="pipe__fan">
+    <span class="pipe__node">finder</span>
+    <span class="pipe__node">builder</span>
+    <span class="pipe__node">auditor</span>
+    <span class="pipe__node">tester</span>
+    <span class="pipe__node pipe__node--more">+ N more</span>
+  </div>
+  <span class="pipe__arrow"><em>fan in</em>→</span>
+  <span class="pipe__stage pipe__stage--verify">Verify adversarially<small>keep only what survives</small></span>
+  <span class="pipe__arrow">→</span>
+  <span class="pipe__stage pipe__stage--done">Verified result</span>
+  <span class="pipe__caption">many subagents run in parallel, each in its own context</span>
+</div>
 
 The principle underneath is that the *ideal* harness isn't a script written once — it's a scheduling logic generated in real time, sized to the task. So the human stops hand-coding the orchestration and instead invests in the things that make dynamic orchestration possible: a way to turn plans into checks, a stable interface for fanning out, and an adversarial verification pass to filter the results. The harness becomes something the agent *assembles for the job* rather than something you built in advance — which is the last step before it starts assembling harnesses for *itself*.
 

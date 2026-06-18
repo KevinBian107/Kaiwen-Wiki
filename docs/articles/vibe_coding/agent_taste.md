@@ -45,12 +45,19 @@ This is in-context imprinting. You're not changing the model's weights; you're s
 
 Preference, built deliberately, has two parts that have to travel together:
 
-```
-        TASTE                         FRAMEWORK
-   what "good" looks like   ×    what makes it repeatable
-   (the examples, the           (reference docs, skills,
-    standard, the gallery)       pitfall guides, the judge)
-```
+<div class="duo">
+  <div class="duo__card">
+    <span class="duo__label">Taste</span>
+    <span class="duo__sub">what "good" looks like</span>
+    <span class="duo__items">the examples · the standard · the gallery</span>
+  </div>
+  <span class="duo__op">×</span>
+  <div class="duo__card">
+    <span class="duo__label">Framework</span>
+    <span class="duo__sub">what makes it repeatable</span>
+    <span class="duo__items">reference docs · skills · pitfall guides · the judge</span>
+  </div>
+</div>
 
 **Taste** is the standard itself — the curated set of examples that defines the target region. **Framework** is the machinery that makes that standard *apply automatically* instead of living in your head and getting re-explained every session. One without the other fails: taste with no framework is a preference you retype every time and the agent forgets the moment you `/clear`; framework with no taste is elaborate scaffolding pointed at the generic average.
 
