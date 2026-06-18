@@ -52,6 +52,55 @@
   color: var(--md-default-fg-color--light);
 }
 
+/* ---------- two halves: taste × framework ---------- */
+.md-typeset .duo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.8rem 0;
+}
+.md-typeset .duo__card {
+  flex: 1 1 0;
+  min-width: 200px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-code-bg-color);
+}
+.md-typeset .duo__label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .duo__sub {
+  margin-top: 0.25rem;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--md-default-fg-color);
+}
+.md-typeset .duo__items {
+  margin-top: 0.45rem;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .duo__op {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--md-default-fg-color--light);
+}
+
 /* ---------- ultracode dynamic pipeline (left-to-right) ---------- */
 .md-typeset .pipe {
   display: flex;
