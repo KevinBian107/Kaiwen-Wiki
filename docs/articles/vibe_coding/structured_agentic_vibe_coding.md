@@ -33,13 +33,15 @@ For full autonomy (use in isolated environments like dev containers):
 claude --dangerously-skip-permissions
 ```
 
-If running on Linux with root access, create a non-root user first:
+!!! tip "Running on Linux as root"
 
-```bash
-useradd -m devuser
-su - devuser
-exec bash
-```
+    Claude Code refuses `--dangerously-skip-permissions` when you are root. Create a non-root user first:
+
+    ```bash
+    useradd -m devuser
+    su - devuser
+    exec bash
+    ```
 
 ### The CLAUDE.md File
 
