@@ -476,8 +476,6 @@
       
         
       
-        
-      
     
     
     
@@ -737,34 +735,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../agent_taste/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building Agents With Better Human Preference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../research_workflow/" class="md-nav__link">
         
   
@@ -999,11 +969,14 @@
 <p>For full autonomy (use in isolated environments like dev containers):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>claude<span class="w"> </span>--dangerously-skip-permissions
 </code></pre></div>
-<p>If running on Linux with root access, create a non-root user first:</p>
+<div class="admonition tip">
+<p class="admonition-title">Running on Linux as root</p>
+<p>Claude Code refuses <code>--dangerously-skip-permissions</code> when you are root. Create a non-root user first:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>useradd<span class="w"> </span>-m<span class="w"> </span>devuser
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>su<span class="w"> </span>-<span class="w"> </span>devuser
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">exec</span><span class="w"> </span>bash
 </code></pre></div>
+</div>
 <h3 id="the-claudemd-file">The CLAUDE.md File<a class="headerlink" href="#the-claudemd-file" title="Permanent link">&para;</a></h3>
 <p>The first thing to set up is <code>CLAUDE.md</code> — a context file that Claude automatically reads at the start of every conversation. This is your system prompt for the project.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/init
