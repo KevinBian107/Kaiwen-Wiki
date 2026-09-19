@@ -4,6 +4,11 @@ site_author: Kaiwen Bian
 site_url: https://kbian.org/Kaiwen-Wiki/
 # repo_url: https://github.com/KevinBian107/Kaiwen-Wiki
 
+# Private drafts: kept on disk but never built, so they have no public URL
+# and don't appear in search or the sitemap.
+exclude_docs: |
+  articles/vibe_coding/autonomous_agents.md
+
 theme:
   name: material
   custom_dir: docs/overrides
@@ -11,20 +16,26 @@ theme:
   favicon: assets/index/wiki_logo_favicon.svg
   icon:
     repo: fontawesome/brands/github
+    search: kb/search
 
+  # Fonts are loaded in overrides/main.html (Manrope, matching kbian.org).
+  font: false
+
+  # Dark first, like kbian.org. primary/accent "custom" hand all colours to
+  # css/theme.css, which mirrors the main site's palette.
   palette:
-    # Palette toggle for dark mode
-    - scheme: default
-      primary: white
+    - scheme: slate
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-4
+        icon: kb/sun
         name: Switch to light mode
 
-    # Palette toggle for light mode
-    - scheme: slate
-      primary: grey
+    - scheme: default
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-7
+        icon: kb/moon
         name: Switch to dark mode
 
 
@@ -155,6 +166,7 @@ extra_javascript:
   - js/sections.js
 
 extra_css:
+  - css/theme.css
   - css/custom.css
   - css/figures.css
   - css/sections.css
@@ -184,8 +196,8 @@ nav:
   - Vibe Coding and AI Agents:
     - articles/vibe_coding/index.md
     - Why You Suck at Vibe Coding: articles/vibe_coding/why_your_vibe_coding_sucks.md
-    - Structured Vibe Coding: articles/vibe_coding/structured_agentic_vibe_coding.md
-    - How Autonomous Agents Should Be Built: articles/vibe_coding/autonomous_agents.md
+    - A Hands-On Introduction to Structured Vibe Coding: articles/vibe_coding/structured_agentic_vibe_coding.md
+    # - How Autonomous Agents Should Be Built: articles/vibe_coding/autonomous_agents.md  # hidden (see exclude_docs)
     - Research Workflow in the AI Age: articles/vibe_coding/research_workflow.md
   - Neuroscience and Cognition:
     - articles/neuroscience/index.md

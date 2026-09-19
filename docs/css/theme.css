@@ -1,0 +1,542 @@
+/* ============================================================
+   kbian.org look for the wiki.
+   Tokens are copied from the main site's stylesheets/styles.css
+   (section 0, "Theme Variables") and mapped onto Material's
+   variables, so both sites share one palette, typeface and chrome.
+   `slate` = the main site's [data-theme="dark"] (the default there
+   and here), `default` = its light theme.
+   ============================================================ */
+
+/* ---------- tokens: light ---------- */
+[data-md-color-scheme="default"] {
+  --kb-bg-body: #ffffff;
+  --kb-bg-card: #ffffff;
+  --kb-bg-code: #f8f8f8;
+  --kb-bg-nav: #ffffff;
+  --kb-bg-section: #f9fafb;
+  --kb-bg-input: #f4f4f4;
+  --kb-bg-tag: #e5e7eb;
+  --kb-bg-button: #f3f4f6;
+
+  --kb-text-primary: #222222;
+  --kb-text-body: #4a4a4a;
+  --kb-text-muted: #6b7280;
+  --kb-text-nav: #4b5563;
+  --kb-text-h1: #1f2933;
+  --kb-text-h2: #1036a9;
+  --kb-text-h3: #0056b3;
+  --kb-text-h-sub: #494949;
+
+  --kb-link: #4a6fa5;
+  --kb-link-hover: #0056b3;
+
+  --kb-border: #e2e8f0;
+  --kb-border-2: #e5e5e5;
+
+  --kb-nav-hover-bg: #e5edff;
+  --kb-nav-hover-color: #093eff;
+  --kb-button-hover-bg: #093eff;
+  --kb-button-hover-color: #ffffff;
+
+  --kb-shadow-card: rgba(15, 23, 42, 0.12);
+  --kb-shadow-card-hover: rgba(15, 23, 42, 0.18);
+}
+
+/* ---------- tokens: dark ---------- */
+[data-md-color-scheme="slate"] {
+  --kb-bg-body: #0f0f0f;
+  --kb-bg-card: #1a1a1a;
+  --kb-bg-code: #161616;
+  --kb-bg-nav: #141414;
+  --kb-bg-section: #161616;
+  --kb-bg-input: #1f1f1f;
+  --kb-bg-tag: #242424;
+  --kb-bg-button: #1f1f1f;
+
+  --kb-text-primary: #f5f5f5;
+  --kb-text-body: #d4d4d4;
+  --kb-text-muted: #888888;
+  --kb-text-nav: #c4c4c4;
+  --kb-text-h1: #f5f5f5;
+  --kb-text-h2: #6e8fbd;
+  --kb-text-h3: #6e8fbd;
+  --kb-text-h-sub: #c4c4c4;
+
+  --kb-link: #6e8fbd;
+  --kb-link-hover: #8aa7d0;
+
+  --kb-border: #2a2a2a;
+  --kb-border-2: #2a2a2a;
+
+  --kb-nav-hover-bg: #242424;
+  --kb-nav-hover-color: #8aa7d0;
+  --kb-button-hover-bg: #4a6fa5;
+  --kb-button-hover-color: #f5f5f5;
+
+  --kb-shadow-card: rgba(0, 0, 0, 0.5);
+  --kb-shadow-card-hover: rgba(0, 0, 0, 0.65);
+}
+
+/* ---------- tokens -> Material ---------- */
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--kb-bg-body);
+  --md-default-fg-color: var(--kb-text-primary);
+  --md-default-fg-color--light: var(--kb-text-muted);
+  --md-default-fg-color--lighter: color-mix(in srgb, var(--kb-text-muted) 45%, transparent);
+  --md-default-fg-color--lightest: var(--kb-border);
+
+  --md-primary-fg-color: var(--kb-bg-nav);
+  --md-primary-fg-color--light: var(--kb-bg-nav);
+  --md-primary-fg-color--dark: var(--kb-bg-nav);
+  --md-primary-bg-color: var(--kb-text-nav);
+  --md-primary-bg-color--light: var(--kb-text-muted);
+
+  --md-accent-fg-color: var(--kb-link-hover);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--kb-link) 12%, transparent);
+  --md-accent-bg-color: var(--kb-bg-body);
+
+  --md-typeset-color: var(--kb-text-body);
+  --md-typeset-a-color: var(--kb-link);
+  --md-typeset-mark-color: color-mix(in srgb, var(--kb-link) 28%, transparent);
+  --md-typeset-table-color: var(--kb-border);
+  --md-typeset-table-color--light: var(--kb-bg-section);
+
+  --md-code-bg-color: var(--kb-bg-code);
+  --md-code-fg-color: var(--kb-text-body);
+  --md-code-hl-color: color-mix(in srgb, var(--kb-link) 20%, transparent);
+
+  --md-admonition-bg-color: var(--kb-bg-card);
+  --md-admonition-fg-color: var(--kb-text-body);
+
+  --md-footer-bg-color: var(--kb-bg-body);
+  --md-footer-bg-color--dark: var(--kb-bg-body);
+  --md-footer-fg-color: var(--kb-text-body);
+  --md-footer-fg-color--light: var(--kb-text-muted);
+  --md-footer-fg-color--lighter: var(--kb-text-muted);
+
+  --md-shadow-z1: 0 4px 16px var(--kb-shadow-card);
+  --md-shadow-z2: 0 6px 20px var(--kb-shadow-card);
+  --md-shadow-z3: 0 10px 28px var(--kb-shadow-card-hover);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga", "calt";
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================
+   Header — the kbian.org navbar
+   ============================================================ */
+.md-header {
+  background-color: var(--kb-bg-nav);
+  color: var(--kb-text-nav);
+  box-shadow: none;
+  border-bottom: 1px solid var(--kb-border);
+}
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-header__inner {
+  height: 3rem; /* 60px on the main site at its 17px root; Material's rem is 20px */
+  padding: 0 0.4rem;
+}
+
+/* Text brand in place of the logo + page-title swap. */
+.md-header__title.kb-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 3rem;
+  margin-left: 0.8rem;
+  line-height: 1;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.kb-brand__name {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--kb-text-primary);
+  transition: opacity 0.2s ease;
+}
+.kb-brand__sep {
+  color: var(--kb-text-muted);
+  font-weight: 400;
+}
+.kb-brand__sub {
+  font-weight: 500;
+  color: var(--kb-text-muted);
+  transition: color 0.2s ease;
+}
+.kb-brand__name:hover { opacity: 0.7; color: var(--kb-text-primary); }
+.kb-brand__sub:hover { color: var(--kb-text-primary); }
+
+/* Icon pills — labels are collapsed at rest and spring open on approach. */
+.kb-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Material decides when its own header buttons show (e.g. the search
+   label only on narrow screens), so only the pills get an explicit display. */
+.kb-pill { display: inline-flex; }
+.kb-pill,
+.md-header .md-header__button.md-icon,
+.md-header__option > label.md-header__button {
+  align-items: center;
+  margin: 0;
+  padding: 7px 11px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--kb-text-nav);
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 1;
+  transition: background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.md-header__option > label.md-header__button[hidden] { display: none; }
+
+.kb-ico,
+.md-header .md-header__button.md-icon svg {
+  flex: none;
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+/* The kb/* theme icons are stroked outlines; stop Material filling them. */
+.md-icon svg.kb-stroke,
+.md-search__icon svg.kb-stroke {
+  fill: none;
+  stroke: currentColor;
+}
+
+.kb-pill__label {
+  max-width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  transition: max-width 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    margin-left 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+.kb-pill:hover,
+.kb-pill:focus-visible,
+.kb-pill.is-active,
+.md-header .md-header__button.md-icon:hover,
+.md-header__option > label.md-header__button:hover {
+  background-color: var(--kb-nav-hover-bg);
+  color: var(--kb-nav-hover-color);
+  opacity: 1;
+}
+
+.kb-pill:hover .kb-pill__label,
+.kb-pill:focus-visible .kb-pill__label,
+.kb-pill.is-active .kb-pill__label {
+  max-width: 9rem;
+  margin-left: 8px;
+  opacity: 1;
+}
+
+/* Phones: keep just the MISC + language pills. */
+@media screen and (max-width: 44.9375em) {
+  .kb-nav .kb-pill:not(.is-active):not(.translate-btn) { display: none; }
+  .kb-pill,
+  .md-header .md-header__button.md-icon,
+  .md-header__option > label.md-header__button { padding: 9px 8px; }
+  .kb-pill.is-active .kb-pill__label { max-width: 0; margin-left: 0; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kb-pill,
+  .kb-pill__label { transition: none; }
+}
+
+/* ---------- section tabs under the bar ---------- */
+.md-tabs {
+  background-color: var(--kb-bg-nav);
+  color: var(--kb-text-nav);
+  border-bottom: 1px solid var(--kb-border);
+}
+.md-tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 2.6rem;
+  margin-left: 0.2rem;
+}
+.md-tabs__item {
+  display: inline-flex;
+  align-items: center;
+  height: auto;
+  padding: 0;
+}
+.md-tabs__link {
+  margin: 0;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--kb-text-nav);
+  opacity: 1;
+  transition: background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.md-tabs__link:hover,
+.md-tabs__link:focus {
+  color: var(--kb-nav-hover-color);
+  background-color: var(--kb-nav-hover-bg);
+}
+.md-tabs__item--active .md-tabs__link {
+  color: var(--kb-nav-hover-color);
+  background-color: var(--kb-nav-hover-bg);
+  font-weight: 600;
+}
+
+/* ---------- search ---------- */
+.md-search__form {
+  border-radius: 999px;
+  background-color: var(--kb-bg-input);
+}
+.md-search__form:hover {
+  background-color: var(--kb-bg-button);
+}
+.md-search__input {
+  color: var(--kb-text-primary);
+}
+.md-search__input::placeholder,
+.md-search__icon {
+  color: var(--kb-text-muted);
+}
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+  border-radius: 0.6rem 0.6rem 0 0;
+  background-color: var(--kb-bg-card);
+  box-shadow: none;
+}
+.md-search__output {
+  border-radius: 0 0 0.6rem 0.6rem;
+}
+.md-search__scrollwrap,
+.md-search-result__meta {
+  background-color: var(--kb-bg-card);
+}
+.md-search-result__meta {
+  color: var(--kb-text-muted);
+}
+
+/* ---------- translate dropdown ---------- */
+[data-md-color-scheme] #google_translate_element {
+  top: calc(100% + 8px);
+  background: var(--kb-bg-card);
+  border: 1px solid var(--kb-border);
+  box-shadow: 0 6px 20px var(--kb-shadow-card);
+}
+[data-md-color-scheme] #google_translate_element .goog-te-combo {
+  background: var(--kb-bg-input);
+  color: var(--kb-text-body);
+}
+
+/* ============================================================
+   Typography — headings, links, body copy
+   ============================================================ */
+.md-typeset {
+  color: var(--kb-text-body);
+}
+
+.md-typeset h1 {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--kb-border);
+  color: var(--kb-text-h1);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.md-typeset h2 {
+  color: var(--kb-text-h2);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.md-typeset h3 {
+  color: var(--kb-text-h3);
+  font-weight: 500;
+}
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: var(--kb-text-h-sub);
+  font-weight: 500;
+}
+
+.md-typeset strong,
+.md-typeset b {
+  color: var(--kb-text-primary);
+  font-weight: 600;
+}
+
+.md-typeset a {
+  color: var(--kb-link);
+  transition: color 0.2s ease;
+}
+.md-typeset a:hover,
+.md-typeset a:focus {
+  color: var(--kb-link-hover);
+  text-decoration: underline;
+}
+/* Headerlinks and card-style links shouldn't underline. */
+.md-typeset .headerlink:hover,
+.md-typeset a.home-card:hover,
+.md-typeset a.article-item:hover,
+.md-typeset a.article-preview__link:hover {
+  text-decoration: none;
+}
+
+.md-typeset hr {
+  border-bottom-color: var(--kb-border);
+}
+
+.md-typeset blockquote {
+  border-left-color: var(--kb-link);
+  color: var(--kb-text-muted);
+}
+
+.md-typeset code {
+  border-radius: 0.3rem;
+}
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--kb-border);
+  border-radius: 0.5rem;
+  background-color: var(--kb-bg-card);
+}
+.md-typeset table:not([class]) th {
+  background-color: var(--kb-bg-section);
+  color: var(--kb-text-primary);
+  font-weight: 600;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 1px;
+  border-radius: 0.6rem;
+  box-shadow: none;
+}
+
+/* ============================================================
+   Sidebars (TOC / nav)
+   ============================================================ */
+.md-nav__title {
+  color: var(--kb-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.6rem;
+}
+.md-nav__link {
+  color: var(--kb-text-nav);
+  transition: color 0.2s ease;
+}
+.md-nav__link:hover,
+.md-nav__link:focus {
+  color: var(--kb-link-hover);
+}
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+  color: var(--kb-link);
+  font-weight: 600;
+}
+.md-sidebar__scrollwrap {
+  scrollbar-color: var(--kb-border) transparent;
+}
+
+/* ============================================================
+   Footer — quiet, like the main site's credit line
+   ============================================================ */
+.md-footer,
+.md-footer-meta {
+  background-color: var(--kb-bg-body);
+  color: var(--kb-text-muted);
+}
+.md-footer-meta {
+  border-top: 1px solid var(--kb-border);
+}
+.md-footer-meta.md-typeset a,
+.md-copyright a {
+  color: var(--kb-link);
+}
+.md-footer-meta.md-typeset a:hover {
+  color: var(--kb-link-hover);
+}
+.md-copyright {
+  color: var(--kb-text-muted);
+}
+.md-social__link svg {
+  fill: var(--kb-text-muted);
+}
+.md-social__link:hover svg {
+  fill: var(--kb-link-hover);
+}
+
+.md-top {
+  background-color: var(--kb-bg-card);
+  color: var(--kb-text-nav);
+  border: 1px solid var(--kb-border);
+  box-shadow: 0 6px 20px var(--kb-shadow-card);
+}
+.md-top:hover {
+  background-color: var(--kb-button-hover-bg);
+  color: var(--kb-button-hover-color);
+}
+
+/* ============================================================
+   Buttons + cookie banner — main site's quiet pill buttons
+   ============================================================ */
+.md-typeset .md-button {
+  padding: 0.45em 1.3em;
+  border: 1px solid var(--kb-border);
+  border-radius: 999px;
+  background-color: var(--kb-bg-button);
+  color: var(--kb-text-primary);
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.md-typeset .md-button:hover,
+.md-typeset .md-button:focus,
+.md-typeset .md-button--primary {
+  border-color: var(--kb-button-hover-bg);
+  background-color: var(--kb-button-hover-bg);
+  color: var(--kb-button-hover-color);
+  text-decoration: none;
+}
+.md-consent__overlay {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.md-consent__inner {
+  background-color: var(--kb-bg-card);
+  border-top: 1px solid var(--kb-border);
+  box-shadow: 0 -6px 24px var(--kb-shadow-card);
+}
+.md-consent__inner h4 {
+  color: var(--kb-text-primary);
+  font-weight: 600;
+}
+.md-consent__inner p {
+  color: var(--kb-text-body);
+}

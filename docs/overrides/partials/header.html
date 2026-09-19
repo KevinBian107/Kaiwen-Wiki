@@ -1,5 +1,7 @@
 {#-
-  This file was automatically generated - do not edit
+  Header styled after the kbian.org navbar: a plain text brand on the left and
+  a row of icon pills on the right whose labels unfold on hover. Material's
+  own drawer / palette / search machinery is kept so the theme JS still works.
 -#}
 {% set class = "md-header" %}
 {% if "navigation.tabs.sticky" in features %}
@@ -7,39 +9,80 @@
 {% elif "navigation.tabs" not in features %}
   {% set class = class ~ " md-header--shadow" %}
 {% endif %}
+
+{#- Icon sprite: same glyphs as kbian.org (assets/icons.svg there). -#}
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="ico-research" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="4" width="6.5" height="6.5" rx="1.4"/>
+    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.4"/>
+    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.4"/>
+    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.4"/>
+  </symbol>
+  <symbol id="ico-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 10.5 12 4l8 6.5"/>
+    <path d="M5.75 9.5V19a1 1 0 0 0 1 1h10.5a1 1 0 0 0 1-1V9.5"/>
+    <path d="M10 20v-5.5h4V20"/>
+  </symbol>
+  <symbol id="ico-misc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.5"/>
+    <path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1 5.1-2.1z"/>
+  </symbol>
+  <symbol id="ico-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.5"/>
+    <path d="M3.5 12h17"/>
+    <path d="M12 3.5c2.2 2.3 3.4 5.3 3.4 8.5s-1.2 6.2-3.4 8.5c-2.2-2.3-3.4-5.3-3.4-8.5s1.2-6.2 3.4-8.5z"/>
+  </symbol>
+</svg>
+
 <header class="{{ class }}" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
-    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
-      {% include "partials/logo.html" %}
-    </a>
     <label class="md-header__button md-icon" for="__drawer">
       {% set icon = config.theme.icon.menu or "material/menu" %}
       {% include ".icons/" ~ icon ~ ".svg" %}
     </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            {{ config.site_name }}
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            {% if page.meta and page.meta.title %}
-              {{ page.meta.title }}
-            {% else %}
-              {{ page.title }}
-            {% endif %}
-          </span>
-        </div>
+
+    <div class="md-header__title kb-brand">
+      <a href="https://kbian.org/" class="kb-brand__name">Kaiwen Bian</a>
+      <span class="kb-brand__sep" aria-hidden="true">/</span>
+      <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" class="kb-brand__sub">{{ config.site_name }}</a>
+    </div>
+
+    <div class="kb-nav" aria-label="Main navigation">
+      <a href="https://kbian.org/" class="kb-pill">
+        <svg class="kb-ico" aria-hidden="true"><use href="#ico-home"></use></svg>
+        <span class="kb-pill__label">Home</span>
+      </a>
+      <a href="https://kbian.org/research.html" class="kb-pill">
+        <svg class="kb-ico" aria-hidden="true"><use href="#ico-research"></use></svg>
+        <span class="kb-pill__label">Research</span>
+      </a>
+      <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" class="kb-pill is-active">
+        <svg class="kb-ico" aria-hidden="true"><use href="#ico-misc"></use></svg>
+        <span class="kb-pill__label">MISC</span>
+      </a>
+      <div class="md-header__translate">
+        <button type="button" class="kb-pill translate-btn" onclick="toggleTranslate()" aria-label="Translate" title="Translate">
+          <svg class="kb-ico" aria-hidden="true"><use href="#ico-globe"></use></svg>
+          <span class="kb-pill__label">Language</span>
+        </button>
+        <div id="google_translate_element"></div>
       </div>
     </div>
-    <div class="md-header__translate">
-      <button class="translate-btn" onclick="toggleTranslate()" aria-label="Translate" title="Translate">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
-      </button>
-      <div id="google_translate_element"></div>
-    </div>
+
+    {#- kbian.org keeps its light/dark choice in localStorage["theme"]. The
+        wiki lives on the same origin, so seed Material's palette from that
+        key before the palette script below paints the page. -#}
+    <script>
+      (function () {
+        try {
+          var dark = (localStorage.getItem("theme") || "dark") === "dark";
+          __md_set("__palette", {
+            index: dark ? 0 : 1,
+            color: { media: "", scheme: dark ? "slate" : "default", primary: "custom", accent: "custom" }
+          });
+        } catch (e) {}
+      })();
+    </script>
     {% if config.theme.palette %}
       {% if not config.theme.palette is mapping %}
         {% include "partials/palette.html" %}

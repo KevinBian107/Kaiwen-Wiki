@@ -33,9 +33,9 @@ For full autonomy (use in isolated environments like dev containers):
 claude --dangerously-skip-permissions
 ```
 
-!!! tip "Running on Linux as root"
+!!! tip "Don't run as root"
 
-    Claude Code refuses `--dangerously-skip-permissions` when you are root. Create a non-root user first:
+    It's always a good habit to **not** run as root — especially with `--dangerously-skip-permissions`, where the agent executes commands without asking. A mistake as root can touch anything on the machine; as a normal user, the damage stays inside that user's files. Claude Code enforces this anyway: it refuses `--dangerously-skip-permissions` when you are root. On a Linux box or container where you're root by default, create a non-root user first:
 
     ```bash
     useradd -m devuser
@@ -172,7 +172,7 @@ computation in vq_losses.py.
 
 This is where everything comes together. The key insight is that **Claude Code can write code extremely well if it truly understands the request.** The bottleneck is never code generation — it's ensuring Claude has a correct, complete understanding of what to build.
 
-The workflow has five phases:
+The workflow has six phases:
 
 ### Phase 1: Investigation
 
@@ -195,6 +195,15 @@ What this does:
 2. Creates a README with task description, background context, and a task checklist.
 3. The README is a **living document across multiple interactions** — you record findings and `/clear` regularly.
 4. `scratch/` is gitignored. You distill investigation findings into a PR that gets merged — you never modify the codebase until you're certain it will work.
+
+**Front-load everything you know.** The investigation is only as good as what you put into the first prompt:
+
+- **Load context and invite questions.** Start with `/primer` so Claude reads the codebase before it reasons about it, and explicitly ask it to raise questions about anything unclear or that you haven't stated precisely. The first reply becomes a clarifying conversation instead of a guess.
+- **Hand over your observations as evidence.** List what you've actually seen, numbered — e.g. "(1) one code encodes different behaviors depending on the proprioceptive input, (2) several codes encode near-identical behavior, (3) 64 codes give a more structured t-SNE than 16 or 32, (4) codes span different granularities." Include the conclusions you're unsure of, and ask Claude to `/retrospective` on whether each observation actually supports the conclusion you drew from it.
+- **Name the reference.** If the change comes from a paper, link it and ask Claude to `/think-deeply` about how its setup resolves *each* observation specifically, logging that reasoning in the investigation.
+- **Ask for two documents, not one** — one for the thinking (what the observations mean, why the approach should help) and one for the implementation plan. Reviewing the reasoning separately from the plan makes Phase 2 much easier: you can reject a bad premise without wading through implementation steps.
+
+The full version of this prompt is in the [End-to-End Example](#the-prompt-that-started-it) below.
 
 ### Phase 2: Critical Review
 
@@ -247,6 +256,16 @@ Don't implement yet. First, review this plan against the investigation
 README and tell me if I'm missing anything or if the ordering is wrong.
 ultrathink
 ```
+
+**State the implementation rules before any code exists.** Once implementation starts, Claude fills every gap with its own defaults — so the plan is where constraints belong:
+
+- **Which subagents to consult, and how often** — "constantly check with the Paper Alignment Auditor, JAX Logic Auditor, Silent Bug Detector, Regression Guard, and Data Flow Tracer."
+- **The regression contract.** Don't let Claude build a separate pipeline for backward compatibility. Instead, define it: the new feature at its base setting (depth=1, no rotation trick) must be *exactly identical* to the current model.
+- **Every new component is a config toggle** — depth > 1 activates RVQ, a true/false flag activates the rotation trick — so each piece can be ablated on its own.
+- **Defaults vs. generality** — "default depth to 2, but the code must work with arbitrary depth."
+- **What to remove, not just what to add.** Name the logging and eval code the change makes obsolete (the old conditioned transition matrix, its community finding and video logging, the latent PCA plot) so it doesn't linger.
+- **Ask for proposals where you don't have the answer yet** — e.g. what visualization would show that codes at different depths are meaningful *and* capture different granularities.
+- **Downstream impact** — existing analysis code must keep working for level-1 codes; ask Claude to propose what analysis makes sense for deeper levels.
 
 ### Phase 4: Implementation with Validation
 
@@ -312,6 +331,16 @@ commitment cost to 1.0 but it didn't help.
 ```
 
 The researcher searches arxiv, GitHub issues, and forums, then delivers prioritized fixes with **exact hyperparameter values** — not "adjust learning rate" but "reduce lr from 3e-4 to 1e-4 because [source] found VQ-VAE with commitment loss > 0.5 needs lr < 1e-4".
+
+**Debugging usually starts in a fresh session.** After `/clear`, structure the prompt so the new session starts from the record, not from scratch:
+
+- **Point at the scratch folder** — date-stamped, e.g. `scratch/2026-02-08-star-rvq-integration/` — that holds the proposition and implementation plan. It is the memory that survives `/clear`.
+- **"It runs" is not "it's correct."** Say so explicitly, then give the concrete symptom and when it appears ("by epoch 15, only one code is used for the entire rollout"), plus anything from the plan that never showed up ("the stacked-bar videos for each depth never rendered").
+- **Point Claude at the real outputs** — the run's logs (e.g. `wandb/latest-run`), not just the code.
+- **Name the agents you want involved** — for a collapse like this: Silent Bug Detector, Failure Mode Researcher, Regression Guard, Data Flow Tracer, JAX Logic Auditor.
+- **Diagnosis before fixes.** Ask for a written proposition in `scratch/` first — what the problem is and the fix Claude proposes — and review it the same way you reviewed the investigation in Phase 2.
+
+The full version of this prompt is in the [End-to-End Example](#the-implementation-prompt-after-clear) below.
 
 ### Phase 6: Capture Learnings
 
@@ -470,19 +499,6 @@ check /vqvae_jax/outputs/wandb/latest-run to see the actual outputs logging.
 | Training issues | `/debug-training` | Command | Structured diagnostic with scripts |
 | Stuck on failure | "use the failure mode researcher" | Failure Mode Researcher | Searches internet, delegates to other agents |
 | Session end | "retrospective" | Retrospective skill | Captures learnings for future sessions |
-
----
-
-## Good Habits
-
-1. **Always `/clear` before context gets too long** — Claude degrades with long history. Record findings in scratch READMEs first.
-2. **Always use `ultrathink`** for important reasoning.
-3. **Ask Claude to ask questions** — "ask any questions if things are unclear" starts a conversation that ensures understanding.
-4. **Extract paper PDFs as PNGs** — Claude reads figures better from images.
-5. **Don't let Claude race ahead** — if you say "next", mean "not now". Enforce this explicitly.
-6. **Guard against sycophancy** — question Claude's proposals against the paper. If the investigation blueprint is correct, the code will be correct.
-7. **Use subagents wisely** — read-only auditors can run in parallel. Don't parallelize agents that write to the same files.
-8. **Capture retrospectives** — the failed attempts table prevents repeating mistakes across sessions.
 
 ---
 

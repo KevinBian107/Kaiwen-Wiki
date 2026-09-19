@@ -13,7 +13,7 @@ hide:
   </div>
 </div>
 
-There are two kinds of "is this right?" One has a compiler. The test passes or it doesn't, the shapes match or they don't, the loss goes down or it stays flat. You can hand that kind of question to a [harness](autonomous_agents.md) with a verification loop and walk away. The other kind has no compiler. *Is this good design? Does this read well? Is this the way I would have done it?* There is no unit test for taste, and that's the problem this article is about.
+There are two kinds of "is this right?" One has a compiler. The test passes or it doesn't, the shapes match or they don't, the loss goes down or it stays flat. You can hand that kind of question to a harness with a verification loop and walk away. The other kind has no compiler. *Is this good design? Does this read well? Is this the way I would have done it?* There is no unit test for taste, and that's the problem this article is about.
 
 Ask an agent to build a feature and it will. Ask it to build a feature *the way you like* and you'll usually get the bland statistical average of how everyone builds that feature — competent, generic, faintly soulless. "AI slop" isn't the model failing at the task. It's the model succeeding at the *wrong* target: the center of the distribution, when what you wanted was your own particular corner of it.
 
