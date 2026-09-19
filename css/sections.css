@@ -26,11 +26,11 @@
 .md-typeset .article-group {
   margin: 1.15rem 0 0.25rem;
   padding: 0 0.25rem;
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--md-default-fg-color--light);
+  color: var(--kb-text-muted);
 }
 .md-typeset .article-group:first-child { margin-top: 0; }
 
@@ -47,9 +47,9 @@
 }
 .md-typeset a.article-item:hover,
 .md-typeset a.article-item.is-active {
-  background-color: var(--md-code-bg-color);
-  border-color: var(--md-default-fg-color--lightest);
-  border-left-color: var(--md-default-fg-color);
+  background-color: var(--kb-bg-card);
+  border-color: var(--kb-border);
+  border-left-color: var(--kb-link);
   transform: translateX(2px);
 }
 .md-typeset .article-item__title {
@@ -75,15 +75,15 @@
 .md-typeset .article-preview {
   position: sticky;
   top: 4.8rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid var(--kb-border);
   border-radius: 0.85rem;
   overflow: hidden;
-  background-color: var(--md-default-bg-color);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+  background-color: var(--kb-bg-card);
+  box-shadow: 0 6px 24px var(--kb-shadow-card);
 }
 .md-typeset .article-preview__accent {
   height: 6px;
-  background: linear-gradient(90deg, #52525b, #18181b);
+  background: linear-gradient(90deg, #4a6fa5, #6e8fbd);
 }
 .md-typeset .article-preview__body {
   padding: 1.5rem 1.6rem 1.7rem;
@@ -94,11 +94,11 @@
   padding: 0.2rem 0.6rem;
   border-radius: 2rem;
   font-size: 0.62rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--md-default-fg-color);
-  background: rgba(113, 113, 122, 0.16);
+  color: var(--kb-text-nav);
+  background: var(--kb-bg-tag);
 }
 .md-typeset .article-preview__title {
   margin: 0 0 0.55rem;
@@ -120,15 +120,18 @@
   margin-top: 1.4rem;
   padding: 0.5rem 1.05rem;
   border-radius: 2rem;
-  background: linear-gradient(135deg, #3f3f46, #18181b);
-  color: #fff;
+  background: var(--kb-bg-button);
+  border: 1px solid var(--kb-border);
+  color: var(--kb-text-primary);
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 .md-typeset a.article-preview__link:hover {
-  opacity: 0.9;
+  background: var(--kb-button-hover-bg);
+  border-color: var(--kb-button-hover-bg);
+  color: var(--kb-button-hover-color);
   transform: translateY(-1px);
 }
 
@@ -140,8 +143,8 @@
   }
   .md-typeset .article-preview { display: none; }
   .md-typeset a.article-item {
-    background-color: var(--md-code-bg-color);
-    border-color: var(--md-default-fg-color--lightest);
+    background-color: var(--kb-bg-card);
+    border-color: var(--kb-border);
     margin-bottom: 0.2rem;
   }
   .md-typeset a.article-item:hover {
@@ -156,19 +159,19 @@
   min-width: 250px;
   display: block;
   padding: 1.5rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid var(--kb-border);
   border-radius: 0.8rem;
   text-decoration: none;
   color: inherit;
-  background: var(--md-default-bg-color);
+  background: var(--kb-bg-card);
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 .md-typeset .home-card:hover {
   transform: translateY(-3px);
-  border-color: var(--md-default-fg-color);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  border-color: var(--kb-link);
+  box-shadow: 0 10px 28px var(--kb-shadow-card-hover);
 }
-.md-typeset .home-card h3 { margin-top: 0; margin-bottom: 0.4rem; }
+.md-typeset .home-card h3 { margin-top: 0; margin-bottom: 0.4rem; color: var(--kb-text-h3); font-weight: 600; }
 .md-typeset .home-card p {
   margin: 0;
   font-size: 19px;

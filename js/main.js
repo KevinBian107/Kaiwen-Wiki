@@ -24,3 +24,13 @@ document.addEventListener('click', function(e) {
     el.classList.remove('open');
   }
 });
+
+// Write the wiki's light/dark choice back to kbian.org's own key (same
+// origin), so flipping the theme here carries over to the main site.
+document.addEventListener('change', function(e) {
+  var t = e.target;
+  if (t && t.name === '__palette') {
+    var scheme = t.getAttribute('data-md-color-scheme');
+    try { localStorage.setItem('theme', scheme === 'slate' ? 'dark' : 'light'); } catch (err) {}
+  }
+});
