@@ -8,7 +8,7 @@ hide:
 
 # Welcome to My Misc Page
 
-Some perspectives and random thoughts I have on **Neuroscience and Cognition**, **Mathematics**, and **Vibe Coding and AI Agents**. I like to write some small articles because (1) to share some ideas I have and (2) it gets me to think about the connections between what I learned.
+Some perspectives and random thoughts I have on **Neuroscience**, **Computation**, **Mathematics**, and **AI Assistants**. I like to write some small articles because (1) to share some ideas I have and (2) it gets me to think about the connections between what I learned.
 
 ---
 
